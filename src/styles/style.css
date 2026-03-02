@@ -413,3 +413,21 @@ body {
     width: 240px;
   } /* optional: smaller left block on mobile */
 }
+
+/* Make topbar + left logo area white on Welcome (and everywhere if you want) */
+.topbar--white {
+  background: #ffffff;
+}
+
+.topbar-left--white {
+  background: #ffffff;
+}
+
+/* Welcome page content area sits between fixed topbar and footer */
+.welcome-main {
+  min-height: calc(100vh - var(--topbar-height));
+  margin-top: var(--topbar-height);
+  display: grid;
+  place-items: center;
+  padding: 40px;
+}
