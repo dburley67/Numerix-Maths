@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import WelcomePage from "../pages/WelcomePage.vue";
 import HomePage from "../pages/HomePage.vue";
 import LessonsPage from "../pages/LessonsPage.vue";
 import PracticePage from "../pages/PracticePage.vue";
@@ -10,7 +11,12 @@ import ContactPage from "../pages/ContactPage.vue";
 import TeamPage from "../pages/TeamPage.vue";
 
 const routes = [
-  { path: "/", component: HomePage },
+  // Welcome page loads first
+  { path: "/", component: WelcomePage },
+
+  //Dashboard / Home page moved
+  { path: "/home", component: HomePage },
+
   { path: "/lessons", component: LessonsPage },
   { path: "/practice", component: PracticePage },
   { path: "/achievements", component: AchievementsPage },

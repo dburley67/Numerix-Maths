@@ -1,7 +1,35 @@
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const isWelcome = computed(() => route.path === "/");
+
+const bellOn = ref(false);
+const toastShow = ref(false);
+const toastText = ref("");
+
+onMounted(() => {
+  bellOn.value = localStorage.getItem("notificationsOn") === "true";
+});
+
+function toggleBell() {
+  bellOn.value = !bellOn.value;
+  localStorage.setItem("notificationsOn", String(bellOn.value));
+
+  toastText.value = bellOn.value
+    ? "Notifications turned ON"
+    : "Notifications turned OFF";
+
+  toastShow.value = true;
+  setTimeout(() => (toastShow.value = false), 2000);
+}
+</script>
+
 <template>
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="topbar-left">
+  <!-- TOP BAR (always visible, white) -->
+  <header class="topbar topbar--white">
+    <div class="topbar-left topbar-left--white">
       <img
         src="/images/numerixMathsLogo.png"
         alt="Numerix Maths Logo"
@@ -9,7 +37,8 @@
       />
     </div>
 
-    <div class="topbar-right">
+    <!-- hide icons on welcome -->
+    <div class="topbar-right" v-if="!isWelcome">
       <RouterLink to="/contact" class="topbar-contact">
         <span>Contact Us</span>
         <i class="fa-solid fa-envelope"></i>
@@ -36,41 +65,40 @@
     </div>
   </header>
 
-  <!-- PAGE LAYOUT -->
-  <div class="layout">
-    <!-- SIDEBAR -->
+  <!-- WELCOME: full-width content (no sidebar) -->
+  <main v-if="isWelcome" class="welcome-main">
+    <RouterView />
+  </main>
+
+  <!-- NORMAL PAGES: sidebar + content -->
+  <div v-else class="layout">
     <nav class="nav">
       <ul>
         <li>
-          <RouterLink to="/" class="nav-item" exact-active-class="active">
+          <RouterLink to="/home" class="nav-item" exact-active-class="active">
             <i class="fa-solid fa-house"></i><span>Home</span>
           </RouterLink>
         </li>
-
         <li>
           <RouterLink to="/lessons" class="nav-item" exact-active-class="active">
             <i class="fa-solid fa-book-open"></i><span>Lessons</span>
           </RouterLink>
         </li>
-
         <li>
           <RouterLink to="/practice" class="nav-item" exact-active-class="active">
             <i class="fa-solid fa-pen"></i><span>Practice</span>
           </RouterLink>
         </li>
-
         <li>
           <RouterLink to="/achievements" class="nav-item" exact-active-class="active">
             <i class="fa-solid fa-award"></i><span>Achievements</span>
           </RouterLink>
         </li>
-
         <li>
           <RouterLink to="/games" class="nav-item" exact-active-class="active">
             <i class="fa-solid fa-gamepad"></i><span>Games</span>
           </RouterLink>
         </li>
-
         <li>
           <RouterLink to="/settings" class="nav-item" exact-active-class="active">
             <i class="fa-solid fa-gear"></i><span>Settings</span>
@@ -79,13 +107,12 @@
       </ul>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content">
       <RouterView />
     </main>
   </div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (always visible, including welcome) -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-top">
@@ -121,33 +148,9 @@
 
     <div class="footer-bottom">© 2026 Numerix Maths - Educational Prototype Project</div>
 
-    <!-- Toast -->
+    <!-- Toast (optional on welcome, harmless) -->
     <div id="notification-toast" class="toast" :class="{ show: toastShow }">
       {{ toastText }}
     </div>
   </footer>
 </template>
-
-<script setup>
-import { ref, onMounted } from "vue";
-
-const bellOn = ref(false);
-const toastShow = ref(false);
-const toastText = ref("");
-
-onMounted(() => {
-  bellOn.value = localStorage.getItem("notificationsOn") === "true";
-});
-
-function toggleBell() {
-  bellOn.value = !bellOn.value;
-  localStorage.setItem("notificationsOn", bellOn.value);
-
-  toastText.value = bellOn.value
-    ? "Notifications turned ON"
-    : "Notifications turned OFF";
-
-  toastShow.value = true;
-  setTimeout(() => (toastShow.value = false), 2000);
-}
-</script>
