@@ -9,10 +9,10 @@ import GamesPage from "../pages/GamesPage.vue";
 import SettingsPage from "../pages/SettingsPage.vue";
 import ContactPage from "../pages/ContactPage.vue";
 import TeamPage from "../pages/TeamPage.vue";
-import Lesson1 from "../pages/1.vue";
-import Lesson2 from "../pages/2.vue"
-import Lesson3 from "../pages/3.vue";
-import { patchProp } from "vue";
+import Lesson1 from "../pages/DecimalRounding.vue";
+import Lesson2 from "../pages/FactorMultiplesPrimes.vue";
+import Lesson3 from "../pages/StandardForm.vue";
+
 
 const routes = [
   { path: "/", component: WelcomePage, meta: { layout: "welcome" } },
