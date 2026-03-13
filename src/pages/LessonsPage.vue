@@ -183,7 +183,7 @@ const router = useRouter();
 
 function goToLesson(id) {
   const route = router.resolve(`/lesson${id}`);
-  window.open(route.href, "_blank");
+  router.push(route.href);
 
   
 }
