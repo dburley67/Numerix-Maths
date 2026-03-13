@@ -9,14 +9,15 @@ import GamesPage from "../pages/GamesPage.vue";
 import SettingsPage from "../pages/SettingsPage.vue";
 import ContactPage from "../pages/ContactPage.vue";
 import TeamPage from "../pages/TeamPage.vue";
+import Lesson1 from "../pages/1.vue";
+import Lesson2 from "../pages/2.vue"
+import Lesson3 from "../pages/3.vue";
+import { patchProp } from "vue";
 
 const routes = [
-  // Welcome page loads first
-  { path: "/", component: WelcomePage },
+  { path: "/", component: WelcomePage, meta: { layout: "welcome" } },
 
-  //Dashboard / Home page moved
   { path: "/home", component: HomePage },
-
   { path: "/lessons", component: LessonsPage },
   { path: "/practice", component: PracticePage },
   { path: "/achievements", component: AchievementsPage },
@@ -24,6 +25,9 @@ const routes = [
   { path: "/settings", component: SettingsPage },
   { path: "/contact", component: ContactPage },
   { path: "/team", component: TeamPage },
+  { path: "/Lesson1", component: Lesson1},
+  { path: "/Lesson2", component: Lesson2},
+  { path: "/Lesson3", component: Lesson3}
 ];
 
 export default createRouter({
