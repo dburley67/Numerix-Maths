@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+<rect width="300" height="300" rx="150" fill="#f3e5cf"/>
+<circle cx="150" cy="120" r="60" fill="white" fill-opacity="0.8"/>
+<path d="M70 250c15-45 55-70 80-70s65 25 80 70" fill="white" fill-opacity="0.8"/>
+<text x="150" y="132" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="42" font-weight="800" fill="#f06a11">A</text>
+</svg>
