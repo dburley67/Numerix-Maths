@@ -12,11 +12,11 @@ import TeamPage from "../pages/TeamPage.vue";
 import Lesson1 from "../pages/DecimalRounding.vue";
 import Lesson2 from "../pages/FactorMultiplesPrimes.vue";
 import Lesson3 from "../pages/StandardForm.vue";
-
+import Lesson4 from "../pages/PercentageFinance.vue";
+import Lesson5 from "../pages/FinanceLesson.vue"
 
 const routes = [
   { path: "/", component: WelcomePage, meta: { layout: "welcome" } },
-
   { path: "/home", component: HomePage },
   { path: "/lessons", component: LessonsPage },
   { path: "/practice", component: PracticePage },
@@ -27,7 +27,9 @@ const routes = [
   { path: "/team", component: TeamPage },
   { path: "/Lesson1", component: Lesson1},
   { path: "/Lesson2", component: Lesson2},
-  { path: "/Lesson3", component: Lesson3}
+  { path: "/Lesson3", component: Lesson3},
+  { path: "/Lesson4", component: Lesson4},
+  { path: "/Lesson5", component: Lesson5},
 ];
 
 export default createRouter({
