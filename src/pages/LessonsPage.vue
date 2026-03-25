@@ -154,9 +154,40 @@
           <div class="lc-status-fill lc-status-orange" style="width: 0%"></div>
         </div>
       </div>
-
+      
+<!-- Lesson 4 & 5 Percentages and Finance -->
+  <div class="lesson-card" @click="goToLesson(4)">
+    <div class="lc-badge">Lesson 4 & 5</div>
+    <div class="lc-icon-wrap lc-blue">
+      <i class="fa-solid fa-percent"></i>
     </div>
+    <div class="lc-body">
+      <h2 class="lc-title">Percentages &amp; Finance</h2>
+      <p class="lc-desc">
+        Learn percentages, discounts, and simple interest in real-life finance.
+      </p>
 
+      <div class="lc-topics">
+        <span class="lc-chip">Percentages</span>
+        <span class="lc-chip">Discounts</span>
+        <span class="lc-chip">Interest</span>
+        <span class="lc-chip">Finance</span>
+      </div>
+
+      <div class="lc-footer">
+        <div class="lc-meta">
+          <span>15 questions</span>
+          <span>~25 min</span>
+        </div>
+        <button class="lc-btn lc-btn-blue" @click.stop="goToLesson(4)">
+          Start <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+    <div class="lc-status-bar"><div class="lc-status-fill"></div></div>
+  </div>
+</div>
+    
     <!-- Coming Soon Strip -->
     <div class="lessons-coming-soon">
       <i class="fa-solid fa-lock"></i>
