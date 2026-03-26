@@ -312,7 +312,7 @@
       </div>
 
       <!-- Lesson 8: Negative Numbers -->
-      <div class="lesson-card" @click="goToLesson(8)">
+  <div class="lesson-card" @click="goToLesson(8)">
         <div class="lc-badge">Lesson 8</div>
         <div class="lc-icon-wrap lc-red">
           <i class="fa-solid fa-minus"></i>
@@ -353,10 +353,49 @@
           <div class="lc-status-fill" style="width: 0%"></div>
         </div>
       </div>
-    </div>
+ <!-- Lesson 9: Probability -->
+      <div class="lesson-card" @click="goToLesson(9)">
+        <div class="lc-badge">Lesson 9</div>
+        <div class="lc-icon-wrap lc-indigo">
+          <i class="fa-solid fa-dice"></i>
+        </div>
+        <div class="lc-body">
+          <h2 class="lc-title">Intro to Probability</h2>
+          <p class="lc-desc">
+            Master the math of chance. Learn how to calculate likelihood, use the probability scale, and predict outcomes.
+          </p>
 
-    <!-- Coming Soon Strip -->
-    <div class="lessons-coming-soon">
+          <div class="lc-topics">
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Probability Scale</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Outcomes</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Predictions</span
+            >
+          </div>
+
+          <div class="lc-footer">
+            <div class="lc-meta">
+              <span
+                ><i class="fa-solid fa-circle-question"></i> 12 questions</span
+              >
+              <span><i class="fa-regular fa-clock"></i> ~15 min</span>
+            </div>
+            <button class="lc-btn lc-btn-indigo" @click.stop="goToLesson(9)">
+              Start <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="lc-status-bar">
+          <div class="lc-status-fill lc-status-indigo" style="width: 0%"></div>
+        </div>
+      </div>
+
+    </div> <div class="lessons-coming-soon">
       <i class="fa-solid fa-lock"></i>
       More lessons coming soon — Algebra, Geometry, Statistics &amp; more
     </div>
@@ -578,6 +617,21 @@ function goToLesson(id) {
   background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%);
   color: #dc2626;
 }
+.lc-indigo {
+  background: linear-gradient(135deg, #e0e7ff 0%, #eef2ff 100%);
+  color: #4f46e5;
+}
+.lc-btn-indigo {
+  background: #4f46e5;
+  color: #fff;
+}
+.lc-btn-indigo:hover {
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.35);
+}
+.lc-status-indigo {
+  background: #4f46e5;
+}
+
 
 /* Card body */
 .lc-body {
@@ -764,6 +818,10 @@ body.dark .lc-orange {
 body.dark .lc-red {
   background: linear-gradient(135deg, #431415 0%, #3f0a10 100%);
   color: #f87171;
+}
+body.dark .lc-indigo { 
+  background: linear-gradient(135deg, #312e81 0%, #1e1b4b 100%); 
+  color: #818cf8; 
 }
 
 /* ── Responsive ─────────────────────────────────────── */
