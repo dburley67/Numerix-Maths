@@ -1,16 +1,34 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-const isWelcome = computed(() => route.path === "/");
+const isWelcome = computed(
+  () => route.path === "/" || route.path === "/welcome",
+);
 
 const bellOn = ref(false);
 const toastShow = ref(false);
 const toastText = ref("");
+const isDarkMode = ref(document.body.classList.contains("dark"));
+
+let observer;
 
 onMounted(() => {
   bellOn.value = localStorage.getItem("notificationsOn") === "true";
+
+  observer = new MutationObserver(() => {
+    isDarkMode.value = document.body.classList.contains("dark");
+  });
+
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+});
+
+onUnmounted(() => {
+  if (observer) observer.disconnect();
 });
 
 function toggleBell() {
@@ -33,7 +51,11 @@ function toggleBell() {
     <header class="topbar topbar--white">
       <div class="topbar-left topbar-left--white">
         <img
-          src="/images/numerixMathsLogo.png"
+          :src="
+            isDarkMode
+              ? '/images/numerixMathsLogoDarkMode.png'
+              : '/images/numerixMathsLogo.png'
+          "
           alt="Numerix Maths Logo"
           class="topbar-logo"
         />
