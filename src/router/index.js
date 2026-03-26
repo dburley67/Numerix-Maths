@@ -14,9 +14,7 @@ import Lesson2 from "../pages/FactorMultiplesPrimes.vue";
 import Lesson3 from "../pages/StandardForm.vue";
 import Lesson4 from "../pages/PercentageFinance.vue";
 import Lesson5 from "../pages/FinanceLesson.vue";
-import Lesson6 from "../pages/BasicOperations.vue";
 import Lesson7 from "../pages/BIDMAS.vue";
-import Lesson8 from "../pages/NegativeNumbers.vue";
 
 const routes = [
   { path: "/", component: WelcomePage, meta: { layout: "welcome" } },
@@ -34,9 +32,7 @@ const routes = [
   { path: "/Lesson4", component: Lesson4 },
   { path: "/Lesson5", component: Lesson5 },
   ,
-  { path: "/Lesson6", component: Lesson6 },
   { path: "/Lesson7", component: Lesson7 },
-  { path: "/Lesson8", component: Lesson8 },
 ];
 
 export default createRouter({
