@@ -12,7 +12,7 @@
           Choose a topic below to begin learning
           <span class="dash-sep">|</span>
           <i class="fa-solid fa-signal"></i>
-          3 topics available
+          8 topics available
         </p>
       </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="lpb-divider"></div>
         <div class="lpb-stat">
           <i class="fa-solid fa-circle-check" style="color:#22c55e;"></i>
-          <span><strong>0 / 3</strong> topics mastered</span>
+          <span><strong>0 / 8</strong> topics mastered</span>
         </div>
       </div>
     </div>
@@ -154,9 +154,146 @@
           <div class="lc-status-fill lc-status-orange" style="width: 0%"></div>
         </div>
       </div>
-
+      
+<!-- Lesson 4 & 5 Percentages and Finance -->
+  <div class="lesson-card" @click="goToLesson(4)">
+    <div class="lc-badge">Lesson 4 & 5</div>
+    <div class="lc-icon-wrap lc-blue">
+      <i class="fa-solid fa-percent"></i>
     </div>
+    <div class="lc-body">
+      <h2 class="lc-title">Percentages &amp; Finance</h2>
+      <p class="lc-desc">
+        Learn percentages, discounts, and simple interest in real-life finance.
+      </p>
 
+      <div class="lc-topics">
+        <span class="lc-chip">Percentages</span>
+        <span class="lc-chip">Discounts</span>
+        <span class="lc-chip">Interest</span>
+        <span class="lc-chip">Finance</span>
+      </div>
+
+      <div class="lc-footer">
+        <div class="lc-meta">
+          <span>15 questions</span>
+          <span>~25 min</span>
+        </div>
+        <button class="lc-btn lc-btn-blue" @click.stop="goToLesson(4)">
+          Start <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+    <div class="lc-status-bar"><div class="lc-status-fill"></div></div>
+  </div>
+  <!-- Lesson 6: Basic Operations -->
+      <div class="lesson-card" @click="goToLesson(6)">
+        <div class="lc-badge">Lesson 6</div>
+        <div class="lc-icon-wrap lc-red">
+          <i class="fa-solid fa-percentage"></i>
+        </div>
+        <div class="lc-body">
+          <h2 class="lc-title">Basic Operations </h2>
+          <p class="lc-desc">
+            Learn the 4 basic numerical operations: addition, subtraction, multiplication, and division.
+          </p>
+
+          <div class="lc-topics">
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Addition</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Subtraction</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Multiplication</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Division</span>
+          </div>
+
+          <div class="lc-footer">
+            <div class="lc-meta">
+              <span><i class="fa-solid fa-circle-question"></i> 12 questions</span>
+              <span><i class="fa-regular fa-clock"></i> ~20 min</span>
+            </div>
+            <button class="lc-btn lc-btn-red" @click.stop="goToLesson(6)">
+              Start <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="lc-status-bar">
+          <div class="lc-status-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Lesson 7: BIDMAS -->
+      <div class="lesson-card" @click="goToLesson(7)">
+        <div class="lc-badge">Lesson 7</div>
+        <div class="lc-icon-wrap lc-red">
+          <i class="fa-solid fa-percentage"></i>
+        </div>
+        <div class="lc-body">
+          <h2 class="lc-title">BIDMAS </h2>
+          <p class="lc-desc">
+            Learn the order of operations in mathematics.
+          </p>
+
+          <div class="lc-topics">
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Brackets</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Indices</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Division</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Multiplication</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Addition</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Subtraction</span>
+          </div>
+
+          <div class="lc-footer">
+            <div class="lc-meta">
+              <span><i class="fa-solid fa-circle-question"></i> 12 questions</span>
+              <span><i class="fa-regular fa-clock"></i> ~20 min</span>
+            </div>
+            <button class="lc-btn lc-btn-red" @click.stop="goToLesson(7)">
+              Start <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="lc-status-bar">
+          <div class="lc-status-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Lesson 8: Negative Numbers -->
+      <div class="lesson-card" @click="goToLesson(8)">
+        <div class="lc-badge">Lesson 8</div>
+        <div class="lc-icon-wrap lc-red">
+          <i class="fa-solid fa-minus"></i>
+        </div>
+        <div class="lc-body">
+          <h2 class="lc-title">Negative Numbers</h2>
+          <p class="lc-desc">
+            Understand negative numbers and how to work with subtractions that result in values below zero.
+          </p>
+
+          <div class="lc-topics">
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Negative Concepts</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Subtraction</span>
+            <span class="lc-chip"><i class="fa-solid fa-circle-dot"></i> Below Zero</span>
+          </div>
+
+          <div class="lc-footer">
+            <div class="lc-meta">
+              <span><i class="fa-solid fa-circle-question"></i> 4 questions</span>
+              <span><i class="fa-regular fa-clock"></i> ~15 min</span>
+            </div>
+            <button class="lc-btn lc-btn-red" @click.stop="goToLesson(8)">
+              Start <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="lc-status-bar">
+          <div class="lc-status-fill" style="width: 0%"></div>
+        </div>
+      </div>
+</div>
+
+    
     <!-- Coming Soon Strip -->
     <div class="lessons-coming-soon">
       <i class="fa-solid fa-lock"></i>
@@ -365,6 +502,7 @@ function goToLesson(id) {
 .lc-blue   { background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%); color: #2563eb; }
 .lc-green  { background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%); color: #16a34a; }
 .lc-orange { background: linear-gradient(135deg, #ffedd5 0%, #fff7ed 100%); color: #ea580c; }
+.lc-red    { background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%); color: #dc2626; }
 
 /* Card body */
 .lc-body {
@@ -458,10 +596,12 @@ function goToLesson(id) {
 .lc-btn-blue   { background: #2563eb; color: #fff; }
 .lc-btn-green  { background: #16a34a; color: #fff; }
 .lc-btn-orange { background: #ea580c; color: #fff; }
+.lc-btn-red    { background: #dc2626; color: #fff; }
 
 .lc-btn-blue:hover   { box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35); }
 .lc-btn-green:hover  { box-shadow: 0 6px 18px rgba(22, 163, 74, 0.35); }
 .lc-btn-orange:hover { box-shadow: 0 6px 18px rgba(234, 88, 12, 0.35); }
+.lc-btn-red:hover    { box-shadow: 0 6px 18px rgba(220, 38, 38, 0.35); }
 
 /* Progress bar at bottom of each card */
 .lc-status-bar {
@@ -477,6 +617,7 @@ function goToLesson(id) {
 
 .lc-status-green  { background: #16a34a; }
 .lc-status-orange { background: #ea580c; }
+.lc-status-red    { background: #dc2626; }
 
 /* ── Coming Soon Strip ──────────────────────────────── */
 .lessons-coming-soon {
@@ -508,6 +649,7 @@ body.dark .section-pill {
 body.dark .lc-blue   { background: linear-gradient(135deg, #1e3a5f 0%, #172554 100%); color: #60a5fa; }
 body.dark .lc-green  { background: linear-gradient(135deg, #14532d 0%, #052e16 100%); color: #4ade80; }
 body.dark .lc-orange { background: linear-gradient(135deg, #431407 0%, #1c0a00 100%); color: #fb923c; }
+body.dark .lc-red    { background: linear-gradient(135deg, #431415 0%, #3f0a10 100%); color: #f87171; }
 
 /* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 1050px) {
