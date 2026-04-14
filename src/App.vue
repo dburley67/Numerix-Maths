@@ -62,7 +62,10 @@ function toggleBell() {
       </div>
 
       <div class="topbar-right">
-        <RouterLink to="/contact" class="topbar-contact">
+        <RouterLink
+          to="/contact"
+          :class="['topbar-contact', { 'active-topbar': route.path === '/contact' }]"
+        >
           <span>Contact Us</span>
           <i class="fa-solid fa-envelope"></i>
         </RouterLink>
@@ -190,3 +193,4 @@ function toggleBell() {
     </footer>
   </template>
 </template>
+

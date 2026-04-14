@@ -444,6 +444,8 @@ onUnmounted(() => clearInterval(timerInterval));
 .exercises-page {
   padding: 40px;
   max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
   font-family: "Poppins", sans-serif;
 }
 
