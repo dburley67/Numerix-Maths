@@ -20,6 +20,9 @@ import Lesson6 from "../pages/BasicOperations.vue";
 import Lesson7 from "../pages/BIDMAS.vue";
 import Lesson8 from "../pages/NegativeNumbers.vue";
 import Lesson9 from "../pages/ProbabilityLesson.vue";
+import Lesson10 from "../pages/FractionsOperationsLesson.vue";
+import Lesson11 from "../pages/Ratios&SharingLesson.vue";
+import Lesson12 from "../pages/Direct&InverseProportionLesson.vue";
 
 const routes = [
   { path: "/", component: WelcomePage, meta: { layout: "welcome" } },
@@ -31,17 +34,20 @@ const routes = [
   { path: "/settings", component: SettingsPage },
   { path: "/contact", component: ContactPage },
   { path: "/team", component: TeamPage },
-  
+
   // Lesson Routes
   { path: "/Lesson1", component: Lesson1 },
   { path: "/Lesson2", component: Lesson2 },
   { path: "/Lesson3", component: Lesson3 },
   { path: "/Lesson4", component: Lesson4 },
-  { path: "/Lesson5", component: Lesson5 }, 
+  { path: "/Lesson5", component: Lesson5 },
   { path: "/Lesson6", component: Lesson6 },
   { path: "/Lesson7", component: Lesson7 },
   { path: "/Lesson8", component: Lesson8 },
-  { path: "/Lesson9", component: Lesson9 } 
+  { path: "/Lesson9", component: Lesson9 },
+  { path: "/Lesson10", component: Lesson10 },
+  { path: "/Lesson11", component: Lesson11 },
+  { path: "/Lesson12", component: Lesson12 },
 ];
 
 export default createRouter({

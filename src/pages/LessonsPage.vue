@@ -11,7 +11,7 @@
           Choose a topic below to begin learning
           <span class="dash-sep">|</span>
           <i class="fa-solid fa-signal"></i>
-          8 topics available
+          12 topics available
         </p>
       </div>
     </div>
@@ -31,7 +31,7 @@
         <div class="lpb-divider"></div>
         <div class="lpb-stat">
           <i class="fa-solid fa-circle-check" style="color: #22c55e"></i>
-          <span><strong>0 / 8</strong> topics mastered</span>
+          <span><strong>0 / 12</strong> topics mastered</span>
         </div>
       </div>
     </div>
@@ -186,7 +186,7 @@
 
       <!-- Lesson 4 & 5 Percentages and Finance -->
       <div class="lesson-card" @click="goToLesson(4)">
-        <div class="lc-badge">Lesson 4 & 5</div>
+        <div class="lc-badge">Lesson 4 &amp; 5</div>
         <div class="lc-icon-wrap lc-blue">
           <i class="fa-solid fa-percent"></i>
         </div>
@@ -216,11 +216,12 @@
         </div>
         <div class="lc-status-bar"><div class="lc-status-fill"></div></div>
       </div>
+
       <!-- Lesson 6: Basic Operations -->
       <div class="lesson-card" @click="goToLesson(6)">
         <div class="lc-badge">Lesson 6</div>
         <div class="lc-icon-wrap lc-red">
-          <i class="fa-solid fa-percentage"></i>
+          <i class="fa-solid fa-calculator"></i>
         </div>
         <div class="lc-body">
           <h2 class="lc-title">Basic Operations</h2>
@@ -258,7 +259,7 @@
         </div>
 
         <div class="lc-status-bar">
-          <div class="lc-status-fill" style="width: 0%"></div>
+          <div class="lc-status-fill lc-status-red" style="width: 0%"></div>
         </div>
       </div>
 
@@ -266,7 +267,7 @@
       <div class="lesson-card" @click="goToLesson(7)">
         <div class="lc-badge">Lesson 7</div>
         <div class="lc-icon-wrap lc-red">
-          <i class="fa-solid fa-percentage"></i>
+          <i class="fa-solid fa-square-root-variable"></i>
         </div>
         <div class="lc-body">
           <h2 class="lc-title">BIDMAS</h2>
@@ -307,12 +308,12 @@
         </div>
 
         <div class="lc-status-bar">
-          <div class="lc-status-fill" style="width: 0%"></div>
+          <div class="lc-status-fill lc-status-red" style="width: 0%"></div>
         </div>
       </div>
 
       <!-- Lesson 8: Negative Numbers -->
-  <div class="lesson-card" @click="goToLesson(8)">
+      <div class="lesson-card" @click="goToLesson(8)">
         <div class="lc-badge">Lesson 8</div>
         <div class="lc-icon-wrap lc-red">
           <i class="fa-solid fa-minus"></i>
@@ -350,10 +351,11 @@
         </div>
 
         <div class="lc-status-bar">
-          <div class="lc-status-fill" style="width: 0%"></div>
+          <div class="lc-status-fill lc-status-red" style="width: 0%"></div>
         </div>
       </div>
- <!-- Lesson 9: Probability -->
+
+      <!-- Lesson 9: Probability -->
       <div class="lesson-card" @click="goToLesson(9)">
         <div class="lc-badge">Lesson 9</div>
         <div class="lc-icon-wrap lc-indigo">
@@ -362,7 +364,8 @@
         <div class="lc-body">
           <h2 class="lc-title">Intro to Probability</h2>
           <p class="lc-desc">
-            Master the math of chance. Learn how to calculate likelihood, use the probability scale, and predict outcomes.
+            Master the math of chance. Learn how to calculate likelihood, use
+            the probability scale, and predict outcomes.
           </p>
 
           <div class="lc-topics">
@@ -395,7 +398,146 @@
         </div>
       </div>
 
-    </div> <div class="lessons-coming-soon">
+      <!-- Lesson 10: Fractions & Operations -->
+      <div class="lesson-card" @click="goToLesson(10)">
+        <div class="lc-badge">Lesson 10</div>
+        <div class="lc-icon-wrap lc-teal">
+          <i class="fa-solid fa-divide"></i>
+        </div>
+        <div class="lc-body">
+          <h2 class="lc-title">Fractions &amp; Operations</h2>
+          <p class="lc-desc">
+            Learn how to simplify fractions and perform addition, subtraction,
+            multiplication, and division with fractions.
+          </p>
+
+          <div class="lc-topics">
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Simplifying</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Add &amp; Subtract</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Multiply</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Divide</span
+            >
+          </div>
+
+          <div class="lc-footer">
+            <div class="lc-meta">
+              <span
+                ><i class="fa-solid fa-circle-question"></i> 14 questions</span
+              >
+              <span><i class="fa-regular fa-clock"></i> ~22 min</span>
+            </div>
+            <button class="lc-btn lc-btn-teal" @click.stop="goToLesson(10)">
+              Start <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="lc-status-bar">
+          <div class="lc-status-fill lc-status-teal" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Lesson 11: Ratios & Sharing -->
+      <div class="lesson-card" @click="goToLesson(11)">
+        <div class="lc-badge">Lesson 11</div>
+        <div class="lc-icon-wrap lc-yellow">
+          <i class="fa-solid fa-scale-balanced"></i>
+        </div>
+        <div class="lc-body">
+          <h2 class="lc-title">Ratios &amp; Sharing</h2>
+          <p class="lc-desc">
+            Understand ratio notation, simplify ratios, and share quantities in
+            a given ratio.
+          </p>
+
+          <div class="lc-topics">
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Ratio Notation</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Simplifying</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Sharing</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Comparing</span
+            >
+          </div>
+
+          <div class="lc-footer">
+            <div class="lc-meta">
+              <span
+                ><i class="fa-solid fa-circle-question"></i> 12 questions</span
+              >
+              <span><i class="fa-regular fa-clock"></i> ~20 min</span>
+            </div>
+            <button class="lc-btn lc-btn-yellow" @click.stop="goToLesson(11)">
+              Start <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="lc-status-bar">
+          <div class="lc-status-fill lc-status-yellow" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Lesson 12: Direct & Inverse Proportion -->
+      <div class="lesson-card" @click="goToLesson(12)">
+        <div class="lc-badge">Lesson 12</div>
+        <div class="lc-icon-wrap lc-purple">
+          <i class="fa-solid fa-arrows-up-down-left-right"></i>
+        </div>
+        <div class="lc-body">
+          <h2 class="lc-title">Direct &amp; Inverse Proportion</h2>
+          <p class="lc-desc">
+            Explore relationships between quantities and learn how direct and
+            inverse proportion work in real-life situations.
+          </p>
+
+          <div class="lc-topics">
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Direct Proportion</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Inverse Proportion</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Tables</span
+            >
+            <span class="lc-chip"
+              ><i class="fa-solid fa-circle-dot"></i> Word Problems</span
+            >
+          </div>
+
+          <div class="lc-footer">
+            <div class="lc-meta">
+              <span
+                ><i class="fa-solid fa-circle-question"></i> 14 questions</span
+              >
+              <span><i class="fa-regular fa-clock"></i> ~24 min</span>
+            </div>
+            <button class="lc-btn lc-btn-purple" @click.stop="goToLesson(12)">
+              Start <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="lc-status-bar">
+          <div class="lc-status-fill lc-status-purple" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lessons-coming-soon">
       <i class="fa-solid fa-lock"></i>
       More lessons coming soon — Algebra, Geometry, Statistics &amp; more
     </div>
@@ -403,14 +545,6 @@
 </template>
 
 <script setup>
-// import { useRouter } from "vue-router";
-
-// const router = useRouter();
-
-// function goToLesson(id) {
-//   router.push(`/Lesson${id}`);
-//   window.open(route.href, "_blank");
-
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -621,17 +755,18 @@ function goToLesson(id) {
   background: linear-gradient(135deg, #e0e7ff 0%, #eef2ff 100%);
   color: #4f46e5;
 }
-.lc-btn-indigo {
-  background: #4f46e5;
-  color: #fff;
+.lc-teal {
+  background: linear-gradient(135deg, #ccfbf1 0%, #f0fdfa 100%);
+  color: #0f766e;
 }
-.lc-btn-indigo:hover {
-  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.35);
+.lc-yellow {
+  background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+  color: #d97706;
 }
-.lc-status-indigo {
-  background: #4f46e5;
+.lc-purple {
+  background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%);
+  color: #9333ea;
 }
-
 
 /* Card body */
 .lc-body {
@@ -740,6 +875,22 @@ function goToLesson(id) {
   background: #dc2626;
   color: #fff;
 }
+.lc-btn-indigo {
+  background: #4f46e5;
+  color: #fff;
+}
+.lc-btn-teal {
+  background: #0f766e;
+  color: #fff;
+}
+.lc-btn-yellow {
+  background: #d97706;
+  color: #fff;
+}
+.lc-btn-purple {
+  background: #9333ea;
+  color: #fff;
+}
 
 .lc-btn-blue:hover {
   box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
@@ -752,6 +903,18 @@ function goToLesson(id) {
 }
 .lc-btn-red:hover {
   box-shadow: 0 6px 18px rgba(220, 38, 38, 0.35);
+}
+.lc-btn-indigo:hover {
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.35);
+}
+.lc-btn-teal:hover {
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
+}
+.lc-btn-yellow:hover {
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.35);
+}
+.lc-btn-purple:hover {
+  box-shadow: 0 6px 18px rgba(147, 51, 234, 0.35);
 }
 
 /* Progress bar at bottom of each card */
@@ -774,6 +937,18 @@ function goToLesson(id) {
 }
 .lc-status-red {
   background: #dc2626;
+}
+.lc-status-indigo {
+  background: #4f46e5;
+}
+.lc-status-teal {
+  background: #0f766e;
+}
+.lc-status-yellow {
+  background: #d97706;
+}
+.lc-status-purple {
+  background: #9333ea;
 }
 
 /* ── Coming Soon Strip ──────────────────────────────── */
@@ -819,9 +994,21 @@ body.dark .lc-red {
   background: linear-gradient(135deg, #431415 0%, #3f0a10 100%);
   color: #f87171;
 }
-body.dark .lc-indigo { 
-  background: linear-gradient(135deg, #312e81 0%, #1e1b4b 100%); 
-  color: #818cf8; 
+body.dark .lc-indigo {
+  background: linear-gradient(135deg, #312e81 0%, #1e1b4b 100%);
+  color: #818cf8;
+}
+body.dark .lc-teal {
+  background: linear-gradient(135deg, #134e4a 0%, #042f2e 100%);
+  color: #5eead4;
+}
+body.dark .lc-yellow {
+  background: linear-gradient(135deg, #78350f 0%, #451a03 100%);
+  color: #fcd34d;
+}
+body.dark .lc-purple {
+  background: linear-gradient(135deg, #581c87 0%, #3b0764 100%);
+  color: #d8b4fe;
 }
 
 /* ── Responsive ─────────────────────────────────────── */
