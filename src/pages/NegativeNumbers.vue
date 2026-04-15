@@ -1,223 +1,385 @@
 <template>
-  <div class="lesson-page">
-
-    <!-- ── Lesson Header ── -->
-    <div class="lesson-hero">
-      <div class="lesson-hero-label">
-        <i class="fa-solid fa-book-open"></i> Lesson 1
-      </div>
-      <h1 class="lesson-hero-title">Basic Operations</h1>
-      <p class="lesson-hero-sub">
-        Learn to perform the 4 basic numerical operations
-      </p>
-      <div class="lesson-hero-chips">
-        <span class="hero-chip"><i class="fa-solid fa-circle-question"></i> 12 questions</span>
-        <span class="hero-chip"><i class="fa-regular fa-clock"></i> ~20 min</span>
-        <span class="hero-chip hero-chip-blue"><i class="fa-solid fa-signal"></i> Foundation</span>
-      </div>
-    </div>
-
-    <!-- ── Progress Bar ── -->
-    <div class="lesson-progress-wrap">
-      <div class="lesson-progress-label">
-        <span>Lesson Progress</span>
-        <span class="lesson-progress-pct">{{ Math.round(progress) }}%</span>
-      </div>
-      <div class="lesson-progress-track">
-        <div class="lesson-progress-fill" :style="{ width: progress + '%' }"></div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 1: What are the 4 operations? ── -->
-    <div class="lesson-section" ref="sec1" :class="{ visible: sec1Visible }">
-      <div class="section-header">
-        <div class="section-num">1</div>
-        <h2 class="section-title">What are the 4 operations??</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          The 4 operations are Addition, Subtraction, Multiplication, And Division.
-        </p>
-
-        <!-- Range rule card -->
-        <div class="rule-cards">
-          <div class="rule-card rule-card-Plus">
-            <div class="rule-range">Negative Numbers</div>
-            <div class="rule-arrow">
-              <i class="fa-solid fa-minus"></i>
-            </div>
-            <div class="rule-label">Negative numbers are numbers that are <strong>BELOW</strong> zero</div>
-            <div class="rule-desc">for example -5 is a negative number</div>
-          </div>
+  <div class="lesson-layout">
+    <!-- LEFT: Main content -->
+    <div class="lesson-page">
+      <!-- ── Lesson Header ── -->
+      <div class="lesson-hero">
+        <div class="lesson-hero-label">
+          <i class="fa-solid fa-book-open"></i> Lesson 8
         </div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 2: The Diagram ── -->
-    <div class="lesson-section" ref="sec2" :class="{ visible: sec2Visible }">
-      <div class="section-header">
-        <div class="section-num">2</div>
-        <h2 class="section-title">Worked Example: 10-15</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Let's take 15 from <strong>10</strong>.
-          15 is larger than 10, so the result will be negative
+        <h1 class="lesson-hero-title">Negative Numbers</h1>
+        <p class="lesson-hero-sub">
+          Learn to perform the 4 basic numerical operations
         </p>
-
-        <!-- Whiteboard Diagram -->
-        <div class="diagram-wrap">
-          <div class="whiteboard">
-            <svg class="diagram-svg" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
-
-              <!-- 10 number -->
-              <text x="80" y="110" class="svg-num-black">10</text>
-              
-
-              
-              
-
-              <!-- Red arrow from sum to ans -->
-              <line x1="176" y1="145" x2="258" y2="148"
-                stroke="#dc2626" stroke-width="3"
-                stroke-linecap="round"
-                class="svg-draw line-draw" />
-
-              <!-- Result: -5 label -->
-              <text x="260" y="158" class="svg-label-black svg-fade" style="animation-delay:0.9s">-5</text>
-
-              
-              <!-- Minus sign -->
-               <line x1='110' y1='150' x2='130' y2='150' stroke='black' />
-               
-
-              <!-- Second number: 15 in red below -->
-              <text x="96" y="232" class="svg-num-result svg-fade" style="animation-delay:1.2s">15</text>
-
-            </svg>
-
-            <div class="diagram-legend">
-              <span class="legend-item legend-red">
-                <span class="legend-dot"></span> Number to subtract
-              </span>
-              
-            </div>
-          </div>
-
-          <!-- Step-by-step breakdown -->
-          <div class="steps-panel">
-            <div class="step-item">
-              <div class="step-dot step-dot-1">1</div>
-              <div class="step-text">
-                <strong>Flip the numbers</strong> to do the subtraction normally.<br />
-                <span class="step-ex">Instead of 10-15, think <strong>15-10</strong></span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-2">2</div>
-              <div class="step-text">
-                <strong>Calculate</strong> the positive difference<br />
-                <span class="step-ex"><span class="hl-red">15</span> minus <strong>10</strong> equals <span class="hl-green">5</span></span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-3">3</div>
-              <div class="step-text">
-                <strong>Add the negative</strong> because we switched the numbers<br />
-                <span class="step-ex">The answer becomes <span class="hl-green">-5</span></span>
-              </div>
-            </div>
-            <div class="step-result">
-              <span class="step-result-label">Answer:</span>
-              <span class="step-result-val">10-15 → <strong>-5</strong></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-
-    <!-- ── SECTION 3: Try It Yourself ── -->
-    <div class="lesson-section" ref="sec3" :class="{ visible: sec3Visible }">
-      <div class="section-header">
-        <div class="section-num">3</div>
-        <h2 class="section-title">Try It Yourself</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Round each number to the nearest whole number. Select your answer:
-        </p>
-
-        <div class="quiz-grid">
-          <div
-            v-for="(q, i) in quizQuestions"
-            :key="i"
-            class="quiz-card"
-            :class="{ answered: q.selected !== null }"
+        <div class="lesson-hero-chips">
+          <span class="hero-chip"
+            ><i class="fa-solid fa-circle-question"></i> 12 questions</span
           >
-            <div class="quiz-q"> <strong>{{ q.number }}</strong></div>
-            <div class="quiz-opts">
-              <button
-                v-for="opt in q.options"
-                :key="opt"
-                class="quiz-opt"
-                :class="{
-                  'opt-correct': q.selected !== null && opt === q.answer,
-                  'opt-wrong':   q.selected === opt && opt !== q.answer,
-                  'opt-neutral': q.selected !== null && opt !== q.answer && opt !== q.selected
-                }"
-                @click="selectAnswer(i, opt)"
-                :disabled="q.selected !== null"
-              >
-                {{ opt }}
-              </button>
-            </div>
-            <div v-if="q.selected !== null" class="quiz-feedback">
-              <template v-if="q.selected === q.answer">
-                <i class="fa-solid fa-circle-check" style="color:#16a34a"></i>
-                <span class="feedback-correct">Correct! {{ q.explanation }}</span>
-              </template>
-              <template v-else>
-                <i class="fa-solid fa-circle-xmark" style="color:#dc2626"></i>
-                <span class="feedback-wrong">Not quite. {{ q.explanation }}</span>
-              </template>
+          <span class="hero-chip"
+            ><i class="fa-regular fa-clock"></i> ~20 min</span
+          >
+          <span class="hero-chip hero-chip-blue"
+            ><i class="fa-solid fa-signal"></i> Foundation</span
+          >
+        </div>
+      </div>
+
+      <!-- ── Progress Bar ── -->
+      <div class="lesson-progress-wrap">
+        <div class="lesson-progress-label">
+          <span>Lesson Progress</span>
+          <span class="lesson-progress-pct">{{ Math.round(progress) }}%</span>
+        </div>
+        <div class="lesson-progress-track">
+          <div
+            class="lesson-progress-fill"
+            :style="{ width: progress + '%' }"
+          ></div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 1: What are the 4 operations? ── -->
+      <div class="lesson-section" ref="sec1" :class="{ visible: sec1Visible }">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <h2 class="section-title">What are the 4 operations??</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            The 4 operations are Addition, Subtraction, Multiplication, And
+            Division.
+          </p>
+
+          <!-- Range rule card -->
+          <div class="rule-cards">
+            <div class="rule-card rule-card-Plus">
+              <div class="rule-range">Negative Numbers</div>
+              <div class="rule-arrow">
+                <i class="fa-solid fa-minus"></i>
+              </div>
+              <div class="rule-label">
+                Negative numbers are numbers that are
+                <strong>BELOW</strong> zero
+              </div>
+              <div class="rule-desc">for example -5 is a negative number</div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Score panel -->
-        <div v-if="allAnswered" class="score-panel">
-          <div class="score-icon">
-            <i class="fa-solid fa-star" v-for="n in scoreStars" :key="n"></i>
+      <!-- ── SECTION 2: The Diagram ── -->
+      <div class="lesson-section" ref="sec2" :class="{ visible: sec2Visible }">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <h2 class="section-title">Worked Example: 10-15</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Let's take 15 from <strong>10</strong>. 15 is larger than 10, so the
+            result will be negative
+          </p>
+
+          <!-- Whiteboard Diagram -->
+          <div class="diagram-wrap">
+            <div class="whiteboard">
+              <svg
+                class="diagram-svg"
+                viewBox="0 0 420 260"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!-- 10 number -->
+                <text x="80" y="110" class="svg-num-black">10</text>
+
+                <!-- Red arrow from sum to ans -->
+                <line
+                  x1="176"
+                  y1="145"
+                  x2="258"
+                  y2="148"
+                  stroke="#dc2626"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  class="svg-draw line-draw"
+                />
+
+                <!-- Result: -5 label -->
+                <text
+                  x="260"
+                  y="158"
+                  class="svg-label-black svg-fade"
+                  style="animation-delay: 0.9s"
+                >
+                  -5
+                </text>
+
+                <!-- Minus sign -->
+                <line x1="110" y1="150" x2="130" y2="150" stroke="black" />
+
+                <!-- Second number: 15 in red below -->
+                <text
+                  x="96"
+                  y="232"
+                  class="svg-num-result svg-fade"
+                  style="animation-delay: 1.2s"
+                >
+                  15
+                </text>
+              </svg>
+
+              <div class="diagram-legend">
+                <span class="legend-item legend-red">
+                  <span class="legend-dot"></span> Number to subtract
+                </span>
+              </div>
+            </div>
+
+            <!-- Step-by-step breakdown -->
+            <div class="steps-panel">
+              <div class="step-item">
+                <div class="step-dot step-dot-1">1</div>
+                <div class="step-text">
+                  <strong>Flip the numbers</strong> to do the subtraction
+                  normally.<br />
+                  <span class="step-ex"
+                    >Instead of 10-15, think <strong>15-10</strong></span
+                  >
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-2">2</div>
+                <div class="step-text">
+                  <strong>Calculate</strong> the positive difference<br />
+                  <span class="step-ex"
+                    ><span class="hl-red">15</span> minus
+                    <strong>10</strong> equals
+                    <span class="hl-green">5</span></span
+                  >
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-3">3</div>
+                <div class="step-text">
+                  <strong>Add the negative</strong> because we switched the
+                  numbers<br />
+                  <span class="step-ex"
+                    >The answer becomes <span class="hl-green">-5</span></span
+                  >
+                </div>
+              </div>
+              <div class="step-result">
+                <span class="step-result-label">Answer:</span>
+                <span class="step-result-val">10-15 → <strong>-5</strong></span>
+              </div>
+            </div>
           </div>
-          <div class="score-text">
-            You got <strong>{{ correctCount }} / {{ quizQuestions.length }}</strong> correct!
+        </div>
+      </div>
+
+      <!-- ── SECTION 3: Try It Yourself ── -->
+      <div class="lesson-section" ref="sec3" :class="{ visible: sec3Visible }">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <h2 class="section-title">Try It Yourself</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Round each number to the nearest whole number. Select your answer:
+          </p>
+
+          <div class="quiz-grid">
+            <div
+              v-for="(q, i) in quizQuestions"
+              :key="i"
+              class="quiz-card"
+              :class="{ answered: q.selected !== null }"
+            >
+              <div class="quiz-q">
+                <strong>{{ q.number }}</strong>
+              </div>
+              <div class="quiz-opts">
+                <button
+                  v-for="opt in q.options"
+                  :key="opt"
+                  class="quiz-opt"
+                  :class="{
+                    'opt-correct': q.selected !== null && opt === q.answer,
+                    'opt-wrong': q.selected === opt && opt !== q.answer,
+                    'opt-neutral':
+                      q.selected !== null &&
+                      opt !== q.answer &&
+                      opt !== q.selected,
+                  }"
+                  @click="selectAnswer(i, opt)"
+                  :disabled="q.selected !== null"
+                >
+                  {{ opt }}
+                </button>
+              </div>
+              <div v-if="q.selected !== null" class="quiz-feedback">
+                <template v-if="q.selected === q.answer">
+                  <i
+                    class="fa-solid fa-circle-check"
+                    style="color: #16a34a"
+                  ></i>
+                  <span class="feedback-correct"
+                    >Correct! {{ q.explanation }}</span
+                  >
+                </template>
+                <template v-else>
+                  <i
+                    class="fa-solid fa-circle-xmark"
+                    style="color: #dc2626"
+                  ></i>
+                  <span class="feedback-wrong"
+                    >Not quite. {{ q.explanation }}</span
+                  >
+                </template>
+              </div>
+            </div>
           </div>
-          <button class="score-retry" @click="resetQuiz">
-            <i class="fa-solid fa-rotate-left"></i> Try Again
+
+          <!-- Score panel -->
+          <div v-if="allAnswered" class="score-panel">
+            <div class="score-icon">
+              <i class="fa-solid fa-star" v-for="n in scoreStars" :key="n"></i>
+            </div>
+            <div class="score-text">
+              You got
+              <strong>{{ correctCount }} / {{ quizQuestions.length }}</strong>
+              correct!
+            </div>
+            <button class="score-retry" @click="resetQuiz">
+              <i class="fa-solid fa-rotate-left"></i> Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Summary ── -->
+      <div class="lesson-summary" ref="sec4" :class="{ visible: sec4Visible }">
+        <h3 class="summary-title">
+          <i class="fa-solid fa-circle-check"></i> Lesson Summary
+        </h3>
+        <ul class="summary-list">
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <strong>Negative numbers</strong> are any number <em>below zero</em>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i> When subtracting a
+            <strong>larger</strong> number from a <strong>smaller</strong> one,
+            the result is <em>negative</em>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i> To solve negatives:
+            <strong>flip the numbers</strong>, calculate the positive
+            difference, then <em>apply the minus</em>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i> Example:
+            <strong>10 - 15</strong> → flip to 15 - 10 = 5 → then make it
+            <em>-5</em>
+          </li>
+        </ul>
+        <div class="summary-actions">
+          <button class="btn-next" @click="router.push('/Lessons')">
+            Return to lessons
+            <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- ── Summary ── -->
-    <div class="lesson-summary" ref="sec4" :class="{ visible: sec4Visible }">
-      <h3 class="summary-title"><i class="fa-solid fa-circle-check"></i> Lesson Summary</h3>
-      <ul class="summary-list">
-        <li><i class="fa-solid fa-check"></i> <strong>Negative numbers</strong> are any number <em>below zero</em></li>
-        <li><i class="fa-solid fa-check"></i> When subtracting a <strong>larger</strong> number from a <strong>smaller</strong> one, the result is <em>negative</em></li>
-        <li><i class="fa-solid fa-check"></i> To solve negatives: <strong>flip the numbers</strong>, calculate the positive difference, then <em>apply the minus</em></li>
-        <li><i class="fa-solid fa-check"></i> Example: <strong>10 - 15</strong> → flip to 15 - 10 = 5 → then make it <em>-5</em></li>
-      </ul>
-      <div class="summary-actions">
-        <button class="btn-next" @click="router.push('/Lessons')">
-          Return to lessons
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </div>
-    </div>
+    <!-- RIGHT: Sidebar -->
+    <aside class="lesson-video-sidebar">
+      <div class="video-sidebar-card">
+        <div class="video-sidebar-header">
+          <i class="fa-solid fa-circle-play"></i>
+          <h3>Helpful Videos</h3>
+        </div>
+        <p class="video-sidebar-sub">
+          Watch these alongside the lesson for extra support.
+        </p>
 
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 1</span>
+            <span class="video-topic">Introduction to Negative Numbers</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/6U1kCOuNpR4"
+              title="What are Fractions"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Explains what negative numbers are and where they appear in real life, such as temperature and money.
+          </p>
+        </div>
+
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 2</span>
+            <span class="video-topic">Adding and Subtracting Negative Numbers</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/DBSviXhkubg"
+              title="Adding Fractions"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Covers the rules for calculations with negatives, including moving up and down a number line.
+          </p>
+        </div>
+
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 3</span>
+            <span class="video-topic">Negative Number Practice Questions</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/a1IzQSqiL6k"
+              title="Multiplying Fractions"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Works through common exam-style questions involving negative values step by step.
+          </p>
+        </div>
+      </div>
+    </aside>
   </div>
 </template>
 
@@ -228,17 +390,23 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 /* ── Scroll visibility ── */
-const sec1 = ref(null); const sec1Visible = ref(false);
-const sec2 = ref(null); const sec2Visible = ref(false);
-const sec3 = ref(null); const sec3Visible = ref(false);
-const sec4 = ref(null); const sec4Visible = ref(false);
+const sec1 = ref(null);
+const sec1Visible = ref(false);
+const sec2 = ref(null);
+const sec2Visible = ref(false);
+const sec3 = ref(null);
+const sec3Visible = ref(false);
+const sec4 = ref(null);
+const sec4Visible = ref(false);
 
 const observers = [];
 
 function observe(el, flag) {
   const obs = new IntersectionObserver(
-    ([entry]) => { if (entry.isIntersecting) flag.value = true; },
-    { threshold: 0.12 }
+    ([entry]) => {
+      if (entry.isIntersecting) flag.value = true;
+    },
+    { threshold: 0.12 },
   );
   if (el.value) obs.observe(el.value);
   observers.push(obs);
@@ -253,11 +421,16 @@ onMounted(() => {
   sec1Visible.value = true;
 });
 
-onUnmounted(() => observers.forEach(o => o.disconnect()));
+onUnmounted(() => observers.forEach((o) => o.disconnect()));
 
 /* ── Progress (rough: sections visible) ── */
 const progress = computed(() => {
-  const flags = [sec1Visible.value, sec2Visible.value, sec3Visible.value, sec4Visible.value];
+  const flags = [
+    sec1Visible.value,
+    sec2Visible.value,
+    sec3Visible.value,
+    sec4Visible.value,
+  ];
   return (flags.filter(Boolean).length / flags.length) * 100;
 });
 
@@ -268,45 +441,44 @@ const quizQuestions = ref([
     options: [-3, -2, 2],
     answer: -3,
     selected: null,
-    explanation: "8 - 5 = 3, so 5 - 8 = -3"
+    explanation: "8 - 5 = 3, so 5 - 8 = -3",
   },
   {
     number: "3-10",
     options: [-5, -7, -8],
     answer: -7,
     selected: null,
-    explanation: "10 - 3 = 7, so 3 - 10 = -7"
+    explanation: "10 - 3 = 7, so 3 - 10 = -7",
   },
   {
     number: "2-11",
     options: [-8, -9, -10],
     answer: -9,
     selected: null,
-    explanation: "11 - 2 = 9, so 2 - 11 = -9"
+    explanation: "11 - 2 = 9, so 2 - 11 = -9",
   },
   {
     number: "6-15",
     options: [-9, -8, -7],
     answer: -9,
     selected: null,
-    explanation: "15 - 6 = 9, so 6 - 15 = -9"
-  }
+    explanation: "15 - 6 = 9, so 6 - 15 = -9",
+  },
 ]);
 
 // Fix the 2.45 question
-
 
 function selectAnswer(i, opt) {
   if (quizQuestions.value[i].selected !== null) return;
   quizQuestions.value[i].selected = opt;
 }
 
-const correctCount = computed(() =>
-  quizQuestions.value.filter(q => q.selected === q.answer).length
+const correctCount = computed(
+  () => quizQuestions.value.filter((q) => q.selected === q.answer).length,
 );
 
 const allAnswered = computed(() =>
-  quizQuestions.value.every(q => q.selected !== null)
+  quizQuestions.value.every((q) => q.selected !== null),
 );
 
 const scoreStars = computed(() => {
@@ -317,7 +489,7 @@ const scoreStars = computed(() => {
 });
 
 function resetQuiz() {
-  quizQuestions.value.forEach(q => (q.selected = null));
+  quizQuestions.value.forEach((q) => (q.selected = null));
 }
 </script>
 
@@ -329,7 +501,134 @@ function resetQuiz() {
 .lesson-page {
   padding: 40px;
   max-width: 900px;
+  width: 100%;
+  min-width: 0;
   font-family: "Poppins", sans-serif;
+}
+
+.lesson-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 40px;
+  align-items: start;
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Video sidebar ─────────────────────────────────────────────────── */
+.lesson-video-sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  padding-top: 40px;
+  margin-left: 8px;
+}
+
+.video-sidebar-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.video-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.video-sidebar-header i {
+  color: #2563eb;
+  font-size: 18px;
+}
+
+.video-sidebar-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.video-sidebar-sub {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
+}
+
+.lesson-video-card {
+  background: var(--bg-page);
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 20px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lesson-video-card:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-video-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  border-color: #93c5fd;
+}
+
+.lesson-video-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.video-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.video-topic {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.lesson-video-frame-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  margin-bottom: 10px;
+}
+
+.lesson-video-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.lesson-video-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
 }
 
 /* ── Hero ─────────────────────────────────────────────── */
@@ -347,7 +646,11 @@ function resetQuiz() {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  background: radial-gradient(
+    circle at 80% 20%,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -355,8 +658,8 @@ function resetQuiz() {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 4px 14px;
   border-radius: 20px;
   font-size: 12px;
@@ -390,8 +693,8 @@ function resetQuiz() {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;
@@ -399,7 +702,7 @@ function resetQuiz() {
 }
 
 .hero-chip-blue {
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* ── Progress ─────────────────────────────────────────── */
@@ -443,7 +746,9 @@ function resetQuiz() {
   overflow: hidden;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .lesson-section.visible {
@@ -493,9 +798,18 @@ function resetQuiz() {
   margin: 0 0 20px;
 }
 
-.text-up   { color: #16a34a; font-weight: 700; }
-.text-down { color: #2563eb; font-weight: 700; }
-.text-red  { color: #dc2626; font-weight: 700; }
+.text-up {
+  color: #16a34a;
+  font-weight: 700;
+}
+.text-down {
+  color: #2563eb;
+  font-weight: 700;
+}
+.text-red {
+  color: #dc2626;
+  font-weight: 700;
+}
 
 /* ── Rule Cards ───────────────────────────────────────── */
 .rule-cards {
@@ -522,16 +836,30 @@ function resetQuiz() {
   background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
 }
 .rule-card-Minus {
-  border-color:rgb(239, 134, 134);
-  background: linear-gradient(135deg,rgb(253, 240, 240) 0%,rgb(252, 220, 220) 100%);
+  border-color: rgb(239, 134, 134);
+  background: linear-gradient(
+    135deg,
+    rgb(253, 240, 240) 0%,
+    rgb(252, 220, 220) 100%
+  );
 }
 .rule-card-Mult {
-  border-color:rgb(239, 211, 134);
-  background: linear-gradient(135deg,rgb(253, 250, 240) 0%,rgb(252, 246, 220) 100%);
+  border-color: rgb(239, 211, 134);
+  background: linear-gradient(
+    135deg,
+    rgb(253, 250, 240) 0%,
+    rgb(252, 246, 220) 100%
+  );
 }
 
-body.dark .rule-card-down { background: linear-gradient(135deg, #172554, #1e3a5f); border-color: #2563eb; }
-body.dark .rule-card-up   { background: linear-gradient(135deg, #052e16, #14532d); border-color: #16a34a; }
+body.dark .rule-card-down {
+  background: linear-gradient(135deg, #172554, #1e3a5f);
+  border-color: #2563eb;
+}
+body.dark .rule-card-up {
+  background: linear-gradient(135deg, #052e16, #14532d);
+  border-color: #16a34a;
+}
 
 .rule-range {
   font-size: 32px;
@@ -545,9 +873,15 @@ body.dark .rule-card-up   { background: linear-gradient(135deg, #052e16, #14532d
   margin-bottom: 10px;
 }
 
-.rule-card-down .rule-arrow { color: #2563eb; }
-.rule-card-up   .rule-arrow { color: #16a34a; }
-.rule-card-Plus .rule-arrow { color: var(--text-dark); }
+.rule-card-down .rule-arrow {
+  color: #2563eb;
+}
+.rule-card-up .rule-arrow {
+  color: #16a34a;
+}
+.rule-card-Plus .rule-arrow {
+  color: var(--text-dark);
+}
 
 .rule-label {
   font-size: 17px;
@@ -576,7 +910,7 @@ body.dark .rule-card-up   { background: linear-gradient(135deg, #052e16, #14532d
   border: 2px solid #e2e8f0;
   border-radius: 14px;
   padding: 16px;
-  box-shadow: inset 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 body.dark .whiteboard {
@@ -635,7 +969,7 @@ body.dark .whiteboard {
 .line-draw-green {
   stroke-dasharray: 50;
   stroke-dashoffset: 50;
-  animation: draw-stroke 0.35s ease forwards 1.0s;
+  animation: draw-stroke 0.35s ease forwards 1s;
 }
 
 .line-draw-green2 {
@@ -650,11 +984,15 @@ body.dark .whiteboard {
 }
 
 @keyframes draw-stroke {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes fade-in {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 .diagram-legend {
@@ -680,8 +1018,12 @@ body.dark .whiteboard {
   display: inline-block;
 }
 
-.legend-red .legend-dot   { background: #dc2626; }
-.legend-green .legend-dot { background: #16a34a; }
+.legend-red .legend-dot {
+  background: #dc2626;
+}
+.legend-green .legend-dot {
+  background: #16a34a;
+}
 
 /* ── Steps Panel ──────────────────────────────────────── */
 .steps-panel {
@@ -710,9 +1052,15 @@ body.dark .whiteboard {
   margin-top: 2px;
 }
 
-.step-dot-1 { background: #dc2626; }
-.step-dot-2 { background: #f97316; }
-.step-dot-3 { background: #16a34a; }
+.step-dot-1 {
+  background: #dc2626;
+}
+.step-dot-2 {
+  background: #f97316;
+}
+.step-dot-3 {
+  background: #16a34a;
+}
 
 .step-text {
   font-size: 14px;
@@ -731,9 +1079,18 @@ body.dark .whiteboard {
   font-weight: 600;
 }
 
-.hl-red   { color: #dc2626; font-weight: 800; }
-.hl-green { color: #16a34a; font-weight: 800; }
-.hl-black { color: var(--text-dark); font-weight: 800; }
+.hl-red {
+  color: #dc2626;
+  font-weight: 800;
+}
+.hl-green {
+  color: #16a34a;
+  font-weight: 800;
+}
+.hl-black {
+  color: var(--text-dark);
+  font-weight: 800;
+}
 
 .step-result {
   background: linear-gradient(135deg, #f0fdf4, #dcfce7);
@@ -746,7 +1103,10 @@ body.dark .whiteboard {
   margin-top: 4px;
 }
 
-body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); border-color: #16a34a; }
+body.dark .step-result {
+  background: linear-gradient(135deg, #052e16, #14532d);
+  border-color: #16a34a;
+}
 
 .step-result-label {
   font-size: 11px;
@@ -779,8 +1139,12 @@ body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); 
   line-height: 1;
 }
 
-.cn-black { color: var(--text-dark); }
-.cn-red   { color: #dc2626; }
+.cn-black {
+  color: var(--text-dark);
+}
+.cn-red {
+  color: #dc2626;
+}
 
 .chain-steps {
   display: flex;
@@ -846,7 +1210,10 @@ body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); 
   color: var(--text-dark);
 }
 
-.chain-arrow { color: #2563eb; font-size: 13px; }
+.chain-arrow {
+  color: #2563eb;
+  font-size: 13px;
+}
 
 .chain-connector {
   text-align: center;
@@ -867,7 +1234,10 @@ body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); 
   padding: 14px 18px;
 }
 
-body.dark .chain-final { background: linear-gradient(135deg, #172554, #1e3a5f); border-color: #2563eb; }
+body.dark .chain-final {
+  background: linear-gradient(135deg, #172554, #1e3a5f);
+  border-color: #2563eb;
+}
 
 .chain-final-label {
   font-size: 11px;
@@ -900,7 +1270,10 @@ body.dark .chain-final { background: linear-gradient(135deg, #172554, #1e3a5f); 
   border: 1.5px solid #bfdbfe;
 }
 
-body.dark .callout-blue { background: #172554; border-color: #2563eb; }
+body.dark .callout-blue {
+  background: #172554;
+  border-color: #2563eb;
+}
 
 .callout-icon {
   font-size: 20px;
@@ -964,14 +1337,32 @@ body.dark .callout-blue { background: #172554; border-color: #2563eb; }
   color: #2563eb;
 }
 
-.quiz-opt:disabled { cursor: default; }
+.quiz-opt:disabled {
+  cursor: default;
+}
 
-.opt-correct { background: #dcfce7 !important; border-color: #16a34a !important; color: #15803d !important; }
-.opt-wrong   { background: #fee2e2 !important; border-color: #dc2626 !important; color: #dc2626 !important; }
-.opt-neutral { opacity: 0.45; }
+.opt-correct {
+  background: #dcfce7 !important;
+  border-color: #16a34a !important;
+  color: #15803d !important;
+}
+.opt-wrong {
+  background: #fee2e2 !important;
+  border-color: #dc2626 !important;
+  color: #dc2626 !important;
+}
+.opt-neutral {
+  opacity: 0.45;
+}
 
-body.dark .opt-correct { background: #14532d !important; color: #4ade80 !important; }
-body.dark .opt-wrong   { background: #450a0a !important; color: #f87171 !important; }
+body.dark .opt-correct {
+  background: #14532d !important;
+  color: #4ade80 !important;
+}
+body.dark .opt-wrong {
+  background: #450a0a !important;
+  color: #f87171 !important;
+}
 
 .quiz-feedback {
   display: flex;
@@ -983,11 +1374,19 @@ body.dark .opt-wrong   { background: #450a0a !important; color: #f87171 !importa
   padding-top: 4px;
 }
 
-.feedback-correct { color: #15803d; }
-.feedback-wrong   { color: #dc2626; }
+.feedback-correct {
+  color: #15803d;
+}
+.feedback-wrong {
+  color: #dc2626;
+}
 
-body.dark .feedback-correct { color: #4ade80; }
-body.dark .feedback-wrong   { color: #f87171; }
+body.dark .feedback-correct {
+  color: #4ade80;
+}
+body.dark .feedback-wrong {
+  color: #f87171;
+}
 
 /* ── Score Panel ──────────────────────────────────────── */
 .score-panel {
@@ -1001,10 +1400,23 @@ body.dark .feedback-wrong   { color: #f87171; }
   flex-wrap: wrap;
 }
 
-body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); border-color: #ca8a04; }
+body.dark .score-panel {
+  background: linear-gradient(135deg, #422006, #3b1800);
+  border-color: #ca8a04;
+}
 
-.score-icon { font-size: 22px; color: #f59e0b; display: flex; gap: 2px; }
-.score-text { font-size: 16px; font-weight: 700; color: var(--text-dark); flex: 1; }
+.score-icon {
+  font-size: 22px;
+  color: #f59e0b;
+  display: flex;
+  gap: 2px;
+}
+.score-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+  flex: 1;
+}
 
 .score-retry {
   display: inline-flex;
@@ -1019,10 +1431,15 @@ body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); 
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
+  transition:
+    background 0.15s,
+    transform 0.15s;
 }
 
-.score-retry:hover { background: #1d4ed8; transform: translateY(-1px); }
+.score-retry:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
 
 /* ── Summary ──────────────────────────────────────────── */
 .lesson-summary {
@@ -1032,7 +1449,9 @@ body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); 
   color: #fff;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .lesson-summary.visible {
@@ -1091,22 +1510,167 @@ body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); 
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
 }
 
 .btn-next:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Video sidebar ─────────────────────────────────────────────────── */
+.lesson-video-sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  padding-top: 40px;
+  margin-left: 8px;
+}
+
+.video-sidebar-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.video-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.video-sidebar-header i {
+  color: #2563eb;
+  font-size: 18px;
+}
+
+.video-sidebar-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.video-sidebar-sub {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
+}
+
+.lesson-video-card {
+  background: var(--bg-page);
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 20px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lesson-video-card:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-video-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  border-color: #93c5fd;
+}
+
+.lesson-video-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.video-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.video-topic {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.lesson-video-frame-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  margin-bottom: 10px;
+}
+
+.lesson-video-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.lesson-video-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
 }
 
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 750px) {
-  .lesson-page { padding: 16px; }
-  .lesson-hero { padding: 24px 20px; }
-  .lesson-hero-title { font-size: 26px; }
-  .rule-cards { grid-template-columns: 1fr; }
-  .diagram-wrap { grid-template-columns: 1fr; }
-  .quiz-grid { grid-template-columns: 1fr; }
-  .chain-final { flex-direction: column; gap: 6px; }
+  .lesson-page {
+    padding: 16px;
+  }
+  .lesson-hero {
+    padding: 24px 20px;
+  }
+  .lesson-hero-title {
+    font-size: 26px;
+  }
+  .rule-cards {
+    grid-template-columns: 1fr;
+  }
+  .diagram-wrap {
+    grid-template-columns: 1fr;
+  }
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+  .chain-final {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .lesson-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .lesson-video-sidebar {
+    position: static;
+    padding: 0 40px 40px;
+    margin-left: 0;
+  }
 }
 </style>

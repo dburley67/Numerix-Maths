@@ -1,341 +1,431 @@
 <template>
-  <div class="lesson-page">
-
-    <!-- ── Lesson Hero ── -->
-    <div class="lesson-hero">
-      <div class="lesson-hero-label">
-        <i class="fa-solid fa-book-open"></i> Lesson 3
-      </div>
-      <h1 class="lesson-hero-title">Standard Form</h1>
-      <p class="lesson-hero-sub">
-        Learn how to read and calculate numbers written in standard form using powers of 10.
-      </p>
-      <div class="lesson-hero-chips">
-        <span class="hero-chip"><i class="fa-solid fa-circle-question"></i> 10 questions</span>
-        <span class="hero-chip"><i class="fa-regular fa-clock"></i> ~18 min</span>
-        <span class="hero-chip hero-chip-teal"><i class="fa-solid fa-signal"></i> Foundation</span>
-      </div>
-    </div>
-
-    <!-- ── Progress Bar ── -->
-    <div class="lesson-progress-wrap">
-      <div class="lesson-progress-label">
-        <span>Lesson Progress</span>
-        <span class="lesson-progress-pct">{{ Math.round(progress) }}%</span>
-      </div>
-      <div class="lesson-progress-track">
-        <div class="lesson-progress-fill" :style="{ width: progress + '%' }"></div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 1: What is Standard Form? ── -->
-    <div class="lesson-section" ref="sec1" :class="{ visible: sec1Visible }">
-      <div class="section-header">
-        <div class="section-num s-teal">1</div>
-        <h2 class="section-title">What is Standard Form?</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Standard form is a way of writing very large (or very small) numbers more neatly.
-          It always looks like this:
+  
+  <div class="lesson-layout">
+    <!-- LEFT: Main Lesson Content -->
+    <div class="lesson-page">
+      <!-- ── Lesson Hero ── -->
+      <div class="lesson-hero">
+        <div class="lesson-hero-label">
+          <i class="fa-solid fa-book-open"></i> Lesson 3
+        </div>
+        <h1 class="lesson-hero-title">Standard Form</h1>
+        <p class="lesson-hero-sub">
+          Learn how to read and calculate numbers written in standard form using powers of 10.
         </p>
-
-        <div class="sf-anatomy">
-          <div class="sf-expression">
-            <span class="sf-a">A</span>
-            <span class="sf-op">×</span>
-            <span class="sf-base">10</span>
-            <span class="sf-exp">n</span>
-          </div>
-          <div class="sf-labels">
-            <div class="sf-label-item sf-label-a">
-              <div class="sf-label-line"></div>
-              <span><strong>A</strong> — a number between 1 and 10</span>
-            </div>
-            <div class="sf-label-item sf-label-n">
-              <div class="sf-label-line"></div>
-              <span><strong>n</strong> — how many places to move the digit</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout callout-teal">
-          <i class="fa-solid fa-lightbulb callout-icon"></i>
-          <div>
-            Think of the power (<strong>n</strong>) as an instruction:
-            <em>"move the digit left by n places, filling each gap with a zero."</em>
-          </div>
+        <div class="lesson-hero-chips">
+          <span class="hero-chip"><i class="fa-solid fa-circle-question"></i> 10 questions</span>
+          <span class="hero-chip"><i class="fa-regular fa-clock"></i> ~18 min</span>
+          <span class="hero-chip hero-chip-teal"><i class="fa-solid fa-signal"></i> Foundation</span>
         </div>
       </div>
-    </div>
 
-    <!-- ── SECTION 2: The Diagram ── -->
-    <div class="lesson-section" ref="sec2" :class="{ visible: sec2Visible }">
-      <div class="section-header">
-        <div class="section-num s-teal">2</div>
-        <h2 class="section-title">Worked Example: 5 × 10⁴ = 50,000</h2>
+      <!-- ── Progress Bar ── -->
+      <div class="lesson-progress-wrap">
+        <div class="lesson-progress-label">
+          <span>Lesson Progress</span>
+          <span class="lesson-progress-pct">{{ Math.round(progress) }}%</span>
+        </div>
+        <div class="lesson-progress-track">
+          <div class="lesson-progress-fill" :style="{ width: progress + '%' }"></div>
+        </div>
       </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Take <strong>5 × 10⁴</strong>. The power is <strong class="hl-teal">4</strong>, so we
-          move the 5 four places to the left, placing a zero in every gap it leaves behind.
-        </p>
 
-        <!-- Whiteboard SVG diagram matching the image -->
-        <div class="diagram-wrap">
-          <div class="whiteboard">
-            <svg class="diagram-svg" viewBox="0 0 340 230" xmlns="http://www.w3.org/2000/svg">
+      <!-- ── SECTION 1: What is Standard Form? ── -->
+      <div class="lesson-section" ref="sec1" :class="{ visible: sec1Visible }">
+        <div class="section-header">
+          <div class="section-num s-teal">1</div>
+          <h2 class="section-title">What is Standard Form?</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Standard form is a way of writing very large (or very small) numbers more neatly.
+            It always looks like this:
+          </p>
 
-              <!-- 5 * 10^4  top expression -->
-              <text x="60" y="55" class="svg-expr">5 * 10</text>
-              <!-- Circled exponent 4 -->
-              <ellipse cx="195" cy="28" rx="16" ry="16"
-                fill="none" stroke="#2563eb" stroke-width="3"
-                class="oval-draw-1"/>
-              <text x="195" y="34" class="svg-exp-num" text-anchor="middle">4</text>
-
-              <!-- Expansion line: 5 * 10*10*10*10 -->
-              <text x="30" y="110" class="svg-expr-sm">5 *</text>
-              <!-- Big oval around 10*10*10*10 -->
-              <ellipse cx="218" cy="105" rx="118" ry="24"
-                fill="none" stroke="#2563eb" stroke-width="3.5"
-                class="oval-draw-2"/>
-              <text x="75" y="115" class="svg-expr-sm">10*10*10*10</text>
-
-              <!-- Result -->
-              <text x="170" y="185" class="svg-result" text-anchor="middle">50,000</text>
-
-            </svg>
-            <div class="diagram-legend">
-              <span class="legend-item">
-                <span class="legend-dot" style="background:#2563eb"></span>
-                Power circled = times to multiply by 10
-              </span>
+          <div class="sf-anatomy">
+            <div class="sf-expression">
+              <span class="sf-a">A</span>
+              <span class="sf-op">×</span>
+              <span class="sf-base">10</span>
+              <span class="sf-exp">n</span>
             </div>
-          </div>
-
-          <!-- Step panel -->
-          <div class="steps-panel">
-            <div class="step-item">
-              <div class="step-dot step-dot-1">1</div>
-              <div class="step-text">
-                <strong>Read the power</strong><br/>
-                <span class="step-ex">5 × 10<sup>4</sup> — power is <span class="hl-teal">4</span></span>
+            <div class="sf-labels">
+              <div class="sf-label-item sf-label-a">
+                <div class="sf-label-line"></div>
+                <span><strong>A</strong> — a number between 1 and 10</span>
               </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-2">2</div>
-              <div class="step-text">
-                <strong>Expand what 10⁴ means</strong><br/>
-                <span class="step-ex">10 × 10 × 10 × 10 = <span class="hl-teal">10,000</span></span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-3">3</div>
-              <div class="step-text">
-                <strong>Multiply</strong><br/>
-                <span class="step-ex">5 × 10,000 = <span class="hl-teal">50,000</span></span>
-              </div>
-            </div>
-            <div class="step-result step-result-teal">
-              <span class="step-result-label">Answer</span>
-              <span class="step-result-val">5 × 10⁴ = <strong>50,000</strong></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 3: Place Value Shift ── -->
-    <div class="lesson-section" ref="sec3" :class="{ visible: sec3Visible }">
-      <div class="section-header">
-        <div class="section-num s-teal">3</div>
-        <h2 class="section-title">The Digit-Shift Method</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Another way to think about it: each power of 10 <strong>shifts the digit one place to the left</strong>,
-          and a zero fills the empty space. Watch how the 5 moves with each step:
-        </p>
-
-        <!-- Animated power ladder -->
-        <div class="power-ladder">
-          <div
-            v-for="row in powerRows"
-            :key="row.power"
-            class="pl-row"
-            :class="{ 'pl-row-active': activePower === row.power }"
-            @click="activePower = row.power"
-          >
-            <div class="pl-expr">
-              5 × 10<sup>{{ row.power }}</sup>
-            </div>
-            <div class="pl-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-            <div class="pl-number">
-              <span
-                v-for="(digit, i) in row.digits"
-                :key="i"
-                class="pl-digit"
-                :class="{
-                  'pl-digit-five':  digit === '5',
-                  'pl-digit-zero':  digit === '0',
-                  'pl-digit-comma': digit === ','
-                }"
-              >{{ digit }}</span>
-            </div>
-            <div class="pl-zeros">
-              <span class="pl-zero-tag">{{ row.power }} zero{{ row.power !== 1 ? 's' : '' }}</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout callout-teal" style="margin-top:16px">
-          <i class="fa-solid fa-circle-info callout-icon"></i>
-          <div>
-            Click any row to highlight it. Notice the digit <strong>5</strong> always moves
-            left by the number of places equal to the power — zeros fill in from the right.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 4: Interactive Explorer ── -->
-    <div class="lesson-section" ref="sec4" :class="{ visible: sec4Visible }">
-      <div class="section-header">
-        <div class="section-num s-teal">4</div>
-        <h2 class="section-title">Interactive Standard Form Calculator</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Choose your coefficient and power, then see the full expansion and result.
-        </p>
-
-        <div class="calc-wrap">
-          <div class="calc-inputs">
-            <div class="calc-input-group">
-              <label class="calc-label">Coefficient (A)</label>
-              <div class="calc-slider-row">
-                <input type="range" min="1" max="9" v-model.number="coeff" class="calc-slider" />
-                <span class="calc-val">{{ coeff }}</span>
-              </div>
-            </div>
-            <div class="calc-times">× 10</div>
-            <div class="calc-input-group">
-              <label class="calc-label">Power (n)</label>
-              <div class="calc-slider-row">
-                <input type="range" min="1" max="6" v-model.number="power" class="calc-slider" />
-                <span class="calc-val">{{ power }}</span>
+              <div class="sf-label-item sf-label-n">
+                <div class="sf-label-line"></div>
+                <span><strong>n</strong> — how many places to move the digit</span>
               </div>
             </div>
           </div>
 
-          <div class="calc-display">
-            <div class="calc-expression">
-              {{ coeff }} × 10<sup>{{ power }}</sup>
-            </div>
-            <div class="calc-expand">
-              = {{ coeff }} × {{ expandedTens }}
-            </div>
-            <div class="calc-result-banner">
-              <span class="calc-result-label">= </span>
-              <span class="calc-result-num">{{ formattedResult }}</span>
-            </div>
-          </div>
-
-          <!-- Digit shift visualiser -->
-          <div class="digit-shift-wrap">
-            <div class="ds-label">Digit shift:</div>
-            <div class="ds-boxes">
-              <div
-                v-for="(cell, i) in digitCells"
-                :key="i"
-                class="ds-cell"
-                :class="{
-                  'ds-cell-five': cell.isFive,
-                  'ds-cell-zero': cell.isZero,
-                  'ds-cell-empty': cell.isEmpty
-                }"
-              >{{ cell.label }}</div>
+          <div class="callout callout-teal">
+            <i class="fa-solid fa-lightbulb callout-icon"></i>
+            <div>
+              Think of the power (<strong>n</strong>) as an instruction:
+              <em>"move the digit left by n places, filling each gap with a zero."</em>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- ── SECTION 5: Quiz ── -->
-    <div class="lesson-section" ref="sec5" :class="{ visible: sec5Visible }">
-      <div class="section-header">
-        <div class="section-num s-teal">5</div>
-        <h2 class="section-title">Test Yourself</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">Convert each standard form expression to an ordinary number:</p>
+      <!-- ── SECTION 2: The Diagram ── -->
+      <div class="lesson-section" ref="sec2" :class="{ visible: sec2Visible }">
+        <div class="section-header">
+          <div class="section-num s-teal">2</div>
+          <h2 class="section-title">Worked Example: 5 × 10⁴ = 50,000</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Take <strong>5 × 10⁴</strong>. The power is <strong class="hl-teal">4</strong>, so we
+            move the 5 four places to the left, placing a zero in every gap it leaves behind.
+          </p>
 
-        <div class="quiz-grid">
-          <div
-            v-for="(q, i) in quizQuestions"
-            :key="i"
-            class="quiz-card"
-            :class="{ answered: q.selected !== null }"
-          >
-            <div class="quiz-q">
-              What is <strong>{{ q.a }} × 10<sup>{{ q.p }}</sup></strong> ?
+          <div class="diagram-wrap">
+            <div class="whiteboard">
+              <svg class="diagram-svg" viewBox="0 0 340 230" xmlns="http://www.w3.org/2000/svg">
+                <text x="60" y="55" class="svg-expr">5 * 10</text>
+                <ellipse
+                  cx="195"
+                  cy="28"
+                  rx="16"
+                  ry="16"
+                  fill="none"
+                  stroke="#2563eb"
+                  stroke-width="3"
+                  class="oval-draw-1"
+                />
+                <text x="195" y="34" class="svg-exp-num" text-anchor="middle">4</text>
+
+                <text x="30" y="110" class="svg-expr-sm">5 *</text>
+                <ellipse
+                  cx="218"
+                  cy="105"
+                  rx="118"
+                  ry="24"
+                  fill="none"
+                  stroke="#2563eb"
+                  stroke-width="3.5"
+                  class="oval-draw-2"
+                />
+                <text x="75" y="115" class="svg-expr-sm">10*10*10*10</text>
+
+                <text x="170" y="185" class="svg-result" text-anchor="middle">50,000</text>
+              </svg>
+
+              <div class="diagram-legend">
+                <span class="legend-item">
+                  <span class="legend-dot" style="background:#2563eb"></span>
+                  Power circled = times to multiply by 10
+                </span>
+              </div>
             </div>
-            <div class="quiz-opts">
-              <button
-                v-for="opt in q.options"
-                :key="opt"
-                class="quiz-opt"
-                :class="{
-                  'opt-correct': q.selected !== null && opt === q.answer,
-                  'opt-wrong':   q.selected === opt && opt !== q.answer,
-                  'opt-neutral': q.selected !== null && opt !== q.answer && opt !== q.selected
-                }"
-                @click="selectAnswer(i, opt)"
-                :disabled="q.selected !== null"
-              >{{ opt }}</button>
-            </div>
-            <div v-if="q.selected !== null" class="quiz-feedback">
-              <template v-if="q.selected === q.answer">
-                <i class="fa-solid fa-circle-check" style="color:#0d9488"></i>
-                <span class="feedback-correct">{{ q.explanation }}</span>
-              </template>
-              <template v-else>
-                <i class="fa-solid fa-circle-xmark" style="color:#dc2626"></i>
-                <span class="feedback-wrong">{{ q.explanation }}</span>
-              </template>
+
+            <div class="steps-panel">
+              <div class="step-item">
+                <div class="step-dot step-dot-1">1</div>
+                <div class="step-text">
+                  <strong>Read the power</strong><br />
+                  <span class="step-ex">5 × 10<sup>4</sup> — power is <span class="hl-teal">4</span></span>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-dot step-dot-2">2</div>
+                <div class="step-text">
+                  <strong>Expand what 10⁴ means</strong><br />
+                  <span class="step-ex">10 × 10 × 10 × 10 = <span class="hl-teal">10,000</span></span>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-dot step-dot-3">3</div>
+                <div class="step-text">
+                  <strong>Multiply</strong><br />
+                  <span class="step-ex">5 × 10,000 = <span class="hl-teal">50,000</span></span>
+                </div>
+              </div>
+
+              <div class="step-result step-result-teal">
+                <span class="step-result-label">Answer</span>
+                <span class="step-result-val">5 × 10⁴ = <strong>50,000</strong></span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div v-if="allAnswered" class="score-panel">
-          <div class="score-icon">
-            <i class="fa-solid fa-star" v-for="n in scoreStars" :key="n"></i>
+      <!-- ── SECTION 3: Place Value Shift ── -->
+      <div class="lesson-section" ref="sec3" :class="{ visible: sec3Visible }">
+        <div class="section-header">
+          <div class="section-num s-teal">3</div>
+          <h2 class="section-title">The Digit-Shift Method</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Another way to think about it: each power of 10 <strong>shifts the digit one place to the left</strong>,
+            and a zero fills the empty space. Watch how the 5 moves with each step:
+          </p>
+
+          <div class="power-ladder">
+            <div
+              v-for="row in powerRows"
+              :key="row.power"
+              class="pl-row"
+              :class="{ 'pl-row-active': activePower === row.power }"
+              @click="activePower = row.power"
+            >
+              <div class="pl-expr">
+                5 × 10<sup>{{ row.power }}</sup>
+              </div>
+              <div class="pl-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+              <div class="pl-number">
+                <span
+                  v-for="(digit, i) in row.digits"
+                  :key="i"
+                  class="pl-digit"
+                  :class="{
+                    'pl-digit-five': digit === '5',
+                    'pl-digit-zero': digit === '0',
+                    'pl-digit-comma': digit === ','
+                  }"
+                >
+                  {{ digit }}
+                </span>
+              </div>
+              <div class="pl-zeros">
+                <span class="pl-zero-tag">{{ row.power }} zero{{ row.power !== 1 ? 's' : '' }}</span>
+              </div>
+            </div>
           </div>
-          <div class="score-text">You got <strong>{{ correctCount }} / {{ quizQuestions.length }}</strong> correct!</div>
-          <button class="score-retry" @click="resetQuiz">
-            <i class="fa-solid fa-rotate-left"></i> Try Again
+
+          <div class="callout callout-teal" style="margin-top:16px">
+            <i class="fa-solid fa-circle-info callout-icon"></i>
+            <div>
+              Click any row to highlight it. Notice the digit <strong>5</strong> always moves
+              left by the number of places equal to the power — zeros fill in from the right.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 4: Interactive Explorer ── -->
+      <div class="lesson-section" ref="sec4" :class="{ visible: sec4Visible }">
+        <div class="section-header">
+          <div class="section-num s-teal">4</div>
+          <h2 class="section-title">Interactive Standard Form Calculator</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Choose your coefficient and power, then see the full expansion and result.
+          </p>
+
+          <div class="calc-wrap">
+            <div class="calc-inputs">
+              <div class="calc-input-group">
+                <label class="calc-label">Coefficient (A)</label>
+                <div class="calc-slider-row">
+                  <input type="range" min="1" max="9" v-model.number="coeff" class="calc-slider" />
+                  <span class="calc-val">{{ coeff }}</span>
+                </div>
+              </div>
+
+              <div class="calc-times">× 10</div>
+
+              <div class="calc-input-group">
+                <label class="calc-label">Power (n)</label>
+                <div class="calc-slider-row">
+                  <input type="range" min="1" max="6" v-model.number="power" class="calc-slider" />
+                  <span class="calc-val">{{ power }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="calc-display">
+              <div class="calc-expression">
+                {{ coeff }} × 10<sup>{{ power }}</sup>
+              </div>
+              <div class="calc-expand">
+                = {{ coeff }} × {{ expandedTens }}
+              </div>
+              <div class="calc-result-banner">
+                <span class="calc-result-label">= </span>
+                <span class="calc-result-num">{{ formattedResult }}</span>
+              </div>
+            </div>
+
+            <div class="digit-shift-wrap">
+              <div class="ds-label">Digit shift:</div>
+              <div class="ds-boxes">
+                <div
+                  v-for="(cell, i) in digitCells"
+                  :key="i"
+                  class="ds-cell"
+                  :class="{
+                    'ds-cell-five': cell.isFive,
+                    'ds-cell-zero': cell.isZero,
+                    'ds-cell-empty': cell.isEmpty
+                  }"
+                >
+                  {{ cell.label }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 5: Quiz ── -->
+      <div class="lesson-section" ref="sec5" :class="{ visible: sec5Visible }">
+        <div class="section-header">
+          <div class="section-num s-teal">5</div>
+          <h2 class="section-title">Test Yourself</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">Convert each standard form expression to an ordinary number:</p>
+
+          <div class="quiz-grid">
+            <div
+              v-for="(q, i) in quizQuestions"
+              :key="i"
+              class="quiz-card"
+              :class="{ answered: q.selected !== null }"
+            >
+              <div class="quiz-q">
+                What is <strong>{{ q.a }} × 10<sup>{{ q.p }}</sup></strong> ?
+              </div>
+              <div class="quiz-opts">
+                <button
+                  v-for="opt in q.options"
+                  :key="opt"
+                  class="quiz-opt"
+                  :class="{
+                    'opt-correct': q.selected !== null && opt === q.answer,
+                    'opt-wrong': q.selected === opt && opt !== q.answer,
+                    'opt-neutral': q.selected !== null && opt !== q.answer && opt !== q.selected
+                  }"
+                  @click="selectAnswer(i, opt)"
+                  :disabled="q.selected !== null"
+                >
+                  {{ opt }}
+                </button>
+              </div>
+
+              <div v-if="q.selected !== null" class="quiz-feedback">
+                <template v-if="q.selected === q.answer">
+                  <i class="fa-solid fa-circle-check" style="color:#0d9488"></i>
+                  <span class="feedback-correct">{{ q.explanation }}</span>
+                </template>
+                <template v-else>
+                  <i class="fa-solid fa-circle-xmark" style="color:#dc2626"></i>
+                  <span class="feedback-wrong">{{ q.explanation }}</span>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <div v-if="allAnswered" class="score-panel">
+            <div class="score-icon">
+              <i class="fa-solid fa-star" v-for="n in scoreStars" :key="n"></i>
+            </div>
+            <div class="score-text">
+              You got <strong>{{ correctCount }} / {{ quizQuestions.length }}</strong> correct!
+            </div>
+            <button class="score-retry" @click="resetQuiz">
+              <i class="fa-solid fa-rotate-left"></i> Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Summary ── -->
+      <div class="lesson-summary" ref="sec6" :class="{ visible: sec6Visible }">
+        <h3 class="summary-title"><i class="fa-solid fa-circle-check"></i> Lesson Summary</h3>
+        <ul class="summary-list">
+          <li><i class="fa-solid fa-check"></i> Standard form is written as <strong>A × 10ⁿ</strong></li>
+          <li><i class="fa-solid fa-check"></i> The power <strong>n</strong> tells you how many places to move the digit left</li>
+          <li><i class="fa-solid fa-check"></i> Each place vacated by the digit is filled with a <strong>zero</strong></li>
+          <li><i class="fa-solid fa-check"></i> 5 × 10⁴ = 5 × 10,000 = <strong>50,000</strong></li>
+        </ul>
+        <div class="summary-actions">
+          <button class="btn-next">
+            Back to Lessons <i class="fa-solid fa-grid-2"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- ── Summary ── -->
-    <div class="lesson-summary" ref="sec6" :class="{ visible: sec6Visible }">
-      <h3 class="summary-title"><i class="fa-solid fa-circle-check"></i> Lesson Summary</h3>
-      <ul class="summary-list">
-        <li><i class="fa-solid fa-check"></i> Standard form is written as <strong>A × 10ⁿ</strong></li>
-        <li><i class="fa-solid fa-check"></i> The power <strong>n</strong> tells you how many places to move the digit left</li>
-        <li><i class="fa-solid fa-check"></i> Each place vacated by the digit is filled with a <strong>zero</strong></li>
-        <li><i class="fa-solid fa-check"></i> 5 × 10⁴ = 5 × 10,000 = <strong>50,000</strong></li>
-      </ul>
-      <div class="summary-actions">
-        <button class="btn-next">
-          Back to Lessons <i class="fa-solid fa-grid-2"></i>
-        </button>
-      </div>
-    </div>
+    <!-- RIGHT: Video sidebar -->
+    <aside class="lesson-video-sidebar">
+      <div class="video-sidebar-card">
+        <div class="video-sidebar-header">
+          <i class="fa-solid fa-circle-play"></i>
+          <h3>Helpful Videos</h3>
+        </div>
+        <p class="video-sidebar-sub">
+          Watch these alongside the lesson for extra support.
+        </p>
 
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 1</span>
+            <span class="video-topic">Introduction to Standard Form</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/H3ewmorcYjU"
+              title="Introduction to Standard Form"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            A quick introduction to what standard form is and why it is useful.
+          </p>
+        </div>
+
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 2</span>
+            <span class="video-topic">How Powers of 10 Work</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/SKrujXYeFcI"
+              title="Powers of 10"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Helps explain how each power of 10 changes place value.
+          </p>
+        </div>
+
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 3</span>
+            <span class="video-topic">Standard Form Practice Questions</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/1yfQBt8N5gU"
+              title="Standard Form Practice"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Practice converting standard form into ordinary numbers step by step.
+          </p>
+        </div>
+      </div>
+    </aside>
   </div>
 </template>
 
@@ -433,6 +523,15 @@ function resetQuiz() { quizQuestions.value.forEach(q => (q.selected = null)); }
   padding: 40px;
   max-width: 900px;
   font-family: "Poppins", sans-serif;
+  width: 100%;
+}
+.lesson-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 40px;
+  align-items: start;
+  max-width: 1320px;
+  margin: 0 auto;
 }
 
 /* ── Hero ─────────────────────────────────────────────── */
@@ -529,6 +628,120 @@ function resetQuiz() { quizQuestions.value.forEach(q => (q.selected = null)); }
   background: linear-gradient(90deg, #0d9488, #14b8a6);
   border-radius: 999px;
   transition: width 0.6s ease;
+}
+/* ── Video sidebar ─────────────────────────────────────────────────── */
+.lesson-video-sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  padding-top: 40px;
+  margin-left: 8px;
+}
+
+.video-sidebar-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.video-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.video-sidebar-header i {
+  color: #2563eb;
+  font-size: 18px;
+}
+
+.video-sidebar-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.video-sidebar-sub {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
+}
+
+.lesson-video-card {
+  background: var(--bg-page);
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 20px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lesson-video-card:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-video-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  border-color: #93c5fd;
+}
+
+.lesson-video-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.video-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.video-topic {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.lesson-video-frame-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  margin-bottom: 10px;
+}
+
+.lesson-video-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.lesson-video-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
 }
 
 /* ── Sections ─────────────────────────────────────────── */

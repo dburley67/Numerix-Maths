@@ -441,7 +441,7 @@
           <div class="lesson-video-frame-wrap">
             <iframe
               class="lesson-video-frame"
-              src="https://www.youtube.com/embed/gmY5M4LrT1E"
+              src="https://www.youtube.com/embed/UcPVAh4igpI"
               title="What is a Ratio"
               allow="
                 accelerometer;
@@ -468,7 +468,7 @@
           <div class="lesson-video-frame-wrap">
             <iframe
               class="lesson-video-frame"
-              src="https://www.youtube.com/embed/9TQJZlA7Q4Q"
+              src="https://www.youtube.com/embed/z7UWth70guM"
               title="Simplifying Ratios"
               allow="
                 accelerometer;
@@ -495,7 +495,7 @@
           <div class="lesson-video-frame-wrap">
             <iframe
               class="lesson-video-frame"
-              src="https://www.youtube.com/embed/3P7b8t8A0mA"
+              src="https://www.youtube.com/embed/cflZnf9H5l4"
               title="Sharing in a Ratio"
               allow="
                 accelerometer;

@@ -1,487 +1,758 @@
 <template>
-  <div class="lesson-page">
-
-    <!-- ── Lesson Header ── -->
-    <div class="lesson-hero">
-      <div class="lesson-hero-label">
-        <i class="fa-solid fa-book-open"></i> Lesson 1
-      </div>
-      <h1 class="lesson-hero-title">Basic Operations</h1>
-      <p class="lesson-hero-sub">
-        Learn to perform the 4 basic numerical operations
-      </p>
-      <div class="lesson-hero-chips">
-        <span class="hero-chip"><i class="fa-solid fa-circle-question"></i> 12 questions</span>
-        <span class="hero-chip"><i class="fa-regular fa-clock"></i> ~20 min</span>
-        <span class="hero-chip hero-chip-blue"><i class="fa-solid fa-signal"></i> Foundation</span>
-      </div>
-    </div>
-
-    <!-- ── Progress Bar ── -->
-    <div class="lesson-progress-wrap">
-      <div class="lesson-progress-label">
-        <span>Lesson Progress</span>
-        <span class="lesson-progress-pct">{{ Math.round(progress) }}%</span>
-      </div>
-      <div class="lesson-progress-track">
-        <div class="lesson-progress-fill" :style="{ width: progress + '%' }"></div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 1: What are the 4 operations? ── -->
-    <div class="lesson-section" ref="sec1" :class="{ visible: sec1Visible }">
-      <div class="section-header">
-        <div class="section-num">1</div>
-        <h2 class="section-title">What are the 4 operations??</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          The 4 operations are Addition, Subtraction, Multiplication, And Division.
-        </p>
-
-        <!-- Range rule card -->
-        <div class="rule-cards">
-          <div class="rule-card rule-card-Plus">
-            <div class="rule-range">Addition</div>
-            <div class="rule-arrow">
-              <i class="fa-solid fa-plus"></i>
-            </div>
-            <div class="rule-label">Addition is combining 2 numbers and <strong>INCREASING</strong> the value</div>
-            <div class="rule-desc">for example 5+5 <strong>INCREASES</strong> to 10</div>
-          </div>
-          <div class="rule-card rule-card-Minus">
-            <div class="rule-range">Subtraction</div>
-            <div class="rule-arrow">
-              <i class="fa-solid fa-minus"></i>
-            </div>
-            <div class="rule-label">Subtraction is removing a number from another and <strong>DECREASING</strong> the value</div>
-            <div class="rule-desc">for example 10-5 is DECREASED to 5</div>
-          </div>
-          <div class="rule-card rule-card-Mult">
-            <div class="rule-range">Multiplication</div>
-            <div class="rule-arrow">
-              <i class="fa-solid fa-minus"></i>
-            </div>
-            <div class="rule-label">Multiplication is <strong>INCREASING</strong> by itself a number of times</div>
-            <div class="rule-desc">for example in 5x4, 5 is INCREASED by itself 3 times to get 20</div>
-          </div>
-          <div class="rule-card rule-card-Div">
-            <div class="rule-range">Division</div>
-            <div class="rule-arrow">
-              <i class="fa-solid fa-minus"></i>
-            </div>
-            <div class="rule-label">Division is <strong>DECREASING</strong> a value by finding how many times a value fits into it</div>
-            <div class="rule-desc">for example, 12÷4, 4 fits into 12 three times, DECREASING the value to 3</div>
-          </div>
+  <div class="lesson-layout">
+    <!-- LEFT: Main content -->
+    <div class="lesson-page">
+      <!-- ── Lesson Header ── -->
+      <div class="lesson-hero">
+        <div class="lesson-hero-label">
+          <i class="fa-solid fa-book-open"></i> Lesson 1
         </div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 2: The Diagram ── -->
-    <div class="lesson-section" ref="sec2" :class="{ visible: sec2Visible }">
-      <div class="section-header">
-        <div class="section-num">2</div>
-        <h2 class="section-title">Worked Example 1: 20+5</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Let's add 5 to <strong>20</strong> .
-          We look at the bigger number of <strong class="text-red">20</strong> and add
-          <strong>5</strong>from there to get <span class="text-up">25</span>.
+        <h1 class="lesson-hero-title">Basic Operations</h1>
+        <p class="lesson-hero-sub">
+          Learn to perform the 4 basic numerical operations
         </p>
-
-        <!-- Whiteboard Diagram -->
-        <div class="diagram-wrap">
-          <div class="whiteboard">
-            <svg class="diagram-svg" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
-
-              <!-- 20 number -->
-              <text x="80" y="110" class="svg-num-black">20</text>
-              
-
-              
-              
-
-              <!-- Red arrow from sum to ans -->
-              <line x1="176" y1="145" x2="258" y2="148"
-                stroke="#dc2626" stroke-width="3"
-                stroke-linecap="round"
-                class="svg-draw line-draw" />
-
-              <!-- 5-9 label -->
-              <text x="265" y="158" class="svg-label-black svg-fade" style="animation-delay:0.9s">25</text>
-
-              
-              <!-- Plus sign -->
-               <line x1='110' y1='150' x2='130' y2='150' stroke='black' />
-               <line x1='120' y1='140' x2='120' y2='160' stroke='black' />
-
-              <!-- Result: 5 in red below -->
-              <text x="96" y="232" class="svg-num-result svg-fade" style="animation-delay:1.2s">5</text>
-
-            </svg>
-
-            <div class="diagram-legend">
-              <span class="legend-item legend-red">
-                <span class="legend-dot"></span> Digit to add
-              </span>
-              
-            </div>
-          </div>
-
-          <!-- Step-by-step breakdown -->
-          <div class="steps-panel">
-            <div class="step-item">
-              <div class="step-dot step-dot-1">1</div>
-              <div class="step-text">
-                <strong>Identify</strong> the larger digit.<br />
-                <span class="step-ex">20 <strong>OR</strong> 5 — the larger digit is <strong>20</strong></span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-2">2</div>
-              <div class="step-text">
-                <strong>Increase</strong> the larger number by the smaller number<br />
-                <span class="step-ex"><span class="hl-red">20</span> increased by <strong>5</strong> </span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-3">3</div>
-              <div class="step-text">
-                <strong>Add</strong> increase the larger digit <br />
-                <span class="step-ex"><span class="hl-black">20+5</span> becomes <span class="hl-green">25</span></span>
-              </div>
-            </div>
-            <div class="step-result">
-              <span class="step-result-label">Answer:</span>
-              <span class="step-result-val">20+5 → <strong>25</strong></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="lesson-section" ref="sec3" :class="{ visible: sec3Visible }">
-      <div class="section-header">
-        <div class="section-num">3</div>
-        <h2 class="section-title">Worked Example 2: 20-5</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Let's subtract <strong>5</strong> from 20.
-          We look at the first number <strong class="text-red">20</strong> and check that it's larger than the next number
-          <strong>(5)</strong>, then reduce the first value by the second.
-        </p>
-
-        <!-- Whiteboard Diagram -->
-        <div class="diagram-wrap">
-          <div class="whiteboard">
-            <svg class="diagram-svg" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
-
-              <!-- 20 number -->
-              <text x="80" y="110" class="svg-num-black">20</text>
-              
-              <!-- Red arrow from sum to ans -->
-              <line x1="176" y1="145" x2="258" y2="148"
-                stroke="#dc2626" stroke-width="3"
-                stroke-linecap="round"
-                class="svg-draw line-draw" />
-
-              <!-- 5-9 label -->
-              <text x="265" y="158" class="svg-label-black svg-fade" style="animation-delay:0.9s">15</text>
-
-              
-              <!-- Minus sign -->
-               <line x1='110' y1='150' x2='130' y2='150' stroke='black' />
-               
-
-              <!-- Result: 5 in red below -->
-              <text x="96" y="232" class="svg-num-result svg-fade" style="animation-delay:1.2s">5</text>
-
-            </svg>
-
-            <div class="diagram-legend">
-              <span class="legend-item legend-red">
-                <span class="legend-dot"></span> Digit to subtract
-              </span>
-              
-            </div>
-          </div>
-
-          <!-- Step-by-step breakdown -->
-          <div class="steps-panel">
-            <div class="step-item">
-              <div class="step-dot step-dot-1">1</div>
-              <div class="step-text">
-                <strong>Identify</strong> the first digit.<br />
-                <span class="step-ex">20 <strong>minus</strong> 5 — the first digit is <strong>20</strong></span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-2">2</div>
-              <div class="step-text">
-                <strong>Decrease</strong> the larger number by the smaller number<br />
-                <span class="step-ex"><span class="hl-red">20</span> decreased by <strong>5</strong> </span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-3">3</div>
-              <div class="step-text">
-                <strong>Minus</strong> from the larger digit <br />
-                <span class="step-ex"><span class="hl-black">20-5</span> becomes <span class="hl-green">15</span></span>
-              </div>
-            </div>
-            <div class="step-result">
-              <span class="step-result-label">Answer:</span>
-              <span class="step-result-val">20-5 → <strong>15</strong></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="lesson-section" ref="sec4" :class="{ visible: sec4Visible }">
-      <div class="section-header">
-        <div class="section-num">4</div>
-        <h2 class="section-title">Worked Example 3: 3x5</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Let's multiply 3  <strong>5</strong> times.
-          We look at the first digit <strong class="text-red">3</strong> — we need 5 times this amount.
-        </p>
-
-        <!-- Whiteboard Diagram -->
-        <div class="diagram-wrap">
-          <div class="whiteboard">
-            <svg class="diagram-svg" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
-
-              <!-- 20 number -->
-              <text x="80" y="110" class="svg-num-black">3</text>
-              
-              <!-- Red arrow from sum to ans -->
-              <line x1="176" y1="145" x2="258" y2="148"
-                stroke="#dc2626" stroke-width="3"
-                stroke-linecap="round"
-                class="svg-draw line-draw" />
-
-              <!-- 5-9 label -->
-              <text x="265" y="158" class="svg-label-black svg-fade" style="animation-delay:0.9s">15</text>
-
-              
-              <!-- Plus sign -->
-               <line x1='80' y1='130' x2='110' y2='160' stroke='black' />
-               <line x1='110' y1='130' x2='80' y2='160' stroke='black' />
-
-
-              <!-- Result: 5 in red below -->
-              <text x="96" y="232" class="svg-num-result svg-fade" style="animation-delay:1.2s">5</text>
-
-            </svg>
-
-            <div class="diagram-legend">
-              <span class="legend-item legend-red">
-                <span class="legend-dot"></span> Digit to multiply by
-              </span>
-              
-            </div>
-          </div>
-
-          <!-- Step-by-step breakdown -->
-          <div class="steps-panel">
-            <div class="step-item">
-              <div class="step-dot step-dot-1">1</div>
-              <div class="step-text">
-                <strong>Decide</strong> whether you want to multiply the 3 by the 5 or the 5 by the 3.<br />
-                <span class="step-ex">3 by the 5 is easier to work with due to small numbers, 5 by the 3 is easier due to less numbers <strong>5</strong> instances of 3</span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-2">2</div>
-              <div class="step-text">
-                <strong>Simplify down</strong> Multiplying 3 by the 5<br />
-                <span class="step-ex">3x5 would turn out as <strong>+3+3+3+3</strong></span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-3">3</div>
-              <div class="step-text">
-                <strong>Add values</strong> You now complete the calculation you simplified. 3+3+3+3+3=15.<br />
-                <span class="step-ex"><span class="hl-black">3x5</span> becomes <span class="hl-green">15</span></span>
-              </div>
-            </div>
-            <div class="step-result">
-              <span class="step-result-label">Answer:</span>
-              <span class="step-result-val">3x5 → <strong>15</strong></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="lesson-section" ref="sec5" :class="{ visible: sec5Visible }">
-      <div class="section-header">
-        <div class="section-num">5</div>
-        <h2 class="section-title">Worked Example 4: 20÷5</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Let's divide <strong>20</strong> by 5.
-          We look at the first number <strong class="text-red">20</strong> we will be reducing this number by <span class="text-up">5</span> times.
-        </p>
-
-        <!-- Whiteboard Diagram -->
-        <div class="diagram-wrap">
-          <div class="whiteboard">
-            <svg class="diagram-svg" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
-
-              <!-- 20 number -->
-              <text x="80" y="110" class="svg-num-black">20</text>
-              
-              <svg height="1000" width="1000" xmlns="http://www.w3.org/2000/svg">
-  <circle r="5" cx="120" cy="135" fill="black" />
-  <circle r="5" cx="120" cy="165" fill="black" />
-</svg>
-            
-              <!-- Red arrow from sum to ans -->
-              <line x1="176" y1="145" x2="258" y2="148"
-                stroke="#dc2626" stroke-width="3"
-                stroke-linecap="round"
-                class="svg-draw line-draw" />
-
-              <!-- 5-9 label -->
-              <text x="265" y="158" class="svg-label-black svg-fade" style="animation-delay:0.9s">4</text>
-
-              
-              <!-- Minus sign -->
-               <line x1='100' y1='150' x2='140' y2='150' stroke='black' />
-               
-
-              <!-- Result: 5 in red below -->
-              <text x="96" y="232" class="svg-num-result svg-fade" style="animation-delay:1.2s">5</text>
-
-            </svg>
-
-            <div class="diagram-legend">
-              <span class="legend-item legend-red">
-                <span class="legend-dot"></span> Digit to subtract
-              </span>
-              
-            </div>
-          </div>
-
-
-          <!-- Step-by-step breakdown -->
-          <div class="steps-panel">
-            <div class="step-item">
-              <div class="step-dot step-dot-1">1</div>
-              <div class="step-text">
-                <strong>Check</strong> the first value is larger than the second.<br />
-                <span class="step-ex">20 <span class="hl-red">></span> 5. So yes it is.</span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-2">2</div>
-              <div class="step-text">
-                <strong>Simplify </strong>it down<br />
-                <span class="step-ex">5 x 2 = <span class="hl-red">10</span> </span>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-dot step-dot-3">3</div>
-              <div class="step-text">
-                <strong>Find the answer</strong> How many times does 10 go into 20?.<br />
-                <span class="step-ex"><span class="hl-black">10</span> goes into 20 <span class="hl-green">2</span>times. then half that to get your answer </span>
-              </div>
-            </div>
-            <div class="step-result">
-              <span class="step-result-label">Answer:</span>
-              <span class="step-result-val">20÷5 → <strong>4</strong></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-
-    <!-- ── SECTION 4: Try It Yourself ── -->
-    <div class="lesson-section" ref="sec6" :class="{ visible: sec6Visible }">
-      <div class="section-header">
-        <div class="section-num">6</div>
-        <h2 class="section-title">Try It Yourself</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Round each number to the nearest whole number. Select your answer:
-        </p>
-
-        <div class="quiz-grid">
-          <div
-            v-for="(q, i) in quizQuestions"
-            :key="i"
-            class="quiz-card"
-            :class="{ answered: q.selected !== null }"
+        <div class="lesson-hero-chips">
+          <span class="hero-chip"
+            ><i class="fa-solid fa-circle-question"></i> 12 questions</span
           >
-            <div class="quiz-q"> <strong>{{ q.number }}</strong></div>
-            <div class="quiz-opts">
-              <button
-                v-for="opt in q.options"
-                :key="opt"
-                class="quiz-opt"
-                :class="{
-                  'opt-correct': q.selected !== null && opt === q.answer,
-                  'opt-wrong':   q.selected === opt && opt !== q.answer,
-                  'opt-neutral': q.selected !== null && opt !== q.answer && opt !== q.selected
-                }"
-                @click="selectAnswer(i, opt)"
-                :disabled="q.selected !== null"
-              >
-                {{ opt }}
-              </button>
+          <span class="hero-chip"
+            ><i class="fa-regular fa-clock"></i> ~20 min</span
+          >
+          <span class="hero-chip hero-chip-blue"
+            ><i class="fa-solid fa-signal"></i> Foundation</span
+          >
+        </div>
+      </div>
+
+      <!-- ── Progress Bar ── -->
+      <div class="lesson-progress-wrap">
+        <div class="lesson-progress-label">
+          <span>Lesson Progress</span>
+          <span class="lesson-progress-pct">{{ Math.round(progress) }}%</span>
+        </div>
+        <div class="lesson-progress-track">
+          <div
+            class="lesson-progress-fill"
+            :style="{ width: progress + '%' }"
+          ></div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 1: What are the 4 operations? ── -->
+      <div class="lesson-section" ref="sec1" :class="{ visible: sec1Visible }">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <h2 class="section-title">What are the 4 operations??</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            The 4 operations are Addition, Subtraction, Multiplication, And
+            Division.
+          </p>
+
+          <!-- Range rule card -->
+          <div class="rule-cards">
+            <div class="rule-card rule-card-Plus">
+              <div class="rule-range">Addition</div>
+              <div class="rule-arrow">
+                <i class="fa-solid fa-plus"></i>
+              </div>
+              <div class="rule-label">
+                Addition is combining 2 numbers and
+                <strong>INCREASING</strong> the value
+              </div>
+              <div class="rule-desc">
+                for example 5+5 <strong>INCREASES</strong> to 10
+              </div>
             </div>
-            <div v-if="q.selected !== null" class="quiz-feedback">
-              <template v-if="q.selected === q.answer">
-                <i class="fa-solid fa-circle-check" style="color:#16a34a"></i>
-                <span class="feedback-correct">Correct! {{ q.explanation }}</span>
-              </template>
-              <template v-else>
-                <i class="fa-solid fa-circle-xmark" style="color:#dc2626"></i>
-                <span class="feedback-wrong">Not quite. {{ q.explanation }}</span>
-              </template>
+            <div class="rule-card rule-card-Minus">
+              <div class="rule-range">Subtraction</div>
+              <div class="rule-arrow">
+                <i class="fa-solid fa-minus"></i>
+              </div>
+              <div class="rule-label">
+                Subtraction is removing a number from another and
+                <strong>DECREASING</strong> the value
+              </div>
+              <div class="rule-desc">for example 10-5 is DECREASED to 5</div>
+            </div>
+            <div class="rule-card rule-card-Mult">
+              <div class="rule-range">Multiplication</div>
+              <div class="rule-arrow">
+                <i class="fa-solid fa-minus"></i>
+              </div>
+              <div class="rule-label">
+                Multiplication is <strong>INCREASING</strong> by itself a number
+                of times
+              </div>
+              <div class="rule-desc">
+                for example in 5x4, 5 is INCREASED by itself 3 times to get 20
+              </div>
+            </div>
+            <div class="rule-card rule-card-Div">
+              <div class="rule-range">Division</div>
+              <div class="rule-arrow">
+                <i class="fa-solid fa-minus"></i>
+              </div>
+              <div class="rule-label">
+                Division is <strong>DECREASING</strong> a value by finding how
+                many times a value fits into it
+              </div>
+              <div class="rule-desc">
+                for example, 12÷4, 4 fits into 12 three times, DECREASING the
+                value to 3
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Score panel -->
-        <div v-if="allAnswered" class="score-panel">
-          <div class="score-icon">
-            <i class="fa-solid fa-star" v-for="n in scoreStars" :key="n"></i>
+      <!-- ── SECTION 2: The Diagram ── -->
+      <div class="lesson-section" ref="sec2" :class="{ visible: sec2Visible }">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <h2 class="section-title">Worked Example 1: 20+5</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Let's add 5 to <strong>20</strong> . We look at the bigger number of
+            <strong class="text-red">20</strong> and add <strong>5</strong>from
+            there to get <span class="text-up">25</span>.
+          </p>
+
+          <!-- Whiteboard Diagram -->
+          <div class="diagram-wrap">
+            <div class="whiteboard">
+              <svg
+                class="diagram-svg"
+                viewBox="0 0 420 260"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!-- 20 number -->
+                <text x="80" y="110" class="svg-num-black">20</text>
+
+                <!-- Red arrow from sum to ans -->
+                <line
+                  x1="176"
+                  y1="145"
+                  x2="258"
+                  y2="148"
+                  stroke="#dc2626"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  class="svg-draw line-draw"
+                />
+
+                <!-- 5-9 label -->
+                <text
+                  x="265"
+                  y="158"
+                  class="svg-label-black svg-fade"
+                  style="animation-delay: 0.9s"
+                >
+                  25
+                </text>
+
+                <!-- Plus sign -->
+                <line x1="110" y1="150" x2="130" y2="150" stroke="black" />
+                <line x1="120" y1="140" x2="120" y2="160" stroke="black" />
+
+                <!-- Result: 5 in red below -->
+                <text
+                  x="96"
+                  y="232"
+                  class="svg-num-result svg-fade"
+                  style="animation-delay: 1.2s"
+                >
+                  5
+                </text>
+              </svg>
+
+              <div class="diagram-legend">
+                <span class="legend-item legend-red">
+                  <span class="legend-dot"></span> Digit to add
+                </span>
+              </div>
+            </div>
+
+            <!-- Step-by-step breakdown -->
+            <div class="steps-panel">
+              <div class="step-item">
+                <div class="step-dot step-dot-1">1</div>
+                <div class="step-text">
+                  <strong>Identify</strong> the larger digit.<br />
+                  <span class="step-ex"
+                    >20 <strong>OR</strong> 5 — the larger digit is
+                    <strong>20</strong></span
+                  >
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-2">2</div>
+                <div class="step-text">
+                  <strong>Increase</strong> the larger number by the smaller
+                  number<br />
+                  <span class="step-ex"
+                    ><span class="hl-red">20</span> increased by
+                    <strong>5</strong>
+                  </span>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-3">3</div>
+                <div class="step-text">
+                  <strong>Add</strong> increase the larger digit <br />
+                  <span class="step-ex"
+                    ><span class="hl-black">20+5</span> becomes
+                    <span class="hl-green">25</span></span
+                  >
+                </div>
+              </div>
+              <div class="step-result">
+                <span class="step-result-label">Answer:</span>
+                <span class="step-result-val">20+5 → <strong>25</strong></span>
+              </div>
+            </div>
           </div>
-          <div class="score-text">
-            You got <strong>{{ correctCount }} / {{ quizQuestions.length }}</strong> correct!
+        </div>
+      </div>
+      <div class="lesson-section" ref="sec3" :class="{ visible: sec3Visible }">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <h2 class="section-title">Worked Example 2: 20-5</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Let's subtract <strong>5</strong> from 20. We look at the first
+            number <strong class="text-red">20</strong> and check that it's
+            larger than the next number <strong>(5)</strong>, then reduce the
+            first value by the second.
+          </p>
+
+          <!-- Whiteboard Diagram -->
+          <div class="diagram-wrap">
+            <div class="whiteboard">
+              <svg
+                class="diagram-svg"
+                viewBox="0 0 420 260"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!-- 20 number -->
+                <text x="80" y="110" class="svg-num-black">20</text>
+
+                <!-- Red arrow from sum to ans -->
+                <line
+                  x1="176"
+                  y1="145"
+                  x2="258"
+                  y2="148"
+                  stroke="#dc2626"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  class="svg-draw line-draw"
+                />
+
+                <!-- 5-9 label -->
+                <text
+                  x="265"
+                  y="158"
+                  class="svg-label-black svg-fade"
+                  style="animation-delay: 0.9s"
+                >
+                  15
+                </text>
+
+                <!-- Minus sign -->
+                <line x1="110" y1="150" x2="130" y2="150" stroke="black" />
+
+                <!-- Result: 5 in red below -->
+                <text
+                  x="96"
+                  y="232"
+                  class="svg-num-result svg-fade"
+                  style="animation-delay: 1.2s"
+                >
+                  5
+                </text>
+              </svg>
+
+              <div class="diagram-legend">
+                <span class="legend-item legend-red">
+                  <span class="legend-dot"></span> Digit to subtract
+                </span>
+              </div>
+            </div>
+
+            <!-- Step-by-step breakdown -->
+            <div class="steps-panel">
+              <div class="step-item">
+                <div class="step-dot step-dot-1">1</div>
+                <div class="step-text">
+                  <strong>Identify</strong> the first digit.<br />
+                  <span class="step-ex"
+                    >20 <strong>minus</strong> 5 — the first digit is
+                    <strong>20</strong></span
+                  >
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-2">2</div>
+                <div class="step-text">
+                  <strong>Decrease</strong> the larger number by the smaller
+                  number<br />
+                  <span class="step-ex"
+                    ><span class="hl-red">20</span> decreased by
+                    <strong>5</strong>
+                  </span>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-3">3</div>
+                <div class="step-text">
+                  <strong>Minus</strong> from the larger digit <br />
+                  <span class="step-ex"
+                    ><span class="hl-black">20-5</span> becomes
+                    <span class="hl-green">15</span></span
+                  >
+                </div>
+              </div>
+              <div class="step-result">
+                <span class="step-result-label">Answer:</span>
+                <span class="step-result-val">20-5 → <strong>15</strong></span>
+              </div>
+            </div>
           </div>
-          <button class="score-retry" @click="resetQuiz">
-            <i class="fa-solid fa-rotate-left"></i> Try Again
+        </div>
+      </div>
+      <div class="lesson-section" ref="sec4" :class="{ visible: sec4Visible }">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <h2 class="section-title">Worked Example 3: 3x5</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Let's multiply 3 <strong>5</strong> times. We look at the first
+            digit <strong class="text-red">3</strong> — we need 5 times this
+            amount.
+          </p>
+
+          <!-- Whiteboard Diagram -->
+          <div class="diagram-wrap">
+            <div class="whiteboard">
+              <svg
+                class="diagram-svg"
+                viewBox="0 0 420 260"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!-- 20 number -->
+                <text x="80" y="110" class="svg-num-black">3</text>
+
+                <!-- Red arrow from sum to ans -->
+                <line
+                  x1="176"
+                  y1="145"
+                  x2="258"
+                  y2="148"
+                  stroke="#dc2626"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  class="svg-draw line-draw"
+                />
+
+                <!-- 5-9 label -->
+                <text
+                  x="265"
+                  y="158"
+                  class="svg-label-black svg-fade"
+                  style="animation-delay: 0.9s"
+                >
+                  15
+                </text>
+
+                <!-- Plus sign -->
+                <line x1="80" y1="130" x2="110" y2="160" stroke="black" />
+                <line x1="110" y1="130" x2="80" y2="160" stroke="black" />
+
+                <!-- Result: 5 in red below -->
+                <text
+                  x="96"
+                  y="232"
+                  class="svg-num-result svg-fade"
+                  style="animation-delay: 1.2s"
+                >
+                  5
+                </text>
+              </svg>
+
+              <div class="diagram-legend">
+                <span class="legend-item legend-red">
+                  <span class="legend-dot"></span> Digit to multiply by
+                </span>
+              </div>
+            </div>
+
+            <!-- Step-by-step breakdown -->
+            <div class="steps-panel">
+              <div class="step-item">
+                <div class="step-dot step-dot-1">1</div>
+                <div class="step-text">
+                  <strong>Decide</strong> whether you want to multiply the 3 by
+                  the 5 or the 5 by the 3.<br />
+                  <span class="step-ex"
+                    >3 by the 5 is easier to work with due to small numbers, 5
+                    by the 3 is easier due to less numbers
+                    <strong>5</strong> instances of 3</span
+                  >
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-2">2</div>
+                <div class="step-text">
+                  <strong>Simplify down</strong> Multiplying 3 by the 5<br />
+                  <span class="step-ex"
+                    >3x5 would turn out as <strong>+3+3+3+3</strong></span
+                  >
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-3">3</div>
+                <div class="step-text">
+                  <strong>Add values</strong> You now complete the calculation
+                  you simplified. 3+3+3+3+3=15.<br />
+                  <span class="step-ex"
+                    ><span class="hl-black">3x5</span> becomes
+                    <span class="hl-green">15</span></span
+                  >
+                </div>
+              </div>
+              <div class="step-result">
+                <span class="step-result-label">Answer:</span>
+                <span class="step-result-val">3x5 → <strong>15</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-section" ref="sec5" :class="{ visible: sec5Visible }">
+        <div class="section-header">
+          <div class="section-num">5</div>
+          <h2 class="section-title">Worked Example 4: 20÷5</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Let's divide <strong>20</strong> by 5. We look at the first number
+            <strong class="text-red">20</strong> we will be reducing this number
+            by <span class="text-up">5</span> times.
+          </p>
+
+          <!-- Whiteboard Diagram -->
+          <div class="diagram-wrap">
+            <div class="whiteboard">
+              <svg
+                class="diagram-svg"
+                viewBox="0 0 420 260"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!-- 20 number -->
+                <text x="80" y="110" class="svg-num-black">20</text>
+
+                <svg
+                  height="1000"
+                  width="1000"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="5" cx="120" cy="135" fill="black" />
+                  <circle r="5" cx="120" cy="165" fill="black" />
+                </svg>
+
+                <!-- Red arrow from sum to ans -->
+                <line
+                  x1="176"
+                  y1="145"
+                  x2="258"
+                  y2="148"
+                  stroke="#dc2626"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  class="svg-draw line-draw"
+                />
+
+                <!-- 5-9 label -->
+                <text
+                  x="265"
+                  y="158"
+                  class="svg-label-black svg-fade"
+                  style="animation-delay: 0.9s"
+                >
+                  4
+                </text>
+
+                <!-- Minus sign -->
+                <line x1="100" y1="150" x2="140" y2="150" stroke="black" />
+
+                <!-- Result: 5 in red below -->
+                <text
+                  x="96"
+                  y="232"
+                  class="svg-num-result svg-fade"
+                  style="animation-delay: 1.2s"
+                >
+                  5
+                </text>
+              </svg>
+
+              <div class="diagram-legend">
+                <span class="legend-item legend-red">
+                  <span class="legend-dot"></span> Digit to subtract
+                </span>
+              </div>
+            </div>
+
+            <!-- Step-by-step breakdown -->
+            <div class="steps-panel">
+              <div class="step-item">
+                <div class="step-dot step-dot-1">1</div>
+                <div class="step-text">
+                  <strong>Check</strong> the first value is larger than the
+                  second.<br />
+                  <span class="step-ex"
+                    >20 <span class="hl-red">></span> 5. So yes it is.</span
+                  >
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-2">2</div>
+                <div class="step-text">
+                  <strong>Simplify </strong>it down<br />
+                  <span class="step-ex"
+                    >5 x 2 = <span class="hl-red">10</span>
+                  </span>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-dot step-dot-3">3</div>
+                <div class="step-text">
+                  <strong>Find the answer</strong> How many times does 10 go
+                  into 20?.<br />
+                  <span class="step-ex"
+                    ><span class="hl-black">10</span> goes into 20
+                    <span class="hl-green">2</span>times. then half that to get
+                    your answer
+                  </span>
+                </div>
+              </div>
+              <div class="step-result">
+                <span class="step-result-label">Answer:</span>
+                <span class="step-result-val">20÷5 → <strong>4</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 4: Try It Yourself ── -->
+      <div class="lesson-section" ref="sec6" :class="{ visible: sec6Visible }">
+        <div class="section-header">
+          <div class="section-num">6</div>
+          <h2 class="section-title">Try It Yourself</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Round each number to the nearest whole number. Select your answer:
+          </p>
+
+          <div class="quiz-grid">
+            <div
+              v-for="(q, i) in quizQuestions"
+              :key="i"
+              class="quiz-card"
+              :class="{ answered: q.selected !== null }"
+            >
+              <div class="quiz-q">
+                <strong>{{ q.number }}</strong>
+              </div>
+              <div class="quiz-opts">
+                <button
+                  v-for="opt in q.options"
+                  :key="opt"
+                  class="quiz-opt"
+                  :class="{
+                    'opt-correct': q.selected !== null && opt === q.answer,
+                    'opt-wrong': q.selected === opt && opt !== q.answer,
+                    'opt-neutral':
+                      q.selected !== null &&
+                      opt !== q.answer &&
+                      opt !== q.selected,
+                  }"
+                  @click="selectAnswer(i, opt)"
+                  :disabled="q.selected !== null"
+                >
+                  {{ opt }}
+                </button>
+              </div>
+              <div v-if="q.selected !== null" class="quiz-feedback">
+                <template v-if="q.selected === q.answer">
+                  <i
+                    class="fa-solid fa-circle-check"
+                    style="color: #16a34a"
+                  ></i>
+                  <span class="feedback-correct"
+                    >Correct! {{ q.explanation }}</span
+                  >
+                </template>
+                <template v-else>
+                  <i
+                    class="fa-solid fa-circle-xmark"
+                    style="color: #dc2626"
+                  ></i>
+                  <span class="feedback-wrong"
+                    >Not quite. {{ q.explanation }}</span
+                  >
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <!-- Score panel -->
+          <div v-if="allAnswered" class="score-panel">
+            <div class="score-icon">
+              <i class="fa-solid fa-star" v-for="n in scoreStars" :key="n"></i>
+            </div>
+            <div class="score-text">
+              You got
+              <strong>{{ correctCount }} / {{ quizQuestions.length }}</strong>
+              correct!
+            </div>
+            <button class="score-retry" @click="resetQuiz">
+              <i class="fa-solid fa-rotate-left"></i> Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Summary ── -->
+      <div class="lesson-summary" ref="sec7" :class="{ visible: sec7Visible }">
+        <h3 class="summary-title">
+          <i class="fa-solid fa-circle-check"></i> Lesson Summary
+        </h3>
+        <ul class="summary-list">
+          <li>
+            <i class="fa-solid fa-check"></i> Each operation works
+            <em>differently</em> remember which one is which
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <strong>Addition and subtraction</strong> → Linear changes
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <strong>Multiplication and division</strong> → changes relavent to
+            themselves
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i> Always use the right operation
+            <em>+, -, x, ÷</em>
+          </li>
+        </ul>
+        <div class="summary-actions">
+          <button class="btn-next" @click="router.push('/Lesson7')">
+            Next Lesson: Order of operations.
+            <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- ── Summary ── -->
-    <div class="lesson-summary" ref="sec7" :class="{ visible: sec7Visible }">
-      <h3 class="summary-title"><i class="fa-solid fa-circle-check"></i> Lesson Summary</h3>
-      <ul class="summary-list">
-        <li><i class="fa-solid fa-check"></i> Each operation works <em>differently</em> remember which one is which</li>
-        <li><i class="fa-solid fa-check"></i> <strong>Addition and subtraction</strong> → Linear changes</li>
-        <li><i class="fa-solid fa-check"></i> <strong>Multiplication and division</strong> → changes relavent to themselves</li>
-        <li><i class="fa-solid fa-check"></i> Always use the right operation <em>+, -, x, ÷</em></li>
-      </ul>
-      <div class="summary-actions">
-        <button class="btn-next" @click="router.push('/Lesson7')">
-          Next Lesson: Order of operations.
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </div>
-    </div>
+    <!-- RIGHT: Sidebar -->
+    <aside class="lesson-video-sidebar">
+      <div class="video-sidebar-card">
+        <div class="video-sidebar-header">
+          <i class="fa-solid fa-circle-play"></i>
+          <h3>Helpful Videos</h3>
+        </div>
+        <p class="video-sidebar-sub">
+          Watch these alongside the lesson for extra support.
+        </p>
 
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 1</span>
+            <span class="video-topic">Addition, Subtraction, Multiplication and Division</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/c8T0aeIP-W4"
+              title="What are Fractions"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            A clear overview of the four basic operations and what each one means.
+          </p>
+        </div>
+
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 2</span>
+            <span class="video-topic">Choosing the Correct Operation</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/3fY1AqnrUhQ"
+              title="Adding Fractions"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Helps learners recognise whether a question needs adding, subtracting, multiplying, or dividing.
+          </p>
+        </div>
+
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 3</span>
+            <span class="video-topic">Basic Operations Practice Questions</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/GvLIEiqxS6s"
+              title="Multiplying Fractions"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Works through mixed operation examples step by step to build confidence and accuracy.
+          </p>
+        </div>
+      </div>
+    </aside>
   </div>
 </template>
 
@@ -492,20 +763,29 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 /* ── Scroll visibility ── */
-const sec1 = ref(null); const sec1Visible = ref(false);
-const sec2 = ref(null); const sec2Visible = ref(false);
-const sec3 = ref(null); const sec3Visible = ref(false);
-const sec4 = ref(null); const sec4Visible = ref(false);
-const sec5 = ref(null); const sec5Visible = ref(false);
-const sec6 = ref(null); const sec6Visible = ref(false);
-const sec7 = ref(null); const sec7Visible = ref(false);
+const sec1 = ref(null);
+const sec1Visible = ref(false);
+const sec2 = ref(null);
+const sec2Visible = ref(false);
+const sec3 = ref(null);
+const sec3Visible = ref(false);
+const sec4 = ref(null);
+const sec4Visible = ref(false);
+const sec5 = ref(null);
+const sec5Visible = ref(false);
+const sec6 = ref(null);
+const sec6Visible = ref(false);
+const sec7 = ref(null);
+const sec7Visible = ref(false);
 
 const observers = [];
 
 function observe(el, flag) {
   const obs = new IntersectionObserver(
-    ([entry]) => { if (entry.isIntersecting) flag.value = true; },
-    { threshold: 0.12 }
+    ([entry]) => {
+      if (entry.isIntersecting) flag.value = true;
+    },
+    { threshold: 0.12 },
   );
   if (el.value) obs.observe(el.value);
   observers.push(obs);
@@ -523,11 +803,19 @@ onMounted(() => {
   sec1Visible.value = true;
 });
 
-onUnmounted(() => observers.forEach(o => o.disconnect()));
+onUnmounted(() => observers.forEach((o) => o.disconnect()));
 
 /* ── Progress (rough: sections visible) ── */
 const progress = computed(() => {
-  const flags = [sec1Visible.value, sec2Visible.value, sec3Visible.value, sec4Visible.value, sec5Visible.value, sec6Visible.value, sec7Visible.value];
+  const flags = [
+    sec1Visible.value,
+    sec2Visible.value,
+    sec3Visible.value,
+    sec4Visible.value,
+    sec5Visible.value,
+    sec6Visible.value,
+    sec7Visible.value,
+  ];
   return (flags.filter(Boolean).length / flags.length) * 100;
 });
 
@@ -538,45 +826,44 @@ const quizQuestions = ref([
     options: [10, 12, 15],
     answer: 12,
     selected: null,
-    explanation: "5 increased by 7 is 12."
+    explanation: "5 increased by 7 is 12.",
   },
   {
     number: "15-6",
     options: [7, 8, 9],
     answer: 9,
     selected: null,
-    explanation: "go down 6 from 15"
+    explanation: "go down 6 from 15",
   },
   {
     number: "2x6",
     options: [12, 13, 9],
     answer: 12,
     selected: null,
-    explanation: "2x6 is like 6+6, 6 twice. "
+    explanation: "2x6 is like 6+6, 6 twice. ",
   },
   {
     number: "20÷4",
     options: [5, 7, 9],
     answer: 5,
     selected: null,
-    explanation: "5 rounds 8 up → 6.9, then 9 rounds 6 up → 7."
-  }
+    explanation: "5 rounds 8 up → 6.9, then 9 rounds 6 up → 7.",
+  },
 ]);
 
 // Fix the 2.45 question
-
 
 function selectAnswer(i, opt) {
   if (quizQuestions.value[i].selected !== null) return;
   quizQuestions.value[i].selected = opt;
 }
 
-const correctCount = computed(() =>
-  quizQuestions.value.filter(q => q.selected === q.answer).length
+const correctCount = computed(
+  () => quizQuestions.value.filter((q) => q.selected === q.answer).length,
 );
 
 const allAnswered = computed(() =>
-  quizQuestions.value.every(q => q.selected !== null)
+  quizQuestions.value.every((q) => q.selected !== null),
 );
 
 const scoreStars = computed(() => {
@@ -587,7 +874,7 @@ const scoreStars = computed(() => {
 });
 
 function resetQuiz() {
-  quizQuestions.value.forEach(q => (q.selected = null));
+  quizQuestions.value.forEach((q) => (q.selected = null));
 }
 </script>
 
@@ -596,9 +883,21 @@ function resetQuiz() {
    LESSON PAGE — Decimals & Rounding
    ========================================================= */
 
+.lesson-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 40px;
+  align-items: start;
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .lesson-page {
   padding: 40px;
   max-width: 900px;
+  width: 100%;
+  min-width: 0;
   font-family: "Poppins", sans-serif;
 }
 
@@ -617,7 +916,11 @@ function resetQuiz() {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  background: radial-gradient(
+    circle at 80% 20%,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -625,8 +928,8 @@ function resetQuiz() {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 4px 14px;
   border-radius: 20px;
   font-size: 12px;
@@ -660,8 +963,8 @@ function resetQuiz() {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;
@@ -669,7 +972,7 @@ function resetQuiz() {
 }
 
 .hero-chip-blue {
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* ── Progress ─────────────────────────────────────────── */
@@ -713,7 +1016,9 @@ function resetQuiz() {
   overflow: hidden;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .lesson-section.visible {
@@ -763,9 +1068,18 @@ function resetQuiz() {
   margin: 0 0 20px;
 }
 
-.text-up   { color: #16a34a; font-weight: 700; }
-.text-down { color: #2563eb; font-weight: 700; }
-.text-red  { color: #dc2626; font-weight: 700; }
+.text-up {
+  color: #16a34a;
+  font-weight: 700;
+}
+.text-down {
+  color: #2563eb;
+  font-weight: 700;
+}
+.text-red {
+  color: #dc2626;
+  font-weight: 700;
+}
 
 /* ── Rule Cards ───────────────────────────────────────── */
 .rule-cards {
@@ -791,17 +1105,30 @@ function resetQuiz() {
   background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
 }
 .rule-card-Minus {
-  border-color:rgb(239, 134, 134);
-  background: linear-gradient(135deg,rgb(253, 240, 240) 0%,rgb(252, 220, 220) 100%);
+  border-color: rgb(239, 134, 134);
+  background: linear-gradient(
+    135deg,
+    rgb(253, 240, 240) 0%,
+    rgb(252, 220, 220) 100%
+  );
 }
 .rule-card-Mult {
-  border-color:rgb(239, 211, 134);
-  background: linear-gradient(135deg,rgb(253, 250, 240) 0%,rgb(252, 246, 220) 100%);
+  border-color: rgb(239, 211, 134);
+  background: linear-gradient(
+    135deg,
+    rgb(253, 250, 240) 0%,
+    rgb(252, 246, 220) 100%
+  );
 }
 
-
-body.dark .rule-card-down { background: linear-gradient(135deg, #172554, #1e3a5f); border-color: #2563eb; }
-body.dark .rule-card-up   { background: linear-gradient(135deg, #052e16, #14532d); border-color: #16a34a; }
+body.dark .rule-card-down {
+  background: linear-gradient(135deg, #172554, #1e3a5f);
+  border-color: #2563eb;
+}
+body.dark .rule-card-up {
+  background: linear-gradient(135deg, #052e16, #14532d);
+  border-color: #16a34a;
+}
 
 .rule-range {
   font-size: 32px;
@@ -815,8 +1142,12 @@ body.dark .rule-card-up   { background: linear-gradient(135deg, #052e16, #14532d
   margin-bottom: 10px;
 }
 
-.rule-card-down .rule-arrow { color: #2563eb; }
-.rule-card-up   .rule-arrow { color: #16a34a; }
+.rule-card-down .rule-arrow {
+  color: #2563eb;
+}
+.rule-card-up .rule-arrow {
+  color: #16a34a;
+}
 
 .rule-label {
   font-size: 17px;
@@ -845,7 +1176,7 @@ body.dark .rule-card-up   { background: linear-gradient(135deg, #052e16, #14532d
   border: 2px solid #e2e8f0;
   border-radius: 14px;
   padding: 16px;
-  box-shadow: inset 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 body.dark .whiteboard {
@@ -904,7 +1235,7 @@ body.dark .whiteboard {
 .line-draw-green {
   stroke-dasharray: 50;
   stroke-dashoffset: 50;
-  animation: draw-stroke 0.35s ease forwards 1.0s;
+  animation: draw-stroke 0.35s ease forwards 1s;
 }
 
 .line-draw-green2 {
@@ -919,11 +1250,15 @@ body.dark .whiteboard {
 }
 
 @keyframes draw-stroke {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes fade-in {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 .diagram-legend {
@@ -949,8 +1284,12 @@ body.dark .whiteboard {
   display: inline-block;
 }
 
-.legend-red .legend-dot   { background: #dc2626; }
-.legend-green .legend-dot { background: #16a34a; }
+.legend-red .legend-dot {
+  background: #dc2626;
+}
+.legend-green .legend-dot {
+  background: #16a34a;
+}
 
 /* ── Steps Panel ──────────────────────────────────────── */
 .steps-panel {
@@ -979,9 +1318,15 @@ body.dark .whiteboard {
   margin-top: 2px;
 }
 
-.step-dot-1 { background: #dc2626; }
-.step-dot-2 { background: #f97316; }
-.step-dot-3 { background: #16a34a; }
+.step-dot-1 {
+  background: #dc2626;
+}
+.step-dot-2 {
+  background: #f97316;
+}
+.step-dot-3 {
+  background: #16a34a;
+}
 
 .step-text {
   font-size: 14px;
@@ -1000,9 +1345,18 @@ body.dark .whiteboard {
   font-weight: 600;
 }
 
-.hl-red   { color: #dc2626; font-weight: 800; }
-.hl-green { color: #16a34a; font-weight: 800; }
-.hl-black { color: var(--text-dark); font-weight: 800; }
+.hl-red {
+  color: #dc2626;
+  font-weight: 800;
+}
+.hl-green {
+  color: #16a34a;
+  font-weight: 800;
+}
+.hl-black {
+  color: var(--text-dark);
+  font-weight: 800;
+}
 
 .step-result {
   background: linear-gradient(135deg, #f0fdf4, #dcfce7);
@@ -1015,7 +1369,10 @@ body.dark .whiteboard {
   margin-top: 4px;
 }
 
-body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); border-color: #16a34a; }
+body.dark .step-result {
+  background: linear-gradient(135deg, #052e16, #14532d);
+  border-color: #16a34a;
+}
 
 .step-result-label {
   font-size: 11px;
@@ -1048,8 +1405,12 @@ body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); 
   line-height: 1;
 }
 
-.cn-black { color: var(--text-dark); }
-.cn-red   { color: #dc2626; }
+.cn-black {
+  color: var(--text-dark);
+}
+.cn-red {
+  color: #dc2626;
+}
 
 .chain-steps {
   display: flex;
@@ -1115,7 +1476,10 @@ body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); 
   color: var(--text-dark);
 }
 
-.chain-arrow { color: #2563eb; font-size: 13px; }
+.chain-arrow {
+  color: #2563eb;
+  font-size: 13px;
+}
 
 .chain-connector {
   text-align: center;
@@ -1136,7 +1500,10 @@ body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); 
   padding: 14px 18px;
 }
 
-body.dark .chain-final { background: linear-gradient(135deg, #172554, #1e3a5f); border-color: #2563eb; }
+body.dark .chain-final {
+  background: linear-gradient(135deg, #172554, #1e3a5f);
+  border-color: #2563eb;
+}
 
 .chain-final-label {
   font-size: 11px;
@@ -1169,7 +1536,10 @@ body.dark .chain-final { background: linear-gradient(135deg, #172554, #1e3a5f); 
   border: 1.5px solid #bfdbfe;
 }
 
-body.dark .callout-blue { background: #172554; border-color: #2563eb; }
+body.dark .callout-blue {
+  background: #172554;
+  border-color: #2563eb;
+}
 
 .callout-icon {
   font-size: 20px;
@@ -1233,14 +1603,32 @@ body.dark .callout-blue { background: #172554; border-color: #2563eb; }
   color: #2563eb;
 }
 
-.quiz-opt:disabled { cursor: default; }
+.quiz-opt:disabled {
+  cursor: default;
+}
 
-.opt-correct { background: #dcfce7 !important; border-color: #16a34a !important; color: #15803d !important; }
-.opt-wrong   { background: #fee2e2 !important; border-color: #dc2626 !important; color: #dc2626 !important; }
-.opt-neutral { opacity: 0.45; }
+.opt-correct {
+  background: #dcfce7 !important;
+  border-color: #16a34a !important;
+  color: #15803d !important;
+}
+.opt-wrong {
+  background: #fee2e2 !important;
+  border-color: #dc2626 !important;
+  color: #dc2626 !important;
+}
+.opt-neutral {
+  opacity: 0.45;
+}
 
-body.dark .opt-correct { background: #14532d !important; color: #4ade80 !important; }
-body.dark .opt-wrong   { background: #450a0a !important; color: #f87171 !important; }
+body.dark .opt-correct {
+  background: #14532d !important;
+  color: #4ade80 !important;
+}
+body.dark .opt-wrong {
+  background: #450a0a !important;
+  color: #f87171 !important;
+}
 
 .quiz-feedback {
   display: flex;
@@ -1252,11 +1640,133 @@ body.dark .opt-wrong   { background: #450a0a !important; color: #f87171 !importa
   padding-top: 4px;
 }
 
-.feedback-correct { color: #15803d; }
-.feedback-wrong   { color: #dc2626; }
+.feedback-correct {
+  color: #15803d;
+}
+.feedback-wrong {
+  color: #dc2626;
+}
 
-body.dark .feedback-correct { color: #4ade80; }
-body.dark .feedback-wrong   { color: #f87171; }
+body.dark .feedback-correct {
+  color: #4ade80;
+}
+body.dark .feedback-wrong {
+  color: #f87171;
+}
+/* ── Video sidebar ─────────────────────────────────────────────────── */
+.lesson-video-sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  padding-top: 40px;
+  margin-left: 8px;
+}
+
+.video-sidebar-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.video-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.video-sidebar-header i {
+  color: #2563eb;
+  font-size: 18px;
+}
+
+.video-sidebar-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.video-sidebar-sub {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
+}
+
+.lesson-video-card {
+  background: var(--bg-page);
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 20px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lesson-video-card:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-video-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  border-color: #93c5fd;
+}
+
+.lesson-video-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.video-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.video-topic {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.lesson-video-frame-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  margin-bottom: 10px;
+}
+
+.lesson-video-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.lesson-video-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
+}
 
 /* ── Score Panel ──────────────────────────────────────── */
 .score-panel {
@@ -1270,10 +1780,23 @@ body.dark .feedback-wrong   { color: #f87171; }
   flex-wrap: wrap;
 }
 
-body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); border-color: #ca8a04; }
+body.dark .score-panel {
+  background: linear-gradient(135deg, #422006, #3b1800);
+  border-color: #ca8a04;
+}
 
-.score-icon { font-size: 22px; color: #f59e0b; display: flex; gap: 2px; }
-.score-text { font-size: 16px; font-weight: 700; color: var(--text-dark); flex: 1; }
+.score-icon {
+  font-size: 22px;
+  color: #f59e0b;
+  display: flex;
+  gap: 2px;
+}
+.score-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+  flex: 1;
+}
 
 .score-retry {
   display: inline-flex;
@@ -1288,10 +1811,15 @@ body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); 
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
+  transition:
+    background 0.15s,
+    transform 0.15s;
 }
 
-.score-retry:hover { background: #1d4ed8; transform: translateY(-1px); }
+.score-retry:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
 
 /* ── Summary ──────────────────────────────────────────── */
 .lesson-summary {
@@ -1301,7 +1829,9 @@ body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); 
   color: #fff;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .lesson-summary.visible {
@@ -1360,22 +1890,52 @@ body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); 
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
 }
 
 .btn-next:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 750px) {
-  .lesson-page { padding: 16px; }
-  .lesson-hero { padding: 24px 20px; }
-  .lesson-hero-title { font-size: 26px; }
-  .rule-cards { grid-template-columns: 1fr; }
-  .diagram-wrap { grid-template-columns: 1fr; }
-  .quiz-grid { grid-template-columns: 1fr; }
-  .chain-final { flex-direction: column; gap: 6px; }
+  .lesson-page {
+    padding: 16px;
+  }
+  .lesson-hero {
+    padding: 24px 20px;
+  }
+  .lesson-hero-title {
+    font-size: 26px;
+  }
+  .rule-cards {
+    grid-template-columns: 1fr;
+  }
+  .diagram-wrap {
+    grid-template-columns: 1fr;
+  }
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+  .chain-final {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .lesson-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .lesson-video-sidebar {
+    position: static;
+    padding: 0 40px 40px;
+    margin-left: 0;
+  }
 }
 </style>

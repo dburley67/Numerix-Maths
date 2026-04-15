@@ -1,245 +1,421 @@
 <template>
-  <div class="lesson-page">
-
-    <!-- ── Lesson Header ── -->
-    <div class="lesson-hero">
-      <div class="lesson-hero-label">
-        <i class="fa-solid fa-book-open"></i> Lesson 2
-      </div>
-      <h1 class="lesson-hero-title">Bidmas</h1>
-      <p class="lesson-hero-sub">
-        Learn to perform the 4 basic numerical operations
-      </p>
-      <div class="lesson-hero-chips">
-        <span class="hero-chip"><i class="fa-solid fa-circle-question"></i> 12 questions</span>
-        <span class="hero-chip"><i class="fa-regular fa-clock"></i> ~20 min</span>
-        <span class="hero-chip hero-chip-blue"><i class="fa-solid fa-signal"></i> Foundation</span>
-      </div>
-    </div>
-
-    <!-- ── Progress Bar ── -->
-    <div class="lesson-progress-wrap">
-      <div class="lesson-progress-label">
-        <span>Lesson Progress</span>
-        <span class="lesson-progress-pct">{{ Math.round(progress) }}%</span>
-      </div>
-      <div class="lesson-progress-track">
-        <div class="lesson-progress-fill" :style="{ width: progress + '%' }"></div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 1: What are the 4 operations? ── -->
-    <div class="lesson-section" ref="sec1" :class="{ visible: sec1Visible }">
-      <div class="section-header">
-        <div class="section-num">1</div>
-        <h2 class="section-title">What is BIDMAS?</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          BIDMAS is an acronym that stands for Brackets, Indices, Division, Multiplication, Addition, and Subtraction. It is the order in which calculations are carried out.
+  <div class="lesson-layout">
+    <!-- LEFT: Main content -->
+    <div class="lesson-page">
+      <!-- ── Lesson Header ── -->
+      <div class="lesson-hero">
+        <div class="lesson-hero-label">
+          <i class="fa-solid fa-book-open"></i> Lesson 2
+        </div>
+        <h1 class="lesson-hero-title">Bidmas</h1>
+        <p class="lesson-hero-sub">
+          Learn to perform the 4 basic numerical operations
         </p>
+        <div class="lesson-hero-chips">
+          <span class="hero-chip"
+            ><i class="fa-solid fa-circle-question"></i> 12 questions</span
+          >
+          <span class="hero-chip"
+            ><i class="fa-regular fa-clock"></i> ~20 min</span
+          >
+          <span class="hero-chip hero-chip-blue"
+            ><i class="fa-solid fa-signal"></i> Foundation</span
+          >
+        </div>
+      </div>
 
-        <!-- Range rule card -->
-        <div class="rule-cards">
-          <div class="rule-card rule-card-Brack">
-            <div class="rule-range">Brackets</div>
-            <div class="rule-arrow">
-              <i class="rule-label">()</i>
+      <!-- ── Progress Bar ── -->
+      <div class="lesson-progress-wrap">
+        <div class="lesson-progress-label">
+          <span>Lesson Progress</span>
+          <span class="lesson-progress-pct">{{ Math.round(progress) }}%</span>
+        </div>
+        <div class="lesson-progress-track">
+          <div
+            class="lesson-progress-fill"
+            :style="{ width: progress + '%' }"
+          ></div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 1: What are the 4 operations? ── -->
+      <div class="lesson-section" ref="sec1" :class="{ visible: sec1Visible }">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <h2 class="section-title">What is BIDMAS?</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            BIDMAS is an acronym that stands for Brackets, Indices, Division,
+            Multiplication, Addition, and Subtraction. It is the order in which
+            calculations are carried out.
+          </p>
+
+          <!-- Range rule card -->
+          <div class="rule-cards">
+            <div class="rule-card rule-card-Brack">
+              <div class="rule-range">Brackets</div>
+              <div class="rule-arrow">
+                <i class="rule-label">()</i>
+              </div>
+              <div class="rule-label">
+                Brackets are used to group parts of an expression together
+              </div>
+              <div class="rule-desc">
+                for example (5+5) <strong>INCREASES</strong> to 10
+              </div>
             </div>
-            <div class="rule-label">Brackets are used to group parts of an expression together</div>
-            <div class="rule-desc">for example (5+5) <strong>INCREASES</strong> to 10</div>
-          </div>
-          <div class="rule-card rule-card-ind">
-            <div class="rule-range">Indices</div>
-            <div class="rule-arrow">
-              <i class="rule-label">n²</i>
+            <div class="rule-card rule-card-ind">
+              <div class="rule-range">Indices</div>
+              <div class="rule-arrow">
+                <i class="rule-label">n²</i>
+              </div>
+              <div class="rule-label">
+                Indices represent repeated multiplication
+              </div>
+              <div class="rule-desc">for example 5² = 25</div>
             </div>
-            <div class="rule-label">Indices represent repeated multiplication</div>
-            <div class="rule-desc">for example 5² = 25</div>
-          </div>
-          <div class="rule-card rule-card-Div">
-            <div class="rule-range">Division</div>
-            <div class="rule-arrow">
-              <i class="fa-solid fa-divide"></i>
+            <div class="rule-card rule-card-Div">
+              <div class="rule-range">Division</div>
+              <div class="rule-arrow">
+                <i class="fa-solid fa-divide"></i>
+              </div>
+              <div class="rule-label">
+                Division is <strong>DECREASING</strong> a value by finding how
+                many times a value fits into it
+              </div>
+              <div class="rule-desc">
+                for example, 12÷4, 4 fits into 12 three times, DECREASING the
+                value to 3
+              </div>
             </div>
-            <div class="rule-label">Division is <strong>DECREASING</strong> a value by finding how many times a value fits into it</div>
-            <div class="rule-desc">for example, 12÷4, 4 fits into 12 three times, DECREASING the value to 3</div>
-          </div>
-          <div class="rule-card rule-card-Mult">
-            <div class="rule-range">Multiplication</div>
-            <div class="rule-arrow">
-              <i class="fa-solid fa-times"></i>
+            <div class="rule-card rule-card-Mult">
+              <div class="rule-range">Multiplication</div>
+              <div class="rule-arrow">
+                <i class="fa-solid fa-times"></i>
+              </div>
+              <div class="rule-label">
+                Multiplication is <strong>INCREASING</strong> by itself a number
+                of times
+              </div>
+              <div class="rule-desc">
+                for example in 5x4, 5 is INCREASED by itself 3 times to get 20
+              </div>
             </div>
-            <div class="rule-label">Multiplication is <strong>INCREASING</strong> by itself a number of times</div>
-            <div class="rule-desc">for example in 5x4, 5 is INCREASED by itself 3 times to get 20</div>
-          </div>
-          <div class="rule-card rule-card-Plus">
-            <div class="rule-range">Addition</div>
-            <div class="rule-arrow">
-              <i class="fa-solid fa-plus"></i>
+            <div class="rule-card rule-card-Plus">
+              <div class="rule-range">Addition</div>
+              <div class="rule-arrow">
+                <i class="fa-solid fa-plus"></i>
+              </div>
+              <div class="rule-label">
+                Addition is combining 2 numbers and
+                <strong>INCREASING</strong> the value
+              </div>
+              <div class="rule-desc">
+                for example 5+5 <strong>INCREASES</strong> to 10
+              </div>
             </div>
-            <div class="rule-label">Addition is combining 2 numbers and <strong>INCREASING</strong> the value</div>
-            <div class="rule-desc">for example 5+5 <strong>INCREASES</strong> to 10</div>
-          </div>
-          <div class="rule-card rule-card-Minus">
-            <div class="rule-range">Subtraction</div>
-            <div class="rule-arrow">
-              <i class="fa-solid fa-minus"></i>
+            <div class="rule-card rule-card-Minus">
+              <div class="rule-range">Subtraction</div>
+              <div class="rule-arrow">
+                <i class="fa-solid fa-minus"></i>
+              </div>
+              <div class="rule-label">
+                Subtraction is removing a number from another and
+                <strong>DECREASING</strong> the value
+              </div>
+              <div class="rule-desc">for example 10-5 is DECREASED to 5</div>
             </div>
-            <div class="rule-label">Subtraction is removing a number from another and <strong>DECREASING</strong> the value</div>
-            <div class="rule-desc">for example 10-5 is DECREASED to 5</div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- ── SECTION 2: The Diagram ── -->
-    <div class="lesson-section" ref="sec2" :class="{ visible: sec2Visible }">
-      <div class="section-header">
-        <div class="section-num">2</div>
-        <h2 class="section-title">The order of BIDMAS</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Let's add 5 to <strong>20</strong> .
-          We look at the bigger number of <strong class="text-red">20</strong> and add
-          <strong>5</strong>from there to get <span class="text-up">25</span>.
-        </p>
+      <!-- ── SECTION 2: The Diagram ── -->
+      <div class="lesson-section" ref="sec2" :class="{ visible: sec2Visible }">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <h2 class="section-title">The order of BIDMAS</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Let's add 5 to <strong>20</strong> . We look at the bigger number of
+            <strong class="text-red">20</strong> and add <strong>5</strong>from
+            there to get <span class="text-up">25</span>.
+          </p>
 
-        <!-- Whiteboard Diagram -->
-        <!-- Step-by-step breakdown -->
+          <!-- Whiteboard Diagram -->
+          <!-- Step-by-step breakdown -->
           <div class="steps-panel">
             <div class="step-item">
               <div class="step-dot step-dot-1">1</div>
               <div class="step-text">
-                <strong>Brackets</strong> - content contained inside of brackets is always done <strong>FIRST</strong>.<br />
-                <span class="step-ex">5+4(<strong><em>5+6</em></strong>)</span>
+                <strong>Brackets</strong> - content contained inside of brackets
+                is always done <strong>FIRST</strong>.<br />
+                <span class="step-ex"
+                  >5+4(<strong><em>5+6</em></strong
+                  >)</span
+                >
               </div>
             </div>
             <div class="step-item">
               <div class="step-dot step-dot-2">2</div>
               <div class="step-text">
-                <strong>Indices</strong> - powers and roots are always done <strong>SECOND</strong>.<br />
+                <strong>Indices</strong> - powers and roots are always done
+                <strong>SECOND</strong>.<br />
                 <span class="step-ex">3² = 9</span>
               </div>
             </div>
             <div class="step-item">
               <div class="step-dot step-dot-3">3</div>
               <div class="step-text">
-                <strong>Division</strong> - division is always done <strong>THIRD</strong>.<br />
+                <strong>Division</strong> - division is always done
+                <strong>THIRD</strong>.<br />
                 <span class="step-ex">12 ÷ 4 = 3</span>
               </div>
             </div>
             <div class="step-item">
               <div class="step-dot step-dot-4">4</div>
               <div class="step-text">
-                <strong>Multiplication</strong> - multiplication is always done <strong>FOURTH</strong>.<br />
+                <strong>Multiplication</strong> - multiplication is always done
+                <strong>FOURTH</strong>.<br />
                 <span class="step-ex">6 x 4 = 24</span>
               </div>
             </div>
             <div class="step-item">
               <div class="step-dot step-dot-5">5</div>
               <div class="step-text">
-                <strong>Addition</strong> - addition is always done <strong>FIFTH</strong>.<br />
+                <strong>Addition</strong> - addition is always done
+                <strong>FIFTH</strong>.<br />
                 <span class="step-ex">20 + 5 = 25</span>
               </div>
             </div>
             <div class="step-item">
               <div class="step-dot step-dot-6">6</div>
               <div class="step-text">
-                <strong>Subtraction</strong> - subtraction is always done <strong>LAST</strong>.<br />
+                <strong>Subtraction</strong> - subtraction is always done
+                <strong>LAST</strong>.<br />
                 <span class="step-ex">10 - 5 = 5</span>
               </div>
             </div>
             <div class="step-result">
               <span class="step-result-label">BIDMAS:</span>
-              <span class="step-result-val">Bracket, Indices, Division, Multiplication, Addition, Subtraction</span>
-            </div>
-          </div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 3: Try It Yourself ── -->
-    <div class="lesson-section" ref="sec3" :class="{ visible: sec3Visible }">
-      <div class="section-header">
-        <div class="section-num">3</div>
-        <h2 class="section-title">Try It Yourself</h2>
-      </div>
-      <div class="section-body">
-        <p class="lesson-text">
-          Round each number to the nearest whole number. Select your answer:
-        </p>
-
-        <div class="quiz-grid">
-          <div
-            v-for="(q, i) in quizQuestions"
-            :key="i"
-            class="quiz-card"
-            :class="{ answered: q.selected !== null }"
-          >
-            <div class="quiz-q"> <strong>{{ q.number }}</strong></div>
-            <div class="quiz-opts">
-              <button
-                v-for="opt in q.options"
-                :key="opt"
-                class="quiz-opt"
-                :class="{
-                  'opt-correct': q.selected !== null && opt === q.answer,
-                  'opt-wrong':   q.selected === opt && opt !== q.answer,
-                  'opt-neutral': q.selected !== null && opt !== q.answer && opt !== q.selected
-                }"
-                @click="selectAnswer(i, opt)"
-                :disabled="q.selected !== null"
+              <span class="step-result-val"
+                >Bracket, Indices, Division, Multiplication, Addition,
+                Subtraction</span
               >
-                {{ opt }}
-              </button>
-            </div>
-            <div v-if="q.selected !== null" class="quiz-feedback">
-              <template v-if="q.selected === q.answer">
-                <i class="fa-solid fa-circle-check" style="color:#16a34a"></i>
-                <span class="feedback-correct">Correct! {{ q.explanation }}</span>
-              </template>
-              <template v-else>
-                <i class="fa-solid fa-circle-xmark" style="color:#dc2626"></i>
-                <span class="feedback-wrong">Not quite. {{ q.explanation }}</span>
-              </template>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Score panel -->
-        <div v-if="allAnswered" class="score-panel">
-          <div class="score-icon">
-            <i class="fa-solid fa-star" v-for="n in scoreStars" :key="n"></i>
+      <!-- ── SECTION 3: Try It Yourself ── -->
+      <div class="lesson-section" ref="sec3" :class="{ visible: sec3Visible }">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <h2 class="section-title">Try It Yourself</h2>
+        </div>
+        <div class="section-body">
+          <p class="lesson-text">
+            Round each number to the nearest whole number. Select your answer:
+          </p>
+
+          <div class="quiz-grid">
+            <div
+              v-for="(q, i) in quizQuestions"
+              :key="i"
+              class="quiz-card"
+              :class="{ answered: q.selected !== null }"
+            >
+              <div class="quiz-q">
+                <strong>{{ q.number }}</strong>
+              </div>
+              <div class="quiz-opts">
+                <button
+                  v-for="opt in q.options"
+                  :key="opt"
+                  class="quiz-opt"
+                  :class="{
+                    'opt-correct': q.selected !== null && opt === q.answer,
+                    'opt-wrong': q.selected === opt && opt !== q.answer,
+                    'opt-neutral':
+                      q.selected !== null &&
+                      opt !== q.answer &&
+                      opt !== q.selected,
+                  }"
+                  @click="selectAnswer(i, opt)"
+                  :disabled="q.selected !== null"
+                >
+                  {{ opt }}
+                </button>
+              </div>
+              <div v-if="q.selected !== null" class="quiz-feedback">
+                <template v-if="q.selected === q.answer">
+                  <i
+                    class="fa-solid fa-circle-check"
+                    style="color: #16a34a"
+                  ></i>
+                  <span class="feedback-correct"
+                    >Correct! {{ q.explanation }}</span
+                  >
+                </template>
+                <template v-else>
+                  <i
+                    class="fa-solid fa-circle-xmark"
+                    style="color: #dc2626"
+                  ></i>
+                  <span class="feedback-wrong"
+                    >Not quite. {{ q.explanation }}</span
+                  >
+                </template>
+              </div>
+            </div>
           </div>
-          <div class="score-text">
-            You got <strong>{{ correctCount }} / {{ quizQuestions.length }}</strong> correct!
+
+          <!-- Score panel -->
+          <div v-if="allAnswered" class="score-panel">
+            <div class="score-icon">
+              <i class="fa-solid fa-star" v-for="n in scoreStars" :key="n"></i>
+            </div>
+            <div class="score-text">
+              You got
+              <strong>{{ correctCount }} / {{ quizQuestions.length }}</strong>
+              correct!
+            </div>
+            <button class="score-retry" @click="resetQuiz">
+              <i class="fa-solid fa-rotate-left"></i> Try Again
+            </button>
           </div>
-          <button class="score-retry" @click="resetQuiz">
-            <i class="fa-solid fa-rotate-left"></i> Try Again
+        </div>
+      </div>
+
+      <!-- ── Summary ── -->
+      <div class="lesson-summary" ref="sec4" :class="{ visible: sec4Visible }">
+        <h3 class="summary-title">
+          <i class="fa-solid fa-circle-check"></i> Lesson Summary
+        </h3>
+        <ul class="summary-list">
+          <li>
+            <i class="fa-solid fa-check"></i> The order
+            <em>MATTERS</em> remember what comes after each operation
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i> <strong>Brackets</strong> →
+            Perform operations inside brackets first
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i> <strong>Indices</strong> →
+            Evaluate powers and roots
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <strong>Division and multiplication</strong> → Perform these
+            operations from left to right
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <strong>Addition and subtraction</strong> → Perform these operations
+            from left to right
+          </li>
+        </ul>
+        <div class="summary-actions">
+          <button class="btn-next" @click="router.push('/Lesson8')">
+            Next Lesson: Order of operations.
+            <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- ── Summary ── -->
-    <div class="lesson-summary" ref="sec4" :class="{ visible: sec4Visible }">
-      <h3 class="summary-title"><i class="fa-solid fa-circle-check"></i> Lesson Summary</h3>
-      <ul class="summary-list">
-        <li><i class="fa-solid fa-check"></i> The order <em>MATTERS</em> remember what comes after each operation</li>
-        <li><i class="fa-solid fa-check"></i> <strong>Brackets</strong> → Perform operations inside brackets first</li>
-        <li><i class="fa-solid fa-check"></i> <strong>Indices</strong> → Evaluate powers and roots</li>
-        <li><i class="fa-solid fa-check"></i> <strong>Division and multiplication</strong> → Perform these operations from left to right</li>
-        <li><i class="fa-solid fa-check"></i> <strong>Addition and subtraction</strong> → Perform these operations from left to right</li>
-      </ul>
-      <div class="summary-actions">
-        <button class="btn-next" @click="router.push('/Lesson8')">
-          Next Lesson: Order of operations.
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </div>
-    </div>
+    <!-- RIGHT: Sidebar -->
+    <aside class="lesson-video-sidebar">
+      <div class="video-sidebar-card">
+        <div class="video-sidebar-header">
+          <i class="fa-solid fa-circle-play"></i>
+          <h3>Helpful Videos</h3>
+        </div>
+        <p class="video-sidebar-sub">
+          Watch these alongside the lesson for extra support.
+        </p>
 
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 1</span>
+            <span class="video-topic">What Is BIDMAS?</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/70cAYYCJBuQ"
+              title="Introduction to Standard Form"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Introduces the order of operations and explains what each letter in BIDMAS stands for.
+          </p>
+        </div>
+
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 2</span>
+            <span class="video-topic">Solving Calculations Using BIDMAS</span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/5LE_4UpvK7o"
+              title="Powers of 10"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Shows how to work through expressions in the correct order, including brackets, powers, multiplication, and division.
+          </p>
+        </div>
+
+        <div class="lesson-video-card">
+          <div class="lesson-video-top">
+            <span class="video-tag video-tag-teal">Video 3</span>
+            <span class="video-topic">BIDMAS Practice Questions </span>
+          </div>
+          <div class="lesson-video-frame-wrap">
+            <iframe
+              class="lesson-video-frame"
+              src="https://www.youtube.com/embed/6K77Igo39vk"
+              title="Standard Form Practice"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="lesson-video-desc">
+            Gives worked examples of mixed calculations and explains common mistakes to avoid.
+          </p>
+        </div>
+      </div>
+    </aside>
   </div>
 </template>
 
@@ -250,10 +426,14 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 /* ── Scroll visibility ── */
-const sec1 = ref(null); const sec1Visible = ref(false);
-const sec2 = ref(null); const sec2Visible = ref(false);
-const sec3 = ref(null); const sec3Visible = ref(false);
-const sec4 = ref(null); const sec4Visible = ref(false);
+const sec1 = ref(null);
+const sec1Visible = ref(false);
+const sec2 = ref(null);
+const sec2Visible = ref(false);
+const sec3 = ref(null);
+const sec3Visible = ref(false);
+const sec4 = ref(null);
+const sec4Visible = ref(false);
 
 const observers = [];
 
@@ -262,7 +442,7 @@ function observe(el, flag) {
     ([entry]) => {
       if (entry.isIntersecting) flag.value = true;
     },
-    { threshold: 0.12 }
+    { threshold: 0.12 },
   );
   if (el.value) obs.observe(el.value);
   observers.push(obs);
@@ -277,11 +457,16 @@ onMounted(() => {
   sec1Visible.value = true;
 });
 
-onUnmounted(() => observers.forEach(o => o.disconnect()));
+onUnmounted(() => observers.forEach((o) => o.disconnect()));
 
 /* ── Progress (rough: sections visible) ── */
 const progress = computed(() => {
-  const flags = [sec1Visible.value, sec2Visible.value, sec3Visible.value, sec4Visible.value];
+  const flags = [
+    sec1Visible.value,
+    sec2Visible.value,
+    sec3Visible.value,
+    sec4Visible.value,
+  ];
   return (flags.filter(Boolean).length / flags.length) * 100;
 });
 
@@ -292,45 +477,44 @@ const quizQuestions = ref([
     options: [14, 20, 12],
     answer: 14,
     selected: null,
-    explanation: "Multiply first: 3 × 4 = 12, then add: 2 + 12 = 14"
+    explanation: "Multiply first: 3 × 4 = 12, then add: 2 + 12 = 14",
   },
   {
     number: "10 - 2 × 3",
     options: [4, 24, 12],
     answer: 4,
     selected: null,
-    explanation: "Multiply first: 2 × 3 = 6, then subtract: 10 - 6 = 4"
+    explanation: "Multiply first: 2 × 3 = 6, then subtract: 10 - 6 = 4",
   },
   {
     number: "(5 + 3) × 2",
     options: [11, 16, 13],
     answer: 16,
     selected: null,
-    explanation: "Brackets first: 5 + 3 = 8, then multiply: 8 × 2 = 16"
+    explanation: "Brackets first: 5 + 3 = 8, then multiply: 8 × 2 = 16",
   },
   {
     number: "12 ÷ 2 + 4",
     options: [10, 4, 8],
     answer: 10,
     selected: null,
-    explanation: "Divide first: 12 ÷ 2 = 6, then add: 6 + 4 = 10"
-  }
+    explanation: "Divide first: 12 ÷ 2 = 6, then add: 6 + 4 = 10",
+  },
 ]);
 
 // Fix the 2.45 question
-
 
 function selectAnswer(i, opt) {
   if (quizQuestions.value[i].selected !== null) return;
   quizQuestions.value[i].selected = opt;
 }
 
-const correctCount = computed(() =>
-  quizQuestions.value.filter(q => q.selected === q.answer).length
+const correctCount = computed(
+  () => quizQuestions.value.filter((q) => q.selected === q.answer).length,
 );
 
 const allAnswered = computed(() =>
-  quizQuestions.value.every(q => q.selected !== null)
+  quizQuestions.value.every((q) => q.selected !== null),
 );
 
 const scoreStars = computed(() => {
@@ -341,7 +525,7 @@ const scoreStars = computed(() => {
 });
 
 function resetQuiz() {
-  quizQuestions.value.forEach(q => (q.selected = null));
+  quizQuestions.value.forEach((q) => (q.selected = null));
 }
 </script>
 
@@ -353,7 +537,19 @@ function resetQuiz() {
 .lesson-page {
   padding: 40px;
   max-width: 900px;
+  width: 100%;
+  min-width: 0;
   font-family: "Poppins", sans-serif;
+}
+
+.lesson-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 40px;
+  align-items: start;
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* ── Hero ─────────────────────────────────────────────── */
@@ -371,7 +567,11 @@ function resetQuiz() {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  background: radial-gradient(
+    circle at 80% 20%,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -379,8 +579,8 @@ function resetQuiz() {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 4px 14px;
   border-radius: 20px;
   font-size: 12px;
@@ -414,8 +614,8 @@ function resetQuiz() {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;
@@ -423,7 +623,7 @@ function resetQuiz() {
 }
 
 .hero-chip-blue {
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* ── Progress ─────────────────────────────────────────── */
@@ -467,7 +667,9 @@ function resetQuiz() {
   overflow: hidden;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .lesson-section.visible {
@@ -476,9 +678,15 @@ function resetQuiz() {
   animation: section-cascade 0.5s ease forwards;
 }
 
-.lesson-section:nth-of-type(1).visible { animation-delay: 0s; }
-.lesson-section:nth-of-type(2).visible { animation-delay: 0.15s; }
-.lesson-section:nth-of-type(3).visible { animation-delay: 0.3s; }
+.lesson-section:nth-of-type(1).visible {
+  animation-delay: 0s;
+}
+.lesson-section:nth-of-type(2).visible {
+  animation-delay: 0.15s;
+}
+.lesson-section:nth-of-type(3).visible {
+  animation-delay: 0.3s;
+}
 
 @keyframes section-cascade {
   from {
@@ -533,9 +741,18 @@ function resetQuiz() {
   margin: 0 0 20px;
 }
 
-.text-up   { color: #16a34a; font-weight: 700; }
-.text-down { color: #2563eb; font-weight: 700; }
-.text-red  { color: #dc2626; font-weight: 700; }
+.text-up {
+  color: #16a34a;
+  font-weight: 700;
+}
+.text-down {
+  color: #2563eb;
+  font-weight: 700;
+}
+.text-red {
+  color: #dc2626;
+  font-weight: 700;
+}
 
 /* ── Rule Cards ───────────────────────────────────────── */
 .rule-cards {
@@ -561,24 +778,46 @@ function resetQuiz() {
   background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
 }
 .rule-card-Minus {
-  border-color:rgb(239, 134, 134);
-  background: linear-gradient(135deg,rgb(253, 240, 240) 0%,rgb(252, 220, 220) 100%);
+  border-color: rgb(239, 134, 134);
+  background: linear-gradient(
+    135deg,
+    rgb(253, 240, 240) 0%,
+    rgb(252, 220, 220) 100%
+  );
 }
 .rule-card-Mult {
-  border-color:rgb(239, 211, 134);
-  background: linear-gradient(135deg,rgb(253, 250, 240) 0%,rgb(252, 246, 220) 100%);
+  border-color: rgb(239, 211, 134);
+  background: linear-gradient(
+    135deg,
+    rgb(253, 250, 240) 0%,
+    rgb(252, 246, 220) 100%
+  );
 }
 .rule-card-Brack {
-  border-color:rgb(150, 21, 201);
-  background: linear-gradient(135deg,rgb(217, 138, 228) 0%,rgb(184, 121, 209) 100%);
+  border-color: rgb(150, 21, 201);
+  background: linear-gradient(
+    135deg,
+    rgb(217, 138, 228) 0%,
+    rgb(184, 121, 209) 100%
+  );
 }
 .rule-card-ind {
-  border-color:rgb(216, 58, 92);
-  background: linear-gradient(135deg,rgb(216, 123, 154) 0%,rgb(194, 97, 134) 100%);
+  border-color: rgb(216, 58, 92);
+  background: linear-gradient(
+    135deg,
+    rgb(216, 123, 154) 0%,
+    rgb(194, 97, 134) 100%
+  );
 }
 
-body.dark .rule-card-down { background: linear-gradient(135deg, #172554, #1e3a5f); border-color: #2563eb; }
-body.dark .rule-card-up   { background: linear-gradient(135deg, #052e16, #14532d); border-color: #16a34a; }
+body.dark .rule-card-down {
+  background: linear-gradient(135deg, #172554, #1e3a5f);
+  border-color: #2563eb;
+}
+body.dark .rule-card-up {
+  background: linear-gradient(135deg, #052e16, #14532d);
+  border-color: #16a34a;
+}
 
 .rule-range {
   font-size: 32px;
@@ -592,8 +831,12 @@ body.dark .rule-card-up   { background: linear-gradient(135deg, #052e16, #14532d
   margin-bottom: 10px;
 }
 
-.rule-card-down .rule-arrow { color: #2563eb; }
-.rule-card-up   .rule-arrow { color: #16a34a; }
+.rule-card-down .rule-arrow {
+  color: #2563eb;
+}
+.rule-card-up .rule-arrow {
+  color: #16a34a;
+}
 
 .rule-label {
   font-size: 17px;
@@ -622,7 +865,7 @@ body.dark .rule-card-up   { background: linear-gradient(135deg, #052e16, #14532d
   border: 2px solid #e2e8f0;
   border-radius: 14px;
   padding: 16px;
-  box-shadow: inset 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 body.dark .whiteboard {
@@ -681,7 +924,7 @@ body.dark .whiteboard {
 .line-draw-green {
   stroke-dasharray: 50;
   stroke-dashoffset: 50;
-  animation: draw-stroke 0.35s ease forwards 1.0s;
+  animation: draw-stroke 0.35s ease forwards 1s;
 }
 
 .line-draw-green2 {
@@ -696,11 +939,15 @@ body.dark .whiteboard {
 }
 
 @keyframes draw-stroke {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes fade-in {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 .diagram-legend {
@@ -726,8 +973,12 @@ body.dark .whiteboard {
   display: inline-block;
 }
 
-.legend-red .legend-dot   { background: #dc2626; }
-.legend-green .legend-dot { background: #16a34a; }
+.legend-red .legend-dot {
+  background: #dc2626;
+}
+.legend-green .legend-dot {
+  background: #16a34a;
+}
 
 /* ── Steps Panel ──────────────────────────────────────── */
 .steps-panel {
@@ -756,12 +1007,24 @@ body.dark .whiteboard {
   margin-top: 2px;
 }
 
-.step-dot-1 { background: #dc2626; }
-.step-dot-2 { background: #f97316; }
-.step-dot-3 { background: #16a34a; }
-.step-dot-4 { background: #2563eb; }
-.step-dot-5 { background: #9333ea; }
-.step-dot-6 { background: #0891b2; }
+.step-dot-1 {
+  background: #dc2626;
+}
+.step-dot-2 {
+  background: #f97316;
+}
+.step-dot-3 {
+  background: #16a34a;
+}
+.step-dot-4 {
+  background: #2563eb;
+}
+.step-dot-5 {
+  background: #9333ea;
+}
+.step-dot-6 {
+  background: #0891b2;
+}
 
 .step-text {
   font-size: 14px;
@@ -780,9 +1043,18 @@ body.dark .whiteboard {
   font-weight: 600;
 }
 
-.hl-red   { color: #dc2626; font-weight: 800; }
-.hl-green { color: #16a34a; font-weight: 800; }
-.hl-black { color: var(--text-dark); font-weight: 800; }
+.hl-red {
+  color: #dc2626;
+  font-weight: 800;
+}
+.hl-green {
+  color: #16a34a;
+  font-weight: 800;
+}
+.hl-black {
+  color: var(--text-dark);
+  font-weight: 800;
+}
 
 .step-result {
   background: linear-gradient(135deg, #f0fdf4, #dcfce7);
@@ -795,7 +1067,10 @@ body.dark .whiteboard {
   margin-top: 4px;
 }
 
-body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); border-color: #16a34a; }
+body.dark .step-result {
+  background: linear-gradient(135deg, #052e16, #14532d);
+  border-color: #16a34a;
+}
 
 .step-result-label {
   font-size: 11px;
@@ -828,8 +1103,12 @@ body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); 
   line-height: 1;
 }
 
-.cn-black { color: var(--text-dark); }
-.cn-red   { color: #dc2626; }
+.cn-black {
+  color: var(--text-dark);
+}
+.cn-red {
+  color: #dc2626;
+}
 
 .chain-steps {
   display: flex;
@@ -895,7 +1174,10 @@ body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); 
   color: var(--text-dark);
 }
 
-.chain-arrow { color: #2563eb; font-size: 13px; }
+.chain-arrow {
+  color: #2563eb;
+  font-size: 13px;
+}
 
 .chain-connector {
   text-align: center;
@@ -916,7 +1198,10 @@ body.dark .step-result { background: linear-gradient(135deg, #052e16, #14532d); 
   padding: 14px 18px;
 }
 
-body.dark .chain-final { background: linear-gradient(135deg, #172554, #1e3a5f); border-color: #2563eb; }
+body.dark .chain-final {
+  background: linear-gradient(135deg, #172554, #1e3a5f);
+  border-color: #2563eb;
+}
 
 .chain-final-label {
   font-size: 11px;
@@ -949,7 +1234,10 @@ body.dark .chain-final { background: linear-gradient(135deg, #172554, #1e3a5f); 
   border: 1.5px solid #bfdbfe;
 }
 
-body.dark .callout-blue { background: #172554; border-color: #2563eb; }
+body.dark .callout-blue {
+  background: #172554;
+  border-color: #2563eb;
+}
 
 .callout-icon {
   font-size: 20px;
@@ -1013,14 +1301,32 @@ body.dark .callout-blue { background: #172554; border-color: #2563eb; }
   color: #2563eb;
 }
 
-.quiz-opt:disabled { cursor: default; }
+.quiz-opt:disabled {
+  cursor: default;
+}
 
-.opt-correct { background: #dcfce7 !important; border-color: #16a34a !important; color: #15803d !important; }
-.opt-wrong   { background: #fee2e2 !important; border-color: #dc2626 !important; color: #dc2626 !important; }
-.opt-neutral { opacity: 0.45; }
+.opt-correct {
+  background: #dcfce7 !important;
+  border-color: #16a34a !important;
+  color: #15803d !important;
+}
+.opt-wrong {
+  background: #fee2e2 !important;
+  border-color: #dc2626 !important;
+  color: #dc2626 !important;
+}
+.opt-neutral {
+  opacity: 0.45;
+}
 
-body.dark .opt-correct { background: #14532d !important; color: #4ade80 !important; }
-body.dark .opt-wrong   { background: #450a0a !important; color: #f87171 !important; }
+body.dark .opt-correct {
+  background: #14532d !important;
+  color: #4ade80 !important;
+}
+body.dark .opt-wrong {
+  background: #450a0a !important;
+  color: #f87171 !important;
+}
 
 .quiz-feedback {
   display: flex;
@@ -1032,11 +1338,19 @@ body.dark .opt-wrong   { background: #450a0a !important; color: #f87171 !importa
   padding-top: 4px;
 }
 
-.feedback-correct { color: #15803d; }
-.feedback-wrong   { color: #dc2626; }
+.feedback-correct {
+  color: #15803d;
+}
+.feedback-wrong {
+  color: #dc2626;
+}
 
-body.dark .feedback-correct { color: #4ade80; }
-body.dark .feedback-wrong   { color: #f87171; }
+body.dark .feedback-correct {
+  color: #4ade80;
+}
+body.dark .feedback-wrong {
+  color: #f87171;
+}
 
 /* ── Score Panel ──────────────────────────────────────── */
 .score-panel {
@@ -1050,10 +1364,23 @@ body.dark .feedback-wrong   { color: #f87171; }
   flex-wrap: wrap;
 }
 
-body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); border-color: #ca8a04; }
+body.dark .score-panel {
+  background: linear-gradient(135deg, #422006, #3b1800);
+  border-color: #ca8a04;
+}
 
-.score-icon { font-size: 22px; color: #f59e0b; display: flex; gap: 2px; }
-.score-text { font-size: 16px; font-weight: 700; color: var(--text-dark); flex: 1; }
+.score-icon {
+  font-size: 22px;
+  color: #f59e0b;
+  display: flex;
+  gap: 2px;
+}
+.score-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+  flex: 1;
+}
 
 .score-retry {
   display: inline-flex;
@@ -1068,10 +1395,15 @@ body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); 
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
+  transition:
+    background 0.15s,
+    transform 0.15s;
 }
 
-.score-retry:hover { background: #1d4ed8; transform: translateY(-1px); }
+.score-retry:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
 
 /* ── Summary ──────────────────────────────────────────── */
 .lesson-summary {
@@ -1081,7 +1413,9 @@ body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); 
   color: #fff;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .lesson-summary.visible {
@@ -1140,22 +1474,167 @@ body.dark .score-panel { background: linear-gradient(135deg, #422006, #3b1800); 
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
 }
 
 .btn-next:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Video sidebar ─────────────────────────────────────────────────── */
+.lesson-video-sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  padding-top: 40px;
+  margin-left: 8px;
+}
+
+.video-sidebar-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.video-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.video-sidebar-header i {
+  color: #2563eb;
+  font-size: 18px;
+}
+
+.video-sidebar-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.video-sidebar-sub {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
+}
+
+.lesson-video-card {
+  background: var(--bg-page);
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 20px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lesson-video-card:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-video-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  border-color: #93c5fd;
+}
+
+.lesson-video-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.video-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.video-topic {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.lesson-video-frame-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  margin-bottom: 10px;
+}
+
+.lesson-video-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.lesson-video-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  opacity: 0.85;
 }
 
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 750px) {
-  .lesson-page { padding: 16px; }
-  .lesson-hero { padding: 24px 20px; }
-  .lesson-hero-title { font-size: 26px; }
-  .rule-cards { grid-template-columns: 1fr; }
-  .diagram-wrap { grid-template-columns: 1fr; }
-  .quiz-grid { grid-template-columns: 1fr; }
-  .chain-final { flex-direction: column; gap: 6px; }
+  .lesson-page {
+    padding: 16px;
+  }
+  .lesson-hero {
+    padding: 24px 20px;
+  }
+  .lesson-hero-title {
+    font-size: 26px;
+  }
+  .rule-cards {
+    grid-template-columns: 1fr;
+  }
+  .diagram-wrap {
+    grid-template-columns: 1fr;
+  }
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+  .chain-final {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .lesson-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .lesson-video-sidebar {
+    position: static;
+    padding: 0 40px 40px;
+    margin-left: 0;
+  }
 }
 </style>

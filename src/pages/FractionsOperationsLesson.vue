@@ -422,7 +422,7 @@
           <div class="lesson-video-frame-wrap">
             <iframe
               class="lesson-video-frame"
-              src="https://www.youtube.com/embed/YQ0kvkclKnU"
+              src="https://www.youtube.com/embed/c8T0aeIP-W4"
               title="What are Fractions"
               allow="
                 accelerometer;
@@ -449,7 +449,7 @@
           <div class="lesson-video-frame-wrap">
             <iframe
               class="lesson-video-frame"
-              src="https://www.youtube.com/embed/QGH1f84VKfY"
+              src="https://www.youtube.com/embed/3fY1AqnrUhQ"
               title="Adding Fractions"
               allow="
                 accelerometer;
@@ -475,7 +475,7 @@
           <div class="lesson-video-frame-wrap">
             <iframe
               class="lesson-video-frame"
-              src="https://www.youtube.com/embed/5juto2ze8Lg"
+              src="https://www.youtube.com/embed/GvLIEiqxS6s"
               title="Multiplying Fractions"
               allow="
                 accelerometer;
@@ -626,6 +626,8 @@ function resetQuiz() {
   font-family: "Poppins", sans-serif;
   width: 100%;
 }
+
+
 
 /* ── Video sidebar ─────────────────────────────────────────────────── */
 .lesson-video-sidebar {
