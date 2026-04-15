@@ -1,5 +1,21 @@
 <template>
   <div class="contact-page">
+    <!-- Page Header -->
+    <div class="contact-header">
+      <div class="contact-header-text">
+        <h1 class="contact-title">
+          <i class="fa-solid fa-envelope"></i> Contact Us
+        </h1>
+        <p class="contact-sub">
+          <i class="fa-solid fa-circle-info"></i>
+          Need help with a lesson or have a question for the Numerix team?
+          <span class="dash-sep">|</span>
+          <i class="fa-solid fa-headset"></i>
+          We are here to help
+        </p>
+      </div>
+    </div>
+
     <!-- Top Row: Form + Info -->
     <div class="contact-grid-top">
       <!-- Contact Form -->
@@ -230,12 +246,50 @@ export default {
   font-family: "Poppins", sans-serif;
 }
 
+/* ── Page Header ─────────────────────────────────────── */
+.contact-header {
+  margin-bottom: 22px;
+}
+
+.contact-title {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-title i {
+  color: #2563eb;
+}
+
+.contact-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.contact-sub i {
+  opacity: 0.7;
+}
+
+.dash-sep {
+  opacity: 0.4;
+}
+
 /* ── Top and Bottom Layout ────────────────────────────── */
 .contact-grid-top,
 .contact-grid-bottom {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px; /* more space so cards do not touch */
+  gap: 32px;
   align-items: stretch;
 }
 
@@ -588,6 +642,10 @@ body.dark .contact-info-card {
     padding: 20px 16px;
   }
 
+  .contact-title {
+    font-size: 28px;
+  }
+
   .contact-card {
     padding: 18px;
     border-radius: 18px;
@@ -616,5 +674,3 @@ body.dark .contact-info-card {
   }
 }
 </style>
-
-
