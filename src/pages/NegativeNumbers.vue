@@ -9,7 +9,7 @@
         </div>
         <h1 class="lesson-hero-title">Negative Numbers</h1>
         <p class="lesson-hero-sub">
-          Learn to perform the 4 basic numerical operations
+          Learn to work with numbers that are below zero
         </p>
         <div class="lesson-hero-chips">
           <span class="hero-chip"
