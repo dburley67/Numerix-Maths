@@ -223,6 +223,17 @@ const setKeyMap = {
   7: "standard_foundation",
   8: "standard_higher",
   9: "standard_challenge",
+  10: "percentages_foundation",
+  11: "percentages_higher",
+  12: "percentages_challenge",
+
+  13: "ratios_foundation",
+  14: "ratios_higher",
+  15: "ratios_challenge",
+
+  16: "proportion_foundation",
+  17: "proportion_higher",
+  18: "proportion_challenge",
 };
 
 function openSet(card) {
@@ -242,6 +253,9 @@ const topicFilters = [
   { value: "decimals", label: "Decimals & Rounding" },
   { value: "factors", label: "Factors & HCF" },
   { value: "standard", label: "Standard Form" },
+  { value: "percentages", label: "Percentages" },
+  { value: "ratios", label: "Ratios & Sharing" },
+  { value: "proportion", label: "Direct & Inverse Proportion" },
 ];
 
 const difficultyFilters = [
@@ -389,6 +403,146 @@ const exerciseSets2 = ref([
     description:
       "A mixed set covering conversions, calculations and comparing numbers in standard form.",
     tags: ["Mixed", "Problem Solving"],
+    difficulty: "challenge",
+    difficultyLabel: "Challenge",
+    questions: 15,
+    time: "~20 min",
+    xp: 50,
+    progress: 0,
+  },
+  // Percentages
+  {
+    id: 10,
+    topic: "percentages",
+    icon: "fa-solid fa-percent",
+    title: "Percentages Foundation",
+    description:
+      "Build confidence with finding percentages of amounts, converting between fractions, decimals and percentages, and simple percentage problems.",
+    tags: ["Basics", "Conversions"],
+    difficulty: "foundation",
+    difficultyLabel: "Foundation",
+    questions: 12,
+    time: "~15 min",
+    xp: 30,
+    progress: 0,
+  },
+  {
+    id: 11,
+    topic: "percentages",
+    icon: "fa-solid fa-percent",
+    title: "Percentages Higher",
+    description:
+      "Practice percentage increase, decrease, multipliers, and reverse percentage problems with more challenging calculations.",
+    tags: ["Increase & Decrease", "Reverse %"],
+    difficulty: "higher",
+    difficultyLabel: "Higher",
+    questions: 14,
+    time: "~18 min",
+    xp: 40,
+    progress: 0,
+  },
+  {
+    id: 12,
+    topic: "percentages",
+    icon: "fa-solid fa-percent",
+    title: "Percentages Challenge",
+    description:
+      "Tackle multi-step percentage problems, compound change, and exam-style reasoning questions involving percentages.",
+    tags: ["Problem Solving", "Multi-Step"],
+    difficulty: "challenge",
+    difficultyLabel: "Challenge",
+    questions: 15,
+    time: "~20 min",
+    xp: 50,
+    progress: 0,
+  },
+
+  // Ratios & Sharing
+  {
+    id: 13,
+    topic: "ratios",
+    icon: "fa-solid fa-scale-balanced",
+    title: "Ratios & Sharing Foundation",
+    description:
+      "Learn to write ratios, simplify ratios, and share amounts into a given ratio using clear step-by-step methods.",
+    tags: ["Ratio Notation", "Sharing"],
+    difficulty: "foundation",
+    difficultyLabel: "Foundation",
+    questions: 12,
+    time: "~15 min",
+    xp: 30,
+    progress: 0,
+  },
+  {
+    id: 14,
+    topic: "ratios",
+    icon: "fa-solid fa-scale-balanced",
+    title: "Ratios & Sharing Higher",
+    description:
+      "Work on equivalent ratios, combining ratios, and solving more involved sharing problems in real-life contexts.",
+    tags: ["Equivalent Ratios", "Comparing"],
+    difficulty: "higher",
+    difficultyLabel: "Higher",
+    questions: 14,
+    time: "~18 min",
+    xp: 40,
+    progress: 0,
+  },
+  {
+    id: 15,
+    topic: "ratios",
+    icon: "fa-solid fa-scale-balanced",
+    title: "Ratios & Sharing Challenge",
+    description:
+      "Stretch your reasoning with complex ratio problems, multi-step sharing, and worded exam-style questions.",
+    tags: ["Problem Solving", "Exam Style"],
+    difficulty: "challenge",
+    difficultyLabel: "Challenge",
+    questions: 15,
+    time: "~20 min",
+    xp: 50,
+    progress: 0,
+  },
+
+  // Direct & Inverse Proportion
+  {
+    id: 16,
+    topic: "proportion",
+    icon: "fa-solid fa-up-down-left-right",
+    title: "Direct Proportion Foundation",
+    description:
+      "Understand how quantities change together in direct proportion and solve simple missing value problems.",
+    tags: ["Direct Proportion", "Tables"],
+    difficulty: "foundation",
+    difficultyLabel: "Foundation",
+    questions: 12,
+    time: "~15 min",
+    xp: 30,
+    progress: 0,
+  },
+  {
+    id: 17,
+    topic: "proportion",
+    icon: "fa-solid fa-up-down-left-right",
+    title: "Direct & Inverse Proportion Higher",
+    description:
+      "Explore both direct and inverse proportion using equations, tables, and worded problems with increasing difficulty.",
+    tags: ["Inverse Proportion", "Equations"],
+    difficulty: "higher",
+    difficultyLabel: "Higher",
+    questions: 14,
+    time: "~18 min",
+    xp: 40,
+    progress: 0,
+  },
+  {
+    id: 18,
+    topic: "proportion",
+    icon: "fa-solid fa-up-down-left-right",
+    title: "Direct & Inverse Proportion Challenge",
+    description:
+      "Apply proportional reasoning to harder multi-step questions, graphs, and exam-style real-world problems.",
+    tags: ["Problem Solving", "Multi-Step"],
     difficulty: "challenge",
     difficultyLabel: "Challenge",
     questions: 15,
@@ -874,6 +1028,54 @@ body.dark .diff-challenge {
   background: #0d9488;
 }
 
+/* Percentages+Inverse+Ratios styling */
+.icon-percentages {
+  background: #fef2f2;
+  color: #dc2626;
+}
+.icon-ratios {
+  background: #fffbeb;
+  color: #d97706;
+}
+.icon-proportion {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+/* Dark mode */
+body.dark .icon-percentages {
+  background: #450a0a;
+  color: #f87171;
+}
+body.dark .icon-ratios {
+  background: #422006;
+  color: #fbbf24;
+}
+body.dark .icon-proportion {
+  background: #2e1065;
+  color: #c4b5fd;
+}
+
+.fill-percentages {
+  background: #dc2626;
+}
+.fill-ratios {
+  background: #d97706;
+}
+.fill-proportion {
+  background: #7c3aed;
+}
+
+.btn-percentages {
+  background: #dc2626;
+}
+.btn-ratios {
+  background: #d97706;
+}
+.btn-proportion {
+  background: #7c3aed;
+}
+
 /* ── Empty state ─────────────────────────────────────── */
 .ex-empty {
   grid-column: 1 / -1;
@@ -1073,5 +1275,15 @@ body.dark .diff-challenge {
     align-items: flex-start;
     gap: 14px;
   }
+}
+
+.band-percentages {
+  background: linear-gradient(90deg, #dc2626, #f87171);
+}
+.band-ratios {
+  background: linear-gradient(90deg, #d97706, #fbbf24);
+}
+.band-proportion {
+  background: linear-gradient(90deg, #7c3aed, #c084fc);
 }
 </style>

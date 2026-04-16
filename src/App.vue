@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
+
 const isWelcome = computed(
   () => route.path === "/" || route.path === "/welcome",
 );
@@ -64,7 +65,10 @@ function toggleBell() {
       <div class="topbar-right">
         <RouterLink
           to="/contact"
-          :class="['topbar-contact', { 'active-topbar': route.path === '/contact' }]"
+          :class="[
+            'topbar-contact',
+            { 'active-topbar': route.path === '/contact' },
+          ]"
         >
           <span>Contact Us</span>
           <i class="fa-solid fa-envelope"></i>
@@ -95,48 +99,72 @@ function toggleBell() {
       <nav class="nav">
         <ul>
           <li>
-            <RouterLink to="/home" class="nav-item" exact-active-class="active"
-              ><i class="fa-solid fa-house"></i><span>Home</span></RouterLink
-            >
+            <RouterLink to="/home" class="nav-item" exact-active-class="active">
+              <i class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </RouterLink>
           </li>
+
           <li>
             <RouterLink
               to="/lessons"
               class="nav-item"
               exact-active-class="active"
-              ><i class="fa-solid fa-book-open"></i
-              ><span>Lessons</span></RouterLink
             >
+              <i class="fa-solid fa-book-open"></i>
+              <span>Lessons</span>
+            </RouterLink>
           </li>
+
           <li>
             <RouterLink
               to="/practice"
               class="nav-item"
               exact-active-class="active"
-              ><i class="fa-solid fa-pen"></i><span>Practice</span></RouterLink
             >
+              <i class="fa-solid fa-pen"></i>
+              <span>Practice</span>
+            </RouterLink>
           </li>
+
           <li>
             <RouterLink
               to="/achievements"
               class="nav-item"
               exact-active-class="active"
-              ><i class="fa-solid fa-award"></i
-              ><span>Achievements</span></RouterLink
             >
+              <i class="fa-solid fa-award"></i>
+              <span>Achievements</span>
+            </RouterLink>
           </li>
+
           <li>
-            <RouterLink to="/games" class="nav-item" exact-active-class="active"
-              ><i class="fa-solid fa-gamepad"></i><span>Games</span></RouterLink
-            >
+            <RouterLink to="/exam" class="nav-item" exact-active-class="active">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span>Exam</span>
+            </RouterLink>
           </li>
+
+          <li>
+            <RouterLink
+              to="/games"
+              class="nav-item"
+              exact-active-class="active"
+            >
+              <i class="fa-solid fa-gamepad"></i>
+              <span>Games</span>
+            </RouterLink>
+          </li>
+
           <li>
             <RouterLink
               to="/settings"
               class="nav-item"
               exact-active-class="active"
-              ><i class="fa-solid fa-gear"></i><span>Settings</span></RouterLink
             >
+              <i class="fa-solid fa-gear"></i>
+              <span>Settings</span>
+            </RouterLink>
           </li>
         </ul>
       </nav>
@@ -155,12 +183,12 @@ function toggleBell() {
           </div>
 
           <div class="footer-actions">
-            <RouterLink to="/team"
-              ><i class="fa-solid fa-people-group"></i> Team</RouterLink
-            >
-            <RouterLink to="/contact"
-              ><i class="fa-solid fa-envelope"></i> Contact</RouterLink
-            >
+            <RouterLink to="/team">
+              <i class="fa-solid fa-people-group"></i> Team
+            </RouterLink>
+            <RouterLink to="/contact">
+              <i class="fa-solid fa-envelope"></i> Contact
+            </RouterLink>
           </div>
         </div>
 
@@ -193,4 +221,3 @@ function toggleBell() {
     </footer>
   </template>
 </template>
-

@@ -1,19 +1,28 @@
 <template>
   <div class="ex-runner">
-
     <!-- ── Header ── -->
     <div class="er-header" :class="'er-header-' + set.topic">
       <div class="er-header-left">
         <button class="er-back-btn" @click="$emit('back')">
           <i class="fa-solid fa-arrow-left"></i> Back
         </button>
+
         <div class="er-title-wrap">
-          <div class="er-topic-badge">
+          <div
+            class="er-topic-badge"
+            :style="{
+              color: set.accent,
+              background: `${set.accent}12`,
+              borderColor: `${set.accent}33`,
+            }"
+          >
             <i :class="set.icon"></i> {{ topicLabel }}
           </div>
+
           <h1 class="er-title">{{ set.title }}</h1>
         </div>
       </div>
+
       <div class="er-header-right">
         <div class="er-hstat">
           <i class="fa-solid fa-star"></i>
@@ -34,17 +43,26 @@
       <div
         class="er-progress-inner"
         :class="'er-prog-' + set.topic"
-        :style="{ width: (answeredCount / set.questions.length * 100) + '%' }"
+        :style="{ width: (answeredCount / set.questions.length) * 100 + '%' }"
       ></div>
     </div>
 
     <!-- ── Completed Screen ── -->
     <div v-if="showResults" class="er-results">
-      <div class="er-results-icon">
-        <i :class="scoreIcon"></i>
+      <div class="er-results-icon" :class="'grade-' + grade">
+        <i :class="gradeIcon"></i>
       </div>
-      <h2 class="er-results-title">{{ scoreTitle }}</h2>
-      <p class="er-results-sub">You answered {{ correctCount }} out of {{ set.questions.length }} correctly.</p>
+
+      <h2 class="er-results-title">{{ gradeLabel }}</h2>
+
+      <div class="er-grade-badge" :class="'badge-' + grade">
+        {{ gradeLabel }}
+      </div>
+
+      <p class="er-results-sub">
+        Score: {{ scorePercent }}% • {{ correctCount }} /
+        {{ set.questions.length }}
+      </p>
 
       <div class="er-results-stats">
         <div class="er-res-stat">
@@ -52,7 +70,9 @@
           <div class="er-res-label">Correct</div>
         </div>
         <div class="er-res-stat">
-          <div class="er-res-val er-res-wrong">{{ set.questions.length - correctCount }}</div>
+          <div class="er-res-val er-res-wrong">
+            {{ set.questions.length - correctCount }}
+          </div>
           <div class="er-res-label">Incorrect</div>
         </div>
         <div class="er-res-stat">
@@ -60,7 +80,7 @@
           <div class="er-res-label">XP Earned</div>
         </div>
         <div class="er-res-stat">
-          <div class="er-res-val er-res-pct">{{ Math.round(correctCount / set.questions.length * 100) }}%</div>
+          <div class="er-res-val er-res-pct">{{ scorePercent }}%</div>
           <div class="er-res-label">Accuracy</div>
         </div>
       </div>
@@ -73,16 +93,30 @@
             v-for="(q, i) in set.questions"
             :key="q.id"
             class="er-review-row"
-            :class="userAnswers[i] === q.answer ? 'review-correct' : 'review-wrong'"
+            :class="
+              userAnswers[i] === q.answer ? 'review-correct' : 'review-wrong'
+            "
           >
             <div class="er-review-num">
-              <i :class="userAnswers[i] === q.answer ? 'fa-solid fa-check' : 'fa-solid fa-xmark'"></i>
+              <i
+                :class="
+                  userAnswers[i] === q.answer
+                    ? 'fa-solid fa-check'
+                    : 'fa-solid fa-xmark'
+                "
+              ></i>
             </div>
+
             <div class="er-review-body">
               <div class="er-review-q">Q{{ i + 1 }}: {{ q.text }}</div>
               <div class="er-review-ans">
-                <span class="er-review-yours">Your answer: <strong>{{ userAnswers[i] || '—' }}</strong></span>
-                <span v-if="userAnswers[i] !== q.answer" class="er-review-correct-ans">
+                <span class="er-review-yours">
+                  Your answer: <strong>{{ userAnswers[i] || "—" }}</strong>
+                </span>
+                <span
+                  v-if="userAnswers[i] !== q.answer"
+                  class="er-review-correct-ans"
+                >
                   Correct: <strong>{{ q.answer }}</strong>
                 </span>
               </div>
@@ -92,9 +126,14 @@
       </div>
 
       <div class="er-results-actions">
-        <button class="er-action-retry" @click="resetExercise">
+        <button
+          class="er-action-retry"
+          :style="{ background: set.accent }"
+          @click="resetExercise"
+        >
           <i class="fa-solid fa-rotate-left"></i> Try Again
         </button>
+
         <button class="er-action-back" @click="$emit('back')">
           <i class="fa-solid fa-grid-2"></i> All Exercises
         </button>
@@ -103,7 +142,6 @@
 
     <!-- ── Question View ── -->
     <div v-else class="er-body">
-
       <!-- Question nav dots -->
       <div class="er-q-dots">
         <button
@@ -111,24 +149,52 @@
           :key="i"
           class="er-dot"
           :class="{
-            'dot-current':   i === currentIdx,
-            'dot-correct':   userAnswers[i] === q.answer && userAnswers[i] !== undefined,
-            'dot-wrong':     userAnswers[i] !== q.answer && userAnswers[i] !== undefined,
+            'dot-current': i === currentIdx,
+            'dot-correct':
+              userAnswers[i] === q.answer && userAnswers[i] !== undefined,
+            'dot-wrong':
+              userAnswers[i] !== q.answer && userAnswers[i] !== undefined,
             'dot-unanswered': userAnswers[i] === undefined,
           }"
+          :style="
+            i === currentIdx && userAnswers[i] === undefined
+              ? {
+                  borderColor: set.accent,
+                  color: set.accent,
+                  boxShadow: `0 0 0 3px ${set.accent}22`,
+                }
+              : {}
+          "
           @click="goToQuestion(i)"
-        >{{ i + 1 }}</button>
+        >
+          {{ i + 1 }}
+        </button>
       </div>
 
       <!-- Question Card -->
       <div class="er-q-card" :class="'er-q-card-' + set.topic">
-        <div class="er-q-number">Question {{ currentIdx + 1 }} of {{ set.questions.length }}</div>
+        <div class="er-q-number">
+          Question {{ currentIdx + 1 }} of {{ set.questions.length }}
+        </div>
+
         <div class="er-q-text">{{ currentQuestion.text }}</div>
 
         <!-- Hint toggle -->
-        <button class="er-hint-btn" @click="showHint = !showHint">
+        <button
+          class="er-hint-btn"
+          :style="
+            showHint
+              ? {
+                  borderColor: set.accent,
+                  color: set.accent,
+                  background: `${set.accent}10`,
+                }
+              : {}
+          "
+          @click="showHint = !showHint"
+        >
           <i class="fa-solid fa-circle-question"></i>
-          {{ showHint ? 'Hide hint' : 'Show hint' }}
+          {{ showHint ? "Hide hint" : "Show hint" }}
         </button>
 
         <div v-if="showHint" class="er-hint">
@@ -147,28 +213,67 @@
           @click="selectAnswer(opt)"
           :disabled="userAnswers[currentIdx] !== undefined"
         >
-          <span class="er-opt-letter">{{ optLabel(opt) }}</span>
+          <span class="er-opt-letter">
+            {{ optLabel(opt) }}
+          </span>
+
           <span class="er-opt-text">{{ opt }}</span>
+
           <span class="er-opt-icon">
-            <i v-if="userAnswers[currentIdx] !== undefined && opt === currentQuestion.answer" class="fa-solid fa-check"></i>
-            <i v-else-if="userAnswers[currentIdx] === opt && opt !== currentQuestion.answer" class="fa-solid fa-xmark"></i>
+            <i
+              v-if="
+                userAnswers[currentIdx] !== undefined &&
+                opt === currentQuestion.answer
+              "
+              class="fa-solid fa-check"
+            ></i>
+            <i
+              v-else-if="
+                userAnswers[currentIdx] === opt &&
+                opt !== currentQuestion.answer
+              "
+              class="fa-solid fa-xmark"
+            ></i>
           </span>
         </button>
       </div>
 
       <!-- Feedback -->
       <transition name="slide-up">
-        <div v-if="userAnswers[currentIdx] !== undefined" class="er-feedback"
-          :class="userAnswers[currentIdx] === currentQuestion.answer ? 'fb-correct' : 'fb-wrong'"
+        <div
+          v-if="userAnswers[currentIdx] !== undefined"
+          class="er-feedback"
+          :class="
+            userAnswers[currentIdx] === currentQuestion.answer
+              ? 'fb-correct'
+              : 'fb-wrong'
+          "
         >
           <div class="fb-icon">
-            <i :class="userAnswers[currentIdx] === currentQuestion.answer ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-xmark'"></i>
+            <i
+              :class="
+                userAnswers[currentIdx] === currentQuestion.answer
+                  ? 'fa-solid fa-circle-check'
+                  : 'fa-solid fa-circle-xmark'
+              "
+            ></i>
           </div>
+
           <div class="fb-body">
-            <div class="fb-title">{{ userAnswers[currentIdx] === currentQuestion.answer ? 'Correct!' : 'Not quite!' }}</div>
+            <div class="fb-title">
+              {{
+                userAnswers[currentIdx] === currentQuestion.answer
+                  ? "Correct!"
+                  : "Not quite!"
+              }}
+            </div>
             <div class="fb-exp">{{ currentQuestion.hint }}</div>
           </div>
-          <div v-if="userAnswers[currentIdx] === currentQuestion.answer" class="fb-xp">
+
+          <div
+            v-if="userAnswers[currentIdx] === currentQuestion.answer"
+            class="fb-xp"
+          >
             +{{ set.xpPerQ }} XP
           </div>
         </div>
@@ -176,7 +281,11 @@
 
       <!-- Nav buttons -->
       <div class="er-nav">
-        <button class="er-nav-btn er-nav-prev" @click="prevQuestion" :disabled="currentIdx === 0">
+        <button
+          class="er-nav-btn er-nav-prev"
+          @click="prevQuestion"
+          :disabled="currentIdx === 0"
+        >
           <i class="fa-solid fa-arrow-left"></i> Previous
         </button>
 
@@ -201,7 +310,6 @@
         </button>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -209,21 +317,22 @@
 import { ref, computed, watch } from "vue";
 
 const props = defineProps({
-  set: { type: Object, required: true }
+  set: { type: Object, required: true },
 });
 
-defineEmits(['back']);
+defineEmits(["back"]);
 
 /* ── State ── */
-const currentIdx  = ref(0);
+const currentIdx = ref(0);
 const userAnswers = ref({});
-const showHint    = ref(false);
+const showHint = ref(false);
 const showResults = ref(false);
 
 const currentQuestion = computed(() => props.set.questions[currentIdx.value]);
 
-/* ── Clear hint on question change ── */
-watch(currentIdx, () => { showHint.value = false; });
+watch(currentIdx, () => {
+  showHint.value = false;
+});
 
 /* ── Answer selection ── */
 function selectAnswer(opt) {
@@ -249,58 +358,78 @@ function finishExercise() {
 }
 
 function resetExercise() {
-  currentIdx.value  = 0;
+  currentIdx.value = 0;
   userAnswers.value = {};
-  showHint.value    = false;
+  showHint.value = false;
   showResults.value = false;
 }
 
 /* ── Computed stats ── */
 const answeredCount = computed(() => Object.keys(userAnswers.value).length);
 
-const correctCount = computed(() =>
-  props.set.questions.filter((q, i) => userAnswers.value[i] === q.answer).length
+const correctCount = computed(
+  () =>
+    props.set.questions.filter((q, i) => userAnswers.value[i] === q.answer)
+      .length,
 );
 
-const xpEarned = computed(() =>
-  props.set.questions.filter((q, i) => userAnswers.value[i] === q.answer).length * props.set.xpPerQ
+const xpEarned = computed(
+  () =>
+    props.set.questions.filter((q, i) => userAnswers.value[i] === q.answer)
+      .length * props.set.xpPerQ,
 );
 
-const scoreIcon = computed(() => {
-  const pct = correctCount.value / props.set.questions.length;
-  if (pct === 1)    return 'fa-solid fa-trophy';
-  if (pct >= 0.7)   return 'fa-solid fa-star';
-  if (pct >= 0.4)   return 'fa-solid fa-thumbs-up';
-  return 'fa-solid fa-rotate-left';
+const scorePercent = computed(() =>
+  Math.round((correctCount.value / props.set.questions.length) * 100),
+);
+
+const grade = computed(() => {
+  if (scorePercent.value >= 85) return "gold";
+  if (scorePercent.value >= 65) return "silver";
+  if (scorePercent.value >= 40) return "bronze";
+  return "fail";
 });
 
-const scoreTitle = computed(() => {
-  const pct = correctCount.value / props.set.questions.length;
-  if (pct === 1)    return 'Perfect Score! 🎉';
-  if (pct >= 0.7)   return 'Great Work!';
-  if (pct >= 0.4)   return 'Good Effort!';
-  return 'Keep Practising!';
+const gradeLabel = computed(() => {
+  if (grade.value === "gold") return "Gold Award";
+  if (grade.value === "silver") return "Silver Award";
+  if (grade.value === "bronze") return "Bronze Award";
+  return "Keep Practising";
 });
 
-const topicLabel = computed(() => ({
-  decimals: 'Decimals & Rounding',
-  factors:  'Factors & HCF',
-  standard: 'Standard Form',
-}[props.set.topic] || props.set.topic));
+const gradeIcon = computed(() => {
+  if (grade.value === "gold") return "fa-solid fa-trophy";
+  if (grade.value === "silver") return "fa-solid fa-medal";
+  if (grade.value === "bronze") return "fa-solid fa-award";
+  return "fa-solid fa-rotate-left";
+});
+
+const topicLabel = computed(
+  () =>
+    ({
+      decimals: "Decimals & Rounding",
+      factors: "Factors & HCF",
+      standard: "Standard Form",
+      percentages: "Percentages",
+      ratios: "Ratios & Sharing",
+      proportion: "Direct & Inverse Proportion",
+      mixed: "Mixed Assessment",
+    })[props.set.topic] || props.set.topic,
+);
 
 /* ── Option styling ── */
-const letters = ['A', 'B', 'C', 'D'];
+const letters = ["A", "B", "C", "D"];
 
 function optLabel(opt) {
-  return letters[currentQuestion.value.options.indexOf(opt)] || '';
+  return letters[currentQuestion.value.options.indexOf(opt)] || "";
 }
 
 function optClass(opt) {
   const answered = userAnswers.value[currentIdx.value];
-  if (answered === undefined) return '';
-  if (opt === currentQuestion.value.answer)    return 'opt-correct';
-  if (opt === answered)                         return 'opt-wrong';
-  return 'opt-neutral';
+  if (answered === undefined) return "";
+  if (opt === currentQuestion.value.answer) return "opt-correct";
+  if (opt === answered) return "opt-wrong";
+  return "opt-neutral";
 }
 </script>
 
@@ -323,13 +452,31 @@ function optClass(opt) {
   padding: 20px 40px;
   gap: 16px;
   flex-wrap: wrap;
-  border-bottom: 1.5px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
   background: var(--bg-card);
 }
 
-.er-header-decimals { border-bottom-color: #2563eb; }
-.er-header-factors  { border-bottom-color: #7c3aed; }
-.er-header-standard { border-bottom-color: #0d9488; }
+.er-header-decimals {
+  border-bottom-color: #2563eb;
+}
+.er-header-factors {
+  border-bottom-color: #7c3aed;
+}
+.er-header-standard {
+  border-bottom-color: #0d9488;
+}
+.er-header-percentages {
+  border-bottom-color: #dc2626;
+}
+.er-header-ratios {
+  border-bottom-color: #d97706;
+}
+.er-header-proportion {
+  border-bottom-color: #7c3aed;
+}
+.er-header-mixed {
+  border-bottom-color: #f97316;
+}
 
 .er-header-left {
   display: flex;
@@ -355,19 +502,30 @@ function optClass(opt) {
   white-space: nowrap;
 }
 
-.er-back-btn:hover { border-color: #f97316; color: #f97316; }
+.er-back-btn:hover {
+  border-color: #f97316;
+  color: #f97316;
+}
+
+.er-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
 .er-topic-badge {
+  width: fit-content;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text-primary);
-  opacity: 0.6;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   margin-bottom: 2px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid;
 }
 
 .er-title {
@@ -393,7 +551,10 @@ function optClass(opt) {
   color: var(--text-primary);
 }
 
-.er-hstat i { color: #f59e0b; font-size: 16px; }
+.er-hstat i {
+  color: #f59e0b;
+  font-size: 16px;
+}
 
 .er-diff-badge {
   font-size: 11px;
@@ -402,12 +563,37 @@ function optClass(opt) {
   border-radius: 20px;
 }
 
-.diff-foundation { background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
-.diff-higher     { background: #ede9fe; color: #6d28d9; border: 1px solid #c4b5fd; }
-.diff-challenge  { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
-body.dark .diff-foundation { background: #172554; color: #93c5fd; border-color: #2563eb; }
-body.dark .diff-higher     { background: #2e1065; color: #c4b5fd; border-color: #7c3aed; }
-body.dark .diff-challenge  { background: #450a0a; color: #f87171; border-color: #dc2626; }
+.diff-foundation {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+.diff-higher {
+  background: #ede9fe;
+  color: #6d28d9;
+  border: 1px solid #c4b5fd;
+}
+.diff-challenge {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+body.dark .diff-foundation {
+  background: #172554;
+  color: #93c5fd;
+  border-color: #2563eb;
+}
+body.dark .diff-higher {
+  background: #2e1065;
+  color: #c4b5fd;
+  border-color: #7c3aed;
+}
+body.dark .diff-challenge {
+  background: #450a0a;
+  color: #f87171;
+  border-color: #dc2626;
+}
 
 /* ── Progress bar ───────────────────────────────────── */
 .er-progress-outer {
@@ -420,9 +606,27 @@ body.dark .diff-challenge  { background: #450a0a; color: #f87171; border-color: 
   transition: width 0.4s ease;
 }
 
-.er-prog-decimals { background: linear-gradient(90deg, #2563eb, #3b82f6); }
-.er-prog-factors  { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
-.er-prog-standard { background: linear-gradient(90deg, #0d9488, #2dd4bf); }
+.er-prog-decimals {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+}
+.er-prog-factors {
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+}
+.er-prog-standard {
+  background: linear-gradient(90deg, #0d9488, #2dd4bf);
+}
+.er-prog-percentages {
+  background: linear-gradient(90deg, #dc2626, #f87171);
+}
+.er-prog-ratios {
+  background: linear-gradient(90deg, #d97706, #fbbf24);
+}
+.er-prog-proportion {
+  background: linear-gradient(90deg, #7c3aed, #c084fc);
+}
+.er-prog-mixed {
+  background: linear-gradient(90deg, #ea580c, #fb923c);
+}
 
 /* ── Body ───────────────────────────────────────────── */
 .er-body {
@@ -458,10 +662,25 @@ body.dark .diff-challenge  { background: #450a0a; color: #f87171; border-color: 
   justify-content: center;
 }
 
-.dot-current   { border-color: #f97316; color: #f97316; box-shadow: 0 0 0 3px rgba(249,115,22,0.15); }
-.dot-correct   { background: #16a34a; border-color: #16a34a; color: #fff; }
-.dot-wrong     { background: #dc2626; border-color: #dc2626; color: #fff; }
-.dot-unanswered:hover { border-color: #f97316; color: #f97316; }
+.dot-current {
+  border-color: #f97316;
+  color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+.dot-correct {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
+}
+.dot-wrong {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #fff;
+}
+.dot-unanswered:hover {
+  border-color: #f97316;
+  color: #f97316;
+}
 
 /* ── Question card ──────────────────────────────────── */
 .er-q-card {
@@ -472,9 +691,27 @@ body.dark .diff-challenge  { background: #450a0a; color: #f87171; border-color: 
   border-top: 4px solid;
 }
 
-.er-q-card-decimals { border-top-color: #2563eb; }
-.er-q-card-factors  { border-top-color: #7c3aed; }
-.er-q-card-standard { border-top-color: #0d9488; }
+.er-q-card-decimals {
+  border-top-color: #2563eb;
+}
+.er-q-card-factors {
+  border-top-color: #7c3aed;
+}
+.er-q-card-standard {
+  border-top-color: #0d9488;
+}
+.er-q-card-percentages {
+  border-top-color: #dc2626;
+}
+.er-q-card-ratios {
+  border-top-color: #d97706;
+}
+.er-q-card-proportion {
+  border-top-color: #7c3aed;
+}
+.er-q-card-mixed {
+  border-top-color: #f97316;
+}
 
 .er-q-number {
   font-size: 12px;
@@ -508,11 +745,15 @@ body.dark .diff-challenge  { background: #450a0a; color: #f87171; border-color: 
   font-weight: 600;
   color: var(--text-primary);
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.8;
   transition: all 0.15s;
 }
 
-.er-hint-btn:hover { opacity: 1; border-color: #f59e0b; color: #f59e0b; }
+.er-hint-btn:hover {
+  opacity: 1;
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
 
 .er-hint {
   margin-top: 12px;
@@ -529,9 +770,17 @@ body.dark .diff-challenge  { background: #450a0a; color: #f87171; border-color: 
   line-height: 1.5;
 }
 
-.er-hint i { color: #f59e0b; flex-shrink: 0; margin-top: 1px; }
+.er-hint i {
+  color: #f59e0b;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
-body.dark .er-hint { background: #422006; border-color: #ca8a04; color: #fbbf24; }
+body.dark .er-hint {
+  background: #422006;
+  border-color: #ca8a04;
+  color: #fbbf24;
+}
 
 /* ── Options ────────────────────────────────────────── */
 .er-options {
@@ -560,9 +809,14 @@ body.dark .er-hint { background: #422006; border-color: #ca8a04; color: #fbbf24;
   transform: translateX(4px);
 }
 
-body.dark .er-opt:not(:disabled):hover { background: #431407; border-color: #f97316; }
+body.dark .er-opt:not(:disabled):hover {
+  background: #431407;
+  border-color: #f97316;
+}
 
-.er-opt:disabled { cursor: default; }
+.er-opt:disabled {
+  cursor: default;
+}
 
 .er-opt-letter {
   width: 30px;
@@ -586,7 +840,11 @@ body.dark .er-opt:not(:disabled):hover { background: #431407; border-color: #f97
   flex: 1;
 }
 
-.er-opt-icon { font-size: 18px; width: 20px; text-align: center; }
+.er-opt-icon {
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+}
 
 /* Option states */
 .opt-correct {
@@ -600,7 +858,9 @@ body.dark .er-opt:not(:disabled):hover { background: #431407; border-color: #f97
   color: #fff;
 }
 
-.opt-correct .er-opt-icon { color: #16a34a; }
+.opt-correct .er-opt-icon {
+  color: #16a34a;
+}
 
 .opt-wrong {
   background: #fef2f2 !important;
@@ -613,11 +873,22 @@ body.dark .er-opt:not(:disabled):hover { background: #431407; border-color: #f97
   color: #fff;
 }
 
-.opt-wrong .er-opt-icon { color: #dc2626; }
-.opt-neutral { opacity: 0.4; }
+.opt-wrong .er-opt-icon {
+  color: #dc2626;
+}
 
-body.dark .opt-correct { background: #052e16 !important; border-color: #16a34a !important; }
-body.dark .opt-wrong   { background: #450a0a !important; border-color: #dc2626 !important; }
+.opt-neutral {
+  opacity: 0.4;
+}
+
+body.dark .opt-correct {
+  background: #052e16 !important;
+  border-color: #16a34a !important;
+}
+body.dark .opt-wrong {
+  background: #450a0a !important;
+  border-color: #dc2626 !important;
+}
 
 /* ── Feedback ───────────────────────────────────────── */
 .er-feedback {
@@ -628,10 +899,22 @@ body.dark .opt-wrong   { background: #450a0a !important; border-color: #dc2626 !
   gap: 14px;
 }
 
-.fb-correct { background: #f0fdf4; border: 1.5px solid #86efac; }
-.fb-wrong   { background: #fef2f2; border: 1.5px solid #fca5a5; }
-body.dark .fb-correct { background: #052e16; border-color: #16a34a; }
-body.dark .fb-wrong   { background: #450a0a; border-color: #dc2626; }
+.fb-correct {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+}
+.fb-wrong {
+  background: #fef2f2;
+  border: 1.5px solid #fca5a5;
+}
+body.dark .fb-correct {
+  background: #052e16;
+  border-color: #16a34a;
+}
+body.dark .fb-wrong {
+  background: #450a0a;
+  border-color: #dc2626;
+}
 
 .fb-icon {
   font-size: 24px;
@@ -639,10 +922,16 @@ body.dark .fb-wrong   { background: #450a0a; border-color: #dc2626; }
   margin-top: 1px;
 }
 
-.fb-correct .fb-icon { color: #16a34a; }
-.fb-wrong   .fb-icon { color: #dc2626; }
+.fb-correct .fb-icon {
+  color: #16a34a;
+}
+.fb-wrong .fb-icon {
+  color: #dc2626;
+}
 
-.fb-body { flex: 1; }
+.fb-body {
+  flex: 1;
+}
 
 .fb-title {
   font-size: 15px;
@@ -650,10 +939,18 @@ body.dark .fb-wrong   { background: #450a0a; border-color: #dc2626; }
   margin-bottom: 4px;
 }
 
-.fb-correct .fb-title { color: #15803d; }
-.fb-wrong   .fb-title { color: #b91c1c; }
-body.dark .fb-correct .fb-title { color: #4ade80; }
-body.dark .fb-wrong   .fb-title { color: #f87171; }
+.fb-correct .fb-title {
+  color: #15803d;
+}
+.fb-wrong .fb-title {
+  color: #b91c1c;
+}
+body.dark .fb-correct .fb-title {
+  color: #4ade80;
+}
+body.dark .fb-wrong .fb-title {
+  color: #f87171;
+}
 
 .fb-exp {
   font-size: 13px;
@@ -674,8 +971,13 @@ body.dark .fb-wrong   .fb-title { color: #f87171; }
 }
 
 /* Slide-up transition */
-.slide-up-enter-active { transition: all 0.3s ease; }
-.slide-up-enter-from   { opacity: 0; transform: translateY(10px); }
+.slide-up-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
 
 /* ── Navigation ─────────────────────────────────────── */
 .er-nav {
@@ -698,7 +1000,10 @@ body.dark .fb-wrong   .fb-title { color: #f87171; }
   border: none;
 }
 
-.er-nav-btn:disabled { opacity: 0.35; cursor: default; }
+.er-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
 
 .er-nav-prev {
   background: var(--bg-card);
@@ -706,7 +1011,10 @@ body.dark .fb-wrong   .fb-title { color: #f87171; }
   color: var(--text-primary);
 }
 
-.er-nav-prev:not(:disabled):hover { border-color: #f97316; color: #f97316; }
+.er-nav-prev:not(:disabled):hover {
+  border-color: #f97316;
+  color: #f97316;
+}
 
 .er-nav-next,
 .er-nav-finish {
@@ -714,15 +1022,33 @@ body.dark .fb-wrong   .fb-title { color: #f87171; }
   margin-left: auto;
 }
 
-.er-next-decimals { background: #2563eb; }
-.er-next-factors  { background: #7c3aed; }
-.er-next-standard { background: #0d9488; }
+.er-next-decimals {
+  background: #2563eb;
+}
+.er-next-factors {
+  background: #7c3aed;
+}
+.er-next-standard {
+  background: #0d9488;
+}
+.er-next-percentages {
+  background: #dc2626;
+}
+.er-next-ratios {
+  background: #d97706;
+}
+.er-next-proportion {
+  background: #7c3aed;
+}
+.er-next-mixed {
+  background: #f97316;
+}
 
 .er-nav-next:not(:disabled):hover,
 .er-nav-finish:not(:disabled):hover {
   filter: brightness(1.1);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 
 /* ── Results ────────────────────────────────────────── */
@@ -733,18 +1059,46 @@ body.dark .fb-wrong   .fb-title { color: #f87171; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 .er-results-icon {
   font-size: 64px;
+  animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.grade-gold {
   color: #f59e0b;
-  animation: pop-in 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+.grade-silver {
+  color: #9ca3af;
+}
+.grade-bronze {
+  color: #d97706;
+}
+.grade-fail {
+  color: #ef4444;
+}
+
+.grade-gold i {
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+}
+.grade-silver i {
+  text-shadow: 0 0 10px rgba(156, 163, 175, 0.4);
+}
+.grade-bronze i {
+  text-shadow: 0 0 10px rgba(217, 119, 6, 0.4);
 }
 
 @keyframes pop-in {
-  from { transform: scale(0); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .er-results-title {
@@ -753,6 +1107,31 @@ body.dark .fb-wrong   .fb-title { color: #f87171; }
   color: var(--text-dark);
   margin: 0;
   text-align: center;
+}
+
+.er-grade-badge {
+  margin-top: -6px;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.badge-gold {
+  background: #fef3c7;
+  color: #92400e;
+}
+.badge-silver {
+  background: #f3f4f6;
+  color: #374151;
+}
+.badge-bronze {
+  background: #ffedd5;
+  color: #9a3412;
+}
+.badge-fail {
+  background: #fee2e2;
+  color: #991b1b;
 }
 
 .er-results-sub {
@@ -784,10 +1163,18 @@ body.dark .fb-wrong   .fb-title { color: #f87171; }
   margin-bottom: 6px;
 }
 
-.er-res-correct { color: #16a34a; }
-.er-res-wrong   { color: #dc2626; }
-.er-res-xp      { color: #f59e0b; }
-.er-res-pct     { color: #2563eb; }
+.er-res-correct {
+  color: #16a34a;
+}
+.er-res-wrong {
+  color: #dc2626;
+}
+.er-res-xp {
+  color: #f59e0b;
+}
+.er-res-pct {
+  color: #2563eb;
+}
 
 .er-res-label {
   font-size: 12px;
@@ -823,10 +1210,22 @@ body.dark .fb-wrong   .fb-title { color: #f87171; }
   border: 1.5px solid;
 }
 
-.review-correct { background: #f0fdf4; border-color: #86efac; }
-.review-wrong   { background: #fef2f2; border-color: #fca5a5; }
-body.dark .review-correct { background: #052e16; border-color: #16a34a; }
-body.dark .review-wrong   { background: #450a0a; border-color: #dc2626; }
+.review-correct {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+.review-wrong {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+body.dark .review-correct {
+  background: #052e16;
+  border-color: #16a34a;
+}
+body.dark .review-wrong {
+  background: #450a0a;
+  border-color: #dc2626;
+}
 
 .er-review-num {
   font-size: 16px;
@@ -834,8 +1233,12 @@ body.dark .review-wrong   { background: #450a0a; border-color: #dc2626; }
   margin-top: 1px;
 }
 
-.review-correct .er-review-num { color: #16a34a; }
-.review-wrong   .er-review-num { color: #dc2626; }
+.review-correct .er-review-num {
+  color: #16a34a;
+}
+.review-wrong .er-review-num {
+  color: #dc2626;
+}
 
 .er-review-q {
   font-size: 13px;
@@ -854,8 +1257,12 @@ body.dark .review-wrong   { background: #450a0a; border-color: #dc2626; }
   color: var(--text-primary);
 }
 
-.er-review-correct-ans { color: #16a34a; }
-body.dark .er-review-correct-ans { color: #4ade80; }
+.er-review-correct-ans {
+  color: #16a34a;
+}
+body.dark .er-review-correct-ans {
+  color: #4ade80;
+}
 
 /* Results actions */
 .er-results-actions {
@@ -869,7 +1276,6 @@ body.dark .er-review-correct-ans { color: #4ade80; }
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: #f97316;
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -881,7 +1287,10 @@ body.dark .er-review-correct-ans { color: #4ade80; }
   transition: all 0.15s;
 }
 
-.er-action-retry:hover { background: #ea580c; transform: translateY(-2px); }
+.er-action-retry:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
 
 .er-action-back {
   display: inline-flex;
@@ -899,15 +1308,35 @@ body.dark .er-review-correct-ans { color: #4ade80; }
   transition: all 0.15s;
 }
 
-.er-action-back:hover { border-color: #f97316; color: #f97316; }
+.er-action-back:hover {
+  border-color: #f97316;
+  color: #f97316;
+}
 
 /* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 680px) {
-  .er-header { padding: 16px 20px; }
-  .er-body   { padding: 20px 16px; }
-  .er-results { padding: 20px 16px; }
-  .er-title  { font-size: 16px; }
-  .er-q-text { font-size: 18px; }
-  .er-results-stats { grid-template-columns: repeat(2, 1fr); }
+  .er-header {
+    padding: 16px 20px;
+  }
+
+  .er-body {
+    padding: 20px 16px;
+  }
+
+  .er-results {
+    padding: 20px 16px;
+  }
+
+  .er-title {
+    font-size: 16px;
+  }
+
+  .er-q-text {
+    font-size: 18px;
+  }
+
+  .er-results-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>

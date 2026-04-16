@@ -9,6 +9,7 @@ import GamesPage from "../pages/GamesPage.vue";
 import SettingsPage from "../pages/SettingsPage.vue";
 import ContactPage from "../pages/ContactPage.vue";
 import TeamPage from "../pages/TeamPage.vue";
+import Exam from "../pages/EndpointTestPage.vue";
 
 // Lesson Imports
 import Lesson1 from "../pages/DecimalRounding.vue";
@@ -31,23 +32,23 @@ const routes = [
   { path: "/practice", component: PracticePage },
   { path: "/achievements", component: AchievementsPage },
   { path: "/games", component: GamesPage },
+  { path: "/exam", component: Exam },
   { path: "/settings", component: SettingsPage },
   { path: "/contact", component: ContactPage },
   { path: "/team", component: TeamPage },
 
-  // Lesson Routes
-  { path: "/Lesson1", component: Lesson1 },
-  { path: "/Lesson2", component: Lesson2 },
-  { path: "/Lesson3", component: Lesson3 },
-  { path: "/Lesson4", component: Lesson4 },
-  { path: "/Lesson5", component: Lesson5 },
-  { path: "/Lesson6", component: Lesson6 },
-  { path: "/Lesson7", component: Lesson7 },
-  { path: "/Lesson8", component: Lesson8 },
-  { path: "/Lesson9", component: Lesson9 },
-  { path: "/Lesson10", component: Lesson10 },
-  { path: "/Lesson11", component: Lesson11 },
-  { path: "/Lesson12", component: Lesson12 },
+  { path: "/lesson1", component: Lesson1 },
+  { path: "/lesson2", component: Lesson2 },
+  { path: "/lesson3", component: Lesson3 },
+  { path: "/lesson4", component: Lesson4 },
+  { path: "/lesson5", component: Lesson5 },
+  { path: "/lesson6", component: Lesson6 },
+  { path: "/lesson7", component: Lesson7 },
+  { path: "/lesson8", component: Lesson8 },
+  { path: "/lesson9", component: Lesson9 },
+  { path: "/lesson10", component: Lesson10 },
+  { path: "/lesson11", component: Lesson11 },
+  { path: "/lesson12", component: Lesson12 },
 ];
 
 export default createRouter({
