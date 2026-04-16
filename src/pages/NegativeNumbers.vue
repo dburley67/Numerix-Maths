@@ -42,12 +42,11 @@
       <div class="lesson-section" ref="sec1" :class="{ visible: sec1Visible }">
         <div class="section-header">
           <div class="section-num">1</div>
-          <h2 class="section-title">What are the 4 operations??</h2>
+          <h2 class="section-title">What is a negative number??</h2>
         </div>
         <div class="section-body">
           <p class="lesson-text">
-            The 4 operations are Addition, Subtraction, Multiplication, And
-            Division.
+            A negative number is a number that is less than zero.
           </p>
 
           <!-- Range rule card -->
